@@ -46,7 +46,7 @@ nextlvl = rogue.nextlvl;
 maxglod = rogue.maxglod;
 sila = rogue.sila;
 document.getElementById("wybierzpostac").style.display = "none";
-document.getElementById("nazwadef").innerHTML = "Szata Mnicha";
+document.getElementById("nazwadef").innerHTML = "Lekkie ubranie";
 document.getElementById("zdrowie").innerHTML = rogue.maxzdrowie;
 document.getElementById("maxzdrowie").innerHTML = rogue.maxzdrowie;
 document.getElementById("maxglod").innerHTML = rogue.maxglod;
@@ -163,7 +163,7 @@ function hpcheck()
 	{
 		document.getElementById("zdrowaska").src = "zasoby/zdrowie2.png";
 	}
-	else if (zdrowie < (Math.floor(maxzdrowie / 2)))
+	else if (zdrowie < (maxzdrowie / 2))
 	{
 		document.getElementById("zdrowaska").src = "zasoby/zdrowie1.png";
 	}
@@ -461,7 +461,7 @@ function rest(){
 	else
 	{
 		akcje = akcje + 1;
-		if (glod == 10)
+		if (glod == maxglod)
 		{
 			zdrowie = zdrowie - 1;
 		}
@@ -626,7 +626,7 @@ function explore()
 		var randomeq = Math.floor(Math.random()*3)
 		if (randomeq == 0)
 		{
-			nazwaeq = "Płócienna zbroja + 1";
+			nazwaeq = "Płócienna zbroja";
 			zamiennazbroja = 2;
 			var img = document.createElement("img");
 			img.src = "zasoby/cloth.png";
@@ -635,7 +635,7 @@ function explore()
 		}
 		else if (randomeq == 1)
 		{
-			nazwaeq = "Skórzana zbroja + 1";
+			nazwaeq = "Skórzana zbroja";
 			zamiennazbroja = 2+1;
 			var img = document.createElement("img");
 			img.src = "zasoby/leather.png";
@@ -643,7 +643,7 @@ function explore()
 			document.body.appendChild(element);
 		}
 		else {
-			nazwaeq = "Kolczuga - 1";
+			nazwaeq = "Kolczuga";
 			zamiennazbroja = 4 - 2;
 			var img = document.createElement("img");
 			img.src = "zasoby/chainmail.png";
