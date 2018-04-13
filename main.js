@@ -1,21 +1,25 @@
 
 //staty bohatera
-var zdrowie = 10;
 var glod = 0;
-var maxglod = 10;
-var sila = 1;
 var exp = 0;
 var level = 1;
 var nextlvl = 10;
 var poziom = 1;
 var zbroja = 1;
-var maxzdrowie = 10;
+var maxzdrowie = 1;
+var zdrowie = 1;
+var nextlvl = 1;
+var maxglod = 1;
+var sila = 1;
+var potkahp = 1;
+var zestaw = 0;
 //var postacie
 //1 - fighter
-var fighter = {maxzdrowie:10,zdrowie:10,zbroja:1,nextlvl:10,maxglod:10,sila:2}
-//2 - monk
-var monk = {maxzdrowie:15,zdrowie:15,zbroja:0,nextlvl:5,maxglod: 7,sila:1}
-
+var fighter = {maxzdrowie:10,zbroja:2,nextlvl:12,maxglod:10,sila:2}
+//2 - rogue
+var rogue = {maxzdrowie:15,zbroja:0,nextlvl:8,maxglod: 7,sila:1}
+//3 - mag
+var mage = {maxzdrowie:5,zbroja:0,nextlvl:10,maxglod: 12,sila:4}
 //staty wrogow
 var wrogowie = 0;
 var bosszone1 = 1;
@@ -30,27 +34,62 @@ var randomgenerator = 0;
 var zalozonazbroja = false;
 var zamiennazbroja = 0;
 var story = 1;
+var errorlevel = 0;
 
 scroll = setInterval(function(){ window.scrollBy(0, 1000);}, 25);
 
-function classmonk(){
-var maxzdrowie = monk.maxzdrowie;
-var zdrowie = monk.maxzdrowie;
-var zbroja = monk.zbroja;
-var nextlvl = monk.nextlvl;
-var maxglod = monk.maxglod;
-var sila = monk.sila;
+function classrogue(){
+maxzdrowie = rogue.maxzdrowie;
+zdrowie = rogue.maxzdrowie;
+zbroja = rogue.zbroja;
+nextlvl = rogue.nextlvl;
+maxglod = rogue.maxglod;
+sila = rogue.sila;
 document.getElementById("wybierzpostac").style.display = "none";
+document.getElementById("nazwadef").innerHTML = "Szata Mnicha";
+document.getElementById("zdrowie").innerHTML = rogue.maxzdrowie;
+document.getElementById("maxzdrowie").innerHTML = rogue.maxzdrowie;
+document.getElementById("maxglod").innerHTML = rogue.maxglod;
+document.getElementById("def").innerHTML = rogue.zbroja;
+document.getElementById("nextlvl").innerHTML = rogue.nextlvl;
+document.getElementById("sila").innerHTML = rogue.sila;
+document.getElementById("klasapostaci").src = "zasoby/rogue.png";
 hpcheck();
 }
 function classfighter(){
-var maxzdrowie = fighter.maxzdrowie;
-var zdrowie = fighter.maxzdrowie;
-var zbroja = fighter.zbroja;
-var nextlvl = fighter.nextlvl;
-var maxglod = fighter.maxglod;
-var sila = fighter.sila;
+maxzdrowie = fighter.maxzdrowie;
+zdrowie = fighter.maxzdrowie;
+zbroja = fighter.zbroja;
+nextlvl = fighter.nextlvl;
+maxglod = fighter.maxglod;
+sila = fighter.sila;
 document.getElementById("wybierzpostac").style.display = "none";
+document.getElementById("zdrowie").innerHTML = fighter.maxzdrowie;
+document.getElementById("nazwadef").innerHTML = "Skórzana Zbroja";
+document.getElementById("maxzdrowie").innerHTML = fighter.maxzdrowie;
+document.getElementById("maxglod").innerHTML = fighter.maxglod;
+document.getElementById("def").innerHTML = fighter.zbroja;
+document.getElementById("nextlvl").innerHTML = fighter.nextlvl;
+document.getElementById("sila").innerHTML = fighter.sila;
+document.getElementById("klasapostaci").src = "zasoby/fighter.png";
+hpcheck();
+}
+function classmage(){
+maxzdrowie = mage.maxzdrowie;
+zdrowie = mage.maxzdrowie;
+zbroja = mage.zbroja;
+nextlvl = mage.nextlvl;
+maxglod = mage.maxglod;
+sila = mage.sila;
+document.getElementById("wybierzpostac").style.display = "none";
+document.getElementById("zdrowie").innerHTML = mage.maxzdrowie;
+document.getElementById("nazwadef").innerHTML = "Szata Maga";
+document.getElementById("maxzdrowie").innerHTML = mage.maxzdrowie;
+document.getElementById("maxglod").innerHTML = mage.maxglod;
+document.getElementById("def").innerHTML = mage.zbroja;
+document.getElementById("nextlvl").innerHTML = mage.nextlvl;
+document.getElementById("sila").innerHTML = mage.sila;
+document.getElementById("klasapostaci").src = "zasoby/mage.png";
 hpcheck();
 }
 function zonecheck()
@@ -110,12 +149,15 @@ function hpcheck()
 {
 	if (zdrowie == 0 || zdrowie < 0)
 	{
-
-		document.getElementById("zdrowaska").src = "zasoby/smierc.png";
-		var audio = new Audio('zasoby/death.mp3');
-		audio.play();
-		return alert("TY UMARŁEŚ...");
-
+		if (errorlevel == 0)
+		{
+			errorlevel = errorlevel + 1;
+			document.getElementById("zdrowaska").src = "zasoby/smierc.png";
+			var audio = new Audio('zasoby/death.mp3');
+			audio.play();
+			alert("YOU DIED...");
+			setTimeout(function(){ location.reload(); }, 2500);
+		}
 	}
 	else if (zdrowie < (maxzdrowie / 3))
 	{
@@ -129,11 +171,11 @@ function hpcheck()
 	{
 		document.getElementById("zdrowaska").src = "zasoby/zdrowie0.png";
 	}
- 	if (glod < (maxglod / 3))
+ 	if (glod < (maxglod / 2))
 	{
 		document.getElementById("glodaska").src = "zasoby/glod0.png";
 	}
-	else if (glod < (maxglod / 2))
+	else if (glod < (maxglod / (1 + (1/2))))
 	{
 		document.getElementById("glodaska").src = "zasoby/glod1.png";
 	}
@@ -153,6 +195,7 @@ function hpcheck()
 	{
 		nextlvl = nextlvl + 10;
 		maxzdrowie = maxzdrowie + 5;
+		zdrowie = zdrowie + 5;
 		poziom = poziom + 1;
 		exp = 0;
 		hit5 = new Audio('zasoby/lvlup.mp3');
@@ -170,10 +213,58 @@ function hpcheck()
 	document.getElementById("exp").innerHTML = exp;
 	document.getElementById("nextlvl").innerHTML = nextlvl;
   document.getElementById("poziom").innerHTML = poziom;
+	document.getElementById("zestaw").innerHTML = zestaw;
+	document.getElementById("potkahp").innerHTML = potkahp;
+	document.getElementById("def").innerHTML = zbroja;
 }
-function obrazenia()
+function repair()
 {
+	if (zestaw != 0){
+		var element = document.createElement("p");
+		var t = document.createTextNode("Naprawiasz swoją zbroję.");
+		element.appendChild(t);
+		document.body.appendChild(element);
+		zestaw = zestaw - 1;
+		zbroja = zbroja + Math.floor(zbroja / 10 + 1)
+		hit9 = new Audio('zasoby/fixarmor.mp3');
+		hit9.play();
+	}
+	else {
+		var element = document.createElement("p");
+		var t = document.createTextNode("Próbujesz powietrzem naprawić zbroję.");
+		element.appendChild(t);
+		document.body.appendChild(element);
+	}
+	if (wrogowie != 0)
+	{
+			damagetake();
+	}
+	hpcheck();
+}
+function quaff()
+{
+	if (potkahp != 0){
+		var element = document.createElement("p");
+		var t = document.createTextNode("Napiłeś się mikstury zdrowia.");
+		element.appendChild(t);
+		document.body.appendChild(element);
+		potkahp = potkahp - 1
+		zdrowie = zdrowie + Math.floor(((zdrowie / 100) * 60));
+		hit8 = new Audio('zasoby/quaff.mp3');
+		hit8.play();
+	}
+	else {
+		var element = document.createElement("p");
+		var t = document.createTextNode("Próbujesz wypić powietrze.");
+		element.appendChild(t);
+		document.body.appendChild(element);
+	}
+if (wrogowie != 0)
+{
+		damagetake();
+}
 
+	hpcheck();
 }
 function damagedeal()
 {
@@ -341,11 +432,11 @@ function eat()
 		document.body.appendChild(element);
 		prowiant = prowiant - 1;
 		document.getElementById("prowiant").innerHTML = prowiant;
-		hit4 = new Audio('zasoby/eat.mp3');
-		hit4.play();
 			break;
 
 	}
+	hit4 = new Audio('zasoby/eat.mp3');
+	hit4.play();
 	if (wrogowie != 0)
 	{
 		damagetake();
@@ -446,15 +537,28 @@ function explore()
 		switch (randomgenerator)
 		{
     case 1:
+		var randomgenerator = Math.floor(Math.random()*2+1);
+		if (randomgenerator == 1){
+			var element = document.createElement("p");
+			var t = document.createTextNode("Znalazłeś miksturę zdrowia, chowasz ją do ekwipunku.");
+			element.appendChild(t);
+			var img = document.createElement("img");
+			img.src = "zasoby/potkahp.png";
+			element.appendChild(img);
+			document.body.appendChild(element);
+			potkahp = potkahp + 1;
+		}
+		else {
 		var element = document.createElement("p");
-		var t = document.createTextNode("Znalazles trochę prowiantu, pakujesz go do swojej torby.");
+		var t = document.createTextNode("Znalazłeś zestaw naprawczy zbroi, chowasz go do ekwipunku.");
 		element.appendChild(t);
 		var img = document.createElement("img");
-		img.src = "zasoby/prowiant.png";
+		img.src = "zasoby/zestaw.png";
 		element.appendChild(img);
 		document.body.appendChild(element);
-		prowiant = prowiant + 1;
-		document.getElementById("prowiant").innerHTML = prowiant;
+		zestaw = zestaw + 1;
+	}
+
         break;
     case 2:
 		var element = document.createElement("p");
@@ -542,8 +646,8 @@ function explore()
 			nazwaeq = "Kolczuga - 1";
 			zamiennazbroja = 4 - 2;
 			var img = document.createElement("img");
-			img.src = "zasoby/goo.png";
-			element.appendChild(chainmail);
+			img.src = "zasoby/chainmail.png";
+			element.appendChild(img);
 			document.body.appendChild(element);
 
 		}
@@ -613,8 +717,10 @@ function endexplore()
 }
 
 myAudio = new Audio('zasoby/game.ogg');
+myAudio.volume = 0.25;
 myAudio.addEventListener('ended', function() {
     this.currentTime = 0;
+
     this.play();
 }, false);
 myAudio.play();

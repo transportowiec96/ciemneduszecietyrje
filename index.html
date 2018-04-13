@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="pl">
   <head>
     <meta charset="utf-8">
@@ -12,14 +12,106 @@ body{
   top: 0px;
   right:40%;
   position: fixed;
-  height: 75%;
+  height: 85%;
 }
 p {
   color: white;
   text-shadow: 1px 1px 3px #000000;
 }
-#wybierzpostac
+#wybierzpostac{
+  background-color: black;
+  display: block;
+  text-align:center;
+  top: 0px;
+  left:0px;
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  z-index: 2;
+}
+button{
+  z-index: 4;
+}
+#v01 {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted black;
+}
 
+#v01 .v01text {
+  visibility: hidden;
+  width: 200%;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 1;
+  top: -5px;
+  left: 105%;
+}
+
+#v01:hover .v01text {
+    visibility: visible;
+}
+#v02 {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted black;
+}
+
+#v02 .v02text {
+  visibility: hidden;
+  width: 200%;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 1;
+  top: -5px;
+  left: 105%;
+}
+
+#v02:hover .v02text {
+    visibility: visible;
+}
+#helptext {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted black;
+}
+
+#helptext .helptext {
+width: 120px;
+bottom: 100%;
+left: 50%;
+margin-left: -60px;
+  visibility: hidden;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 1;
+}
+
+#helptext:hover .helptext {
+    visibility: visible;
+}
+#tutorial{
+ width: 40%;
+ height: 100%;
+ top:0px;
+ float:right
+}
+#version{
+bottom:0px;
+right:0px;
+}
 </style>
 	<script type="text/javascript" src="main.js"></script>
     <title>Ciemne Dusze Cietyrje</title>
@@ -27,25 +119,37 @@ p {
   </head>
   <body>
   <div id="wybierzpostac">
-  <button onClick="classfighter()">Wojownik (domyslna klasa)</button>
-  <button onClick="classmonk()">Mnich</button>
-  </div>
-<div id="menu">
-Poziom: <span id="poziom">1</span>
+    <p>CZUZ JUR KLASS...</p>
+<p><button onClick="classfighter()"><img src="zasoby/fighter.png" /><br />Wojownik</button><br />
++Sila +Obrona =Zdrowie =Głód -Doświadczenie</p>
+  <p><button onClick="classrogue()"><img src="zasoby/rogue.png" /><br />Łotrzyk</button><br />
+  +Doświadczenie +Zdrowie =Siła -Zbroja -Głód</p>
+  <p><button onClick="classmage()"><img type=""src="zasoby/mage.png" /><br />Mag</button><br />
+  +++Siła +Głód =Doświadczenie -Zbroja -Zdrowie</p>
+<p id="v01">Lista zmian z 11 kwietnia  <span class="v01text">-Zrobiono pierwszą strefę<br />-Dodano wiele statystyk<br /></span></p><br />
+<p id="v02">Lista zmian z 12 kwietnia <span class="v02text">-Dodano potki zdrowia <br />-Dodano Zestawy Naprawcze zbroi<br />-Dodano tutorial<br />-Dodano przycisk modlenia się (nic nie robi)<br />-Dodano dwie klasy postaci - Maga i Łotrzyka <br />-Dodano menu główne</span></p>
+ <p id="version">0.2</p> </div>
+<div id="menu"><p>
+<img id="klasapostaci" src="zasoby/rogue.png" />Poziom: <span id="poziom">1</span></p>
 <p><img id="zdrowaska" width="15%" height="15%"src="zasoby/zdrowie0.png" /><span id="zdrowie">10</span>
 /<span id="maxzdrowie">10</span>
 <img width="15%" height="15%"src="zasoby/dashboard.png" /><span id="sila">1</span></p>
-<p><img id="glodaska" width="15%" height="15%"src="zasoby/glod0.png" /><span id="glod">0</span>/10
+<p><img id="glodaska" width="15%" height="15%"src="zasoby/glod0.png" /><span id="glod">0</span>/<span id="maxglod">10</span>
 <img width="15%" height="15%"src="zasoby/akcje.png" /><span id="akcje">0</span></p>
 <p><img id="glodaska" width="15%" height="15%"src="zasoby/obrona.png" /><span id="def">1</span>
   <img width="15%" height="15%"src="zasoby/exp.png" /><span id="exp">0</span>/<span id="nextlvl">10</span></p>
 <p>Nosisz <span id="nazwadef">Płócienna Zbroja.</span></p>
 <p><button onClick="explore()">Wal w explor</button><button onClick="walcz()">Walcz</button></p>
-<p><button onClick="rest()">Odpocznij</button><button>PHolder</button></p>
+<p><button onClick="rest()">Odpocznij</button><button>Módl się</button></p>
 <p>Zdrowie wrogów: <span id="wrogowie">0</span></p>
 <p>Twój ekwipunek:</p>
 <p><img width="15%" height="15%"src="zasoby/prowiant.png" /><span id="prowiant">1</span>
 <button onClick="eat()">Zjedz</button></p>
+<p><img width="15%" height="15%"src="zasoby/potkahp.png" /><span id="potkahp">1</span>
+<button onClick="quaff()">Wypij</button></p>
+<p><img width="15%" height="15%"src="zasoby/zestaw.png" /><span id="zestaw">0</span>
+<button onClick="repair()">Napraw</button></p>
+<div id="helptext">Help!<span class="helptext"><img src="zasoby/tutorial.png" /></span></div>
 </div>
 
 
