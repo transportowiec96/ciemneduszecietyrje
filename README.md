@@ -1,2 +1,2 @@
 # ciemneduszecietyrje
-Na podstawie Pixel Dungeon
+Gra na podstawie Pixel Dungeon
