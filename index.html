@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pl">
+  <head>
+    <meta charset="utf-8">
+<style>
+body{
+  background-image: url("zasoby/zone1.png");
+
+}
+#menu {
+  background-color: red;
+  top: 0px;
+  right:40%;
+  position: fixed;
+  height: 75%;
+}
+p {
+  color: white;
+  text-shadow: 1px 1px 3px #000000;
+}
+
+
+</style>
+	<script type="text/javascript" src="main.js"></script>
+    <title>Ciemne Dusze Cietyrje</title>
+	<link rel="shortcut icon" href="https://i.imgur.com/uJeXmwi.jpg">
+  </head>
+  <body>
+<div id="menu">
+Poziom: <span id="poziom">1</span>
+<p><img id="zdrowaska" width="15%" height="15%"src="zasoby/zdrowie0.png" /><span id="zdrowie">10</span>
+/<span id="maxzdrowie">10</span>
+<img width="15%" height="15%"src="zasoby/dashboard.png" /><span id="sila">1</span></p>
+<p><img id="glodaska" width="15%" height="15%"src="zasoby/glod0.png" /><span id="glod">0</span>/10
+<img width="15%" height="15%"src="zasoby/akcje.png" /><span id="akcje">0</span></p>
+<p><img id="glodaska" width="15%" height="15%"src="zasoby/obrona.png" /><span id="def">1</span>
+  <img width="15%" height="15%"src="zasoby/exp.png" /><span id="exp">0</span>/<span id="nextlvl">10</span></p>
+<p>Nosisz <span id="nazwadef">Płócienna Zbroja.</span></p>
+<p><button onClick="explore()">Wal w explor</button><button onClick="walcz()">Walcz</button></p>
+<p><button onClick="rest()">Odpocznij</button><button>PHolder</button></p>
+<p>Zdrowie wrogów: <span id="wrogowie">0</span></p>
+<p>Twój ekwipunek:</p>
+<p><img width="15%" height="15%"src="zasoby/prowiant.png" /><span id="prowiant">1</span>
+<button onClick="eat()">Zjedz</button></p>
+</div>
+
+
+
+
+<body>
+</html>
