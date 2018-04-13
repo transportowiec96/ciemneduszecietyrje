@@ -249,7 +249,7 @@ function quaff()
 		element.appendChild(t);
 		document.body.appendChild(element);
 		potkahp = potkahp - 1
-		zdrowie = zdrowie + Math.floor(((zdrowie / 100) * 60));
+		zdrowie = zdrowie + Math.floor(((maxzdrowie / 100) * 60));
 		hit8 = new Audio('zasoby/quaff.mp3');
 		hit8.play();
 	}
@@ -639,8 +639,7 @@ function explore()
 			zamiennazbroja = 2+1;
 			var img = document.createElement("img");
 			img.src = "zasoby/leather.png";
-			element.appendChild(img);
-			document.body.appendChild(element);
+			document.body.appendChild(img);
 		}
 		else {
 			nazwaeq = "Kolczuga";
@@ -657,11 +656,9 @@ function explore()
 		document.body.appendChild(element);
 		var element = document.createElement("button");
 		var t = document.createTextNode("Załóż");
-		element.setAttribute("onclick", 'zaloz()');
 		element.appendChild(t);
+		element.setAttribute("onclick", 'zaloz()');
 		document.body.appendChild(element);
-		prowiant = prowiant + 1;
-		document.getElementById("prowiant").innerHTML = prowiant;
 				break;
 		case 9:
 		var element = document.createElement("p");
