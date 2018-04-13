@@ -1,20 +1,27 @@
 
 //staty bohatera
 var zdrowie = 10;
-var maxzdrowie = 10;
 var glod = 0;
+var maxglod = 10;
 var sila = 1;
 var exp = 0;
 var level = 1;
 var nextlvl = 10;
 var poziom = 1;
+var zbroja = 1;
+var maxzdrowie = 10;
+//var postacie
+//1 - fighter
+var fighter = {maxzdrowie:10,zdrowie:10,zbroja:1,nextlvl:10,maxglod:10,sila:2}
+//2 - monk
+var monk = {maxzdrowie:15,zdrowie:15,zbroja:0,nextlvl:5,maxglod: 7,sila:1}
+
 //staty wrogow
 var wrogowie = 0;
 var bosszone1 = 1;
 
 //ekwipunek
 var prowiant = 1;
-var zbroja = 1;
 //lochy
 var akcje = 0;
 var zone = 1;
@@ -22,14 +29,33 @@ var zone = 1;
 var randomgenerator = 0;
 var zalozonazbroja = false;
 var zamiennazbroja = 0;
-
+var story = 1;
 
 scroll = setInterval(function(){ window.scrollBy(0, 1000);}, 25);
 
-
+function classmonk(){
+var maxzdrowie = monk.maxzdrowie;
+var zdrowie = monk.maxzdrowie;
+var zbroja = monk.zbroja;
+var nextlvl = monk.nextlvl;
+var maxglod = monk.maxglod;
+var sila = monk.sila;
+document.getElementById("wybierzpostac").style.display = "none";
+hpcheck();
+}
+function classfighter(){
+var maxzdrowie = fighter.maxzdrowie;
+var zdrowie = fighter.maxzdrowie;
+var zbroja = fighter.zbroja;
+var nextlvl = fighter.nextlvl;
+var maxglod = fighter.maxglod;
+var sila = fighter.sila;
+document.getElementById("wybierzpostac").style.display = "none";
+hpcheck();
+}
 function zonecheck()
 {
-	if (akcje > 100)
+	if (akcje > 100 && story == 1)
 	{
 		zone = 2;
 		document.body.style.backgroundImage = "url('zasoby/zone2.png')";
@@ -37,8 +63,9 @@ function zonecheck()
 		var t = document.createTextNode("Kiedyś pod miastem, było więzienie dla najgorszych kryminalistów. Od czasów, gdy zaczęła działać tu czarna magia, strażnicy uciekli albo oszaleli, razem z więźniami. Jest to możliwe, że tutaj znajduje się centrum nienawistnej energii.");
 		element.appendChild(t);
 		document.body.appendChild(element);
+		story = 2;
 	}
-	else if (akcje > 200)
+	else if (akcje > 200 && story == 2)
 	{
 		zone = 3;
 		document.body.style.backgroundImage = "url('zasoby/zone3.png')";
@@ -46,8 +73,9 @@ function zonecheck()
 		var t = document.createTextNode("Te jaskinie były kiedyś centrum handlowym między krasnoludami a ludźmi z Miasta. Od kiedy na to miejsce zaczęła wpływać zła energia, ludzie często ginęli z towarami, a krasnoludy nie mogły przez to handlować z ludźmi, więc to miejsce jest teraz zamieszkałe tylko przez dzikie zwierzęta. Jest to całkowicie możliwe, że to tutaj znajduje się centrum złej energii");
 		element.appendChild(t);
 		document.body.appendChild(element);
+		story = 3;
 	}
-	else if (akcje > 300)
+	else if (akcje > 300 && story == 3)
 	{
 		zone = 4;
 		document.body.style.backgroundImage = "url('zasoby/zone4.png')";
@@ -55,8 +83,9 @@ function zonecheck()
 		var t = document.createTextNode("Ta metropolia krasnoludzka była kiedyś w czasach swojej świetności, ale kiedy czarna energia wpełzła do tego miejsca, skończyły się dobre czasy, a krasnoludy osłabły. Mimo to, nadal są dość potężne.");
 		element.appendChild(t);
 		document.body.appendChild(element);
+		story = 4;
 	}
-	else if (akcje > 400)
+	else if (akcje > 400 && story == 4)
 	{
 		zone = 5;
 		document.body.style.backgroundImage = "url('zasoby/zone5.png')";
@@ -64,14 +93,16 @@ function zonecheck()
 		var t = document.createTextNode("");
 		element.appendChild(t);
 		document.body.appendChild(element);
+		story = 5;
 	}
-	else if (akcje > 500) {
+	else if (akcje > 500 && story == 5) {
 		zone = 6;
 		document.body.style.backgroundImage = "url('zasoby/zone5.png')";
 		var element = document.createElement("p");
 		var t = document.createTextNode("");
 		element.appendChild(t);
 		document.body.appendChild(element);
+		story = 6;
 	}
 
 }
@@ -98,11 +129,11 @@ function hpcheck()
 	{
 		document.getElementById("zdrowaska").src = "zasoby/zdrowie0.png";
 	}
- 	if (glod < 4)
+ 	if (glod < (maxglod / 3))
 	{
 		document.getElementById("glodaska").src = "zasoby/glod0.png";
 	}
-	else if (glod < 7)
+	else if (glod < (maxglod / 2))
 	{
 		document.getElementById("glodaska").src = "zasoby/glod1.png";
 	}
@@ -110,7 +141,7 @@ function hpcheck()
 	{
 		document.getElementById("glodaska").src = "zasoby/glod2.png";
 	}
-	if (glod > 9)
+	if (glod >= maxglod)
 	{
 		zdrowie = zdrowie - 1;
 	}
@@ -552,11 +583,11 @@ function explore()
 
 	}
 
-if (glod < 4)
+if (glod < (maxglod /3))
 {
 	zdrowie = zdrowie + 1;
 }
-else if (glod < 7)
+else if (glod < (maxglod /2))
 {
 	zdrowie = zdrowie + (1 / 2);
 }
@@ -566,7 +597,7 @@ endexplore();
 function endexplore()
 {
 	akcje = akcje + 1;
-	if (glod != 10){
+	if (glod != maxglod){
 		glod = glod + 1;
 	}
 	zonecheck();
