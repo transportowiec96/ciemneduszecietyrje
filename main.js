@@ -34,7 +34,7 @@ var nextarmorbreak = 0;
 var akcje = 0;
 var zone = 1;
 var typpierscienia = 0;
-var sklepikarz = 1;
+var iwan1 = 1;
 //zmienne
 var randomgenerator = 0;
 var zalozonazbroja = false;
@@ -399,7 +399,7 @@ function damagetake(){
 	{
 		zbroja = zbroja - 1;
 		brokenarmor = brokenarmor + 1;
-		nextarmorbreak = 0;
+		nextarmorbreak = zbroja * 10;
 	}
 	zdrowie = zdrowie - dmg;
 	var element = document.createElement("p");
@@ -601,6 +601,7 @@ function zbrojanaitemy(){
 		element.appendChild(t);
 		document.body.appendChild(element);
 		hit35 = new Audio('zasoby/talk.mp3');
+		hit35.play();
 	hpcheck();
 }
 function hpnajedzenie(){
@@ -612,6 +613,7 @@ function hpnajedzenie(){
 		element.appendChild(t);
 		document.body.appendChild(element);
 		hit35 = new Audio('zasoby/talk.mp3');
+		hit35.play();
 	}
 	else {
 		var element = document.createElement("p");
@@ -632,6 +634,7 @@ function prowiantnahp(){
 		element.appendChild(t);
 		document.body.appendChild(element);
 		hit35 = new Audio('zasoby/talk.mp3');
+		hit35.play();
 	}
 	else {
 		var element = document.createElement("p");
@@ -652,6 +655,7 @@ function hpnazestaw(){
 		element.appendChild(t);
 		document.body.appendChild(element);
 		hit35 = new Audio('zasoby/talk.mp3');
+		hit35.play();
 	}
 	else {
 		var element = document.createElement("p");
@@ -1131,7 +1135,7 @@ function explore()
 		wrogowie = wrogowie + 15;
 		bosszone1 = 0;
 	}
-	if (zone == 2 && bosszone1 == 0 )
+	if (zone == 2 && bosszone1 == 0 && iwan1 == 1)
 	{
 		var element = document.createElement("p");
 		var t = document.createTextNode("Cześć! Nazywam się Iwan i mam dla ciebie małe oferty...");
@@ -1146,21 +1150,28 @@ function explore()
 		element.appendChild(t);
 		element.setAttribute("onclick", 'zbrojanaitemy()');
 		document.body.appendChild(element);
+		var element = document.createElement("br");
+		document.body.appendChild(element);
 		var element = document.createElement("button");
 		var t = document.createTextNode("Wymień 2 mikstury zdrowia na 3 sztuki prowiantu");
 		element.appendChild(t);
 		element.setAttribute("onclick", 'hpnajedzenie()');
+		document.body.appendChild(element);
+		var element = document.createElement("br");
 		document.body.appendChild(element);
 		var element = document.createElement("button");
 		var t = document.createTextNode("Wymień 2 sztuki prowiantu na miksturę zdrowia");
 		element.appendChild(t);
 		element.setAttribute("onclick", 'prowiantnahp()');
 		document.body.appendChild(element);
+		var element = document.createElement("br");
+		document.body.appendChild(element);
 		var element = document.createElement("button");
 		var t = document.createTextNode("Wymień 5 mikstur zdrowia na 2 zestawy naprawcze");
 		element.appendChild(t);
 		element.setAttribute("onclick", 'hpnazestaw()');
 		document.body.appendChild(element);
+		iwan1 = 0;
 
 	}
 	if (akcje > 190 && bosszone2 == 1 )
@@ -1284,7 +1295,6 @@ function explore()
 			zamiennazbroja = 2;
 			var img = document.createElement("img");
 			img.src = "zasoby/cloth.png";
-			element.appendChild(img);
 			document.body.appendChild(img);
 		}
 		else if (randomeq == 1)
