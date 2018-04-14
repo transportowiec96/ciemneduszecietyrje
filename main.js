@@ -11,9 +11,8 @@ var zdrowie = 1;
 var nextlvl = 1;
 var maxglod = 1;
 var sila = 1;
-var potkahp = 1;
-var zestaw = 0;
 //var postacie
+var postac = 0;
 //1 - fighter
 var fighter = {maxzdrowie:10,zbroja:2,nextlvl:12,maxglod:10,sila:2}
 //2 - rogue
@@ -23,12 +22,19 @@ var mage = {maxzdrowie:5,zbroja:0,nextlvl:10,maxglod: 12,sila:4}
 //staty wrogow
 var wrogowie = 0;
 var bosszone1 = 1;
-
+var bosszone2 = 1;
 //ekwipunek
 var prowiant = 1;
+var klatwa = 0;
+var potkahp = 1;
+var zestaw = 0;
+var brokenarmor = 0;
+var nextarmorbreak = 0;
 //lochy
 var akcje = 0;
 var zone = 1;
+var typpierscienia = 0;
+var sklepikarz = 1;
 //zmienne
 var randomgenerator = 0;
 var zalozonazbroja = false;
@@ -36,8 +42,7 @@ var zamiennazbroja = 0;
 var story = 1;
 var errorlevel = 0;
 
-scroll = setInterval(function(){ window.scrollBy(0, 1000);}, 25);
-
+scroll = setInterval(function(){ window.scrollBy(0, 1000);	if (zdrowie == 0 || zdrowie < 0){if (errorlevel == 0){errorlevel = errorlevel + 1;document.getElementById("zdrowaska").src = "zasoby/smierc.png";var audio = new Audio('zasoby/death.mp3');audio.play();alert("YOU DIED...");setTimeout(function(){ location.reload(); }, 2500);}}}, 50);
 function classrogue(){
 maxzdrowie = rogue.maxzdrowie;
 zdrowie = rogue.maxzdrowie;
@@ -45,6 +50,8 @@ zbroja = rogue.zbroja;
 nextlvl = rogue.nextlvl;
 maxglod = rogue.maxglod;
 sila = rogue.sila;
+nextarmorbreak = zbroja * 20;
+postac = 2;
 document.getElementById("wybierzpostac").style.display = "none";
 document.getElementById("nazwadef").innerHTML = "Lekkie ubranie";
 document.getElementById("zdrowie").innerHTML = rogue.maxzdrowie;
@@ -54,6 +61,8 @@ document.getElementById("def").innerHTML = rogue.zbroja;
 document.getElementById("nextlvl").innerHTML = rogue.nextlvl;
 document.getElementById("sila").innerHTML = rogue.sila;
 document.getElementById("klasapostaci").src = "zasoby/rogue.png";
+hit29 = new Audio('zasoby/descend.mp3');
+hit29.play();
 hpcheck();
 }
 function classfighter(){
@@ -63,6 +72,8 @@ zbroja = fighter.zbroja;
 nextlvl = fighter.nextlvl;
 maxglod = fighter.maxglod;
 sila = fighter.sila;
+nextarmorbreak = zbroja * 25;
+postac = 1;
 document.getElementById("wybierzpostac").style.display = "none";
 document.getElementById("zdrowie").innerHTML = fighter.maxzdrowie;
 document.getElementById("nazwadef").innerHTML = "Skórzana Zbroja";
@@ -72,6 +83,8 @@ document.getElementById("def").innerHTML = fighter.zbroja;
 document.getElementById("nextlvl").innerHTML = fighter.nextlvl;
 document.getElementById("sila").innerHTML = fighter.sila;
 document.getElementById("klasapostaci").src = "zasoby/fighter.png";
+hit27 = new Audio('zasoby/descend.mp3');
+hit27.play();
 hpcheck();
 }
 function classmage(){
@@ -81,6 +94,8 @@ zbroja = mage.zbroja;
 nextlvl = mage.nextlvl;
 maxglod = mage.maxglod;
 sila = mage.sila;
+nextarmorbreak = zbroja * 20;
+postac = 3;
 document.getElementById("wybierzpostac").style.display = "none";
 document.getElementById("zdrowie").innerHTML = mage.maxzdrowie;
 document.getElementById("nazwadef").innerHTML = "Szata Maga";
@@ -90,6 +105,8 @@ document.getElementById("def").innerHTML = mage.zbroja;
 document.getElementById("nextlvl").innerHTML = mage.nextlvl;
 document.getElementById("sila").innerHTML = mage.sila;
 document.getElementById("klasapostaci").src = "zasoby/mage.png";
+hit23 = new Audio('zasoby/descend.mp3');
+hit23.play();
 hpcheck();
 }
 function zonecheck()
@@ -99,49 +116,89 @@ function zonecheck()
 		zone = 2;
 		document.body.style.backgroundImage = "url('zasoby/zone2.png')";
 		var element = document.createElement("p");
+		document.body.appendChild(element);
+		var element = document.createElement("p");
+		document.body.appendChild(element);
+		var element = document.createElement("p");
+		document.body.appendChild(element);
+		var element = document.createElement("p");
 		var t = document.createTextNode("Kiedyś pod miastem, było więzienie dla najgorszych kryminalistów. Od czasów, gdy zaczęła działać tu czarna magia, strażnicy uciekli albo oszaleli, razem z więźniami. Jest to możliwe, że tutaj znajduje się centrum nienawistnej energii.");
 		element.appendChild(t);
 		document.body.appendChild(element);
 		story = 2;
+		hit12 = new Audio('zasoby/descend.mp3');
+		hit12.play();
 	}
 	else if (akcje > 200 && story == 2)
 	{
 		zone = 3;
 		document.body.style.backgroundImage = "url('zasoby/zone3.png')";
 		var element = document.createElement("p");
+		document.body.appendChild(element);
+		var element = document.createElement("p");
+		document.body.appendChild(element);
+		var element = document.createElement("p");
+		document.body.appendChild(element);
+		var element = document.createElement("p");
 		var t = document.createTextNode("Te jaskinie były kiedyś centrum handlowym między krasnoludami a ludźmi z Miasta. Od kiedy na to miejsce zaczęła wpływać zła energia, ludzie często ginęli z towarami, a krasnoludy nie mogły przez to handlować z ludźmi, więc to miejsce jest teraz zamieszkałe tylko przez dzikie zwierzęta. Jest to całkowicie możliwe, że to tutaj znajduje się centrum złej energii");
 		element.appendChild(t);
 		document.body.appendChild(element);
 		story = 3;
+		hit14 = new Audio('zasoby/descend.mp3');
+		hit14.play();
 	}
 	else if (akcje > 300 && story == 3)
 	{
 		zone = 4;
 		document.body.style.backgroundImage = "url('zasoby/zone4.png')";
 		var element = document.createElement("p");
+		document.body.appendChild(element);
+		var element = document.createElement("p");
+		document.body.appendChild(element);
+		var element = document.createElement("p");
+		document.body.appendChild(element);
+		var element = document.createElement("p");
 		var t = document.createTextNode("Ta metropolia krasnoludzka była kiedyś w czasach swojej świetności, ale kiedy czarna energia wpełzła do tego miejsca, skończyły się dobre czasy, a krasnoludy osłabły. Mimo to, nadal są dość potężne.");
 		element.appendChild(t);
 		document.body.appendChild(element);
 		story = 4;
+		hit15 = new Audio('zasoby/descend.mp3');
+		hit15.play();
 	}
 	else if (akcje > 400 && story == 4)
 	{
 		zone = 5;
+		var element = document.createElement("p");
+		document.body.appendChild(element);
+		var element = document.createElement("p");
+		document.body.appendChild(element);
+		var element = document.createElement("p");
+		document.body.appendChild(element);
 		document.body.style.backgroundImage = "url('zasoby/zone5.png')";
 		var element = document.createElement("p");
 		var t = document.createTextNode("");
 		element.appendChild(t);
 		document.body.appendChild(element);
 		story = 5;
+		hit16 = new Audio('zasoby/descend.mp3');
+		hit16.play();
 	}
 	else if (akcje > 500 && story == 5) {
 		zone = 6;
+		var element = document.createElement("p");
+		document.body.appendChild(element);
+		var element = document.createElement("p");
+		document.body.appendChild(element);
+		var element = document.createElement("p");
+		document.body.appendChild(element);
 		document.body.style.backgroundImage = "url('zasoby/zone5.png')";
 		var element = document.createElement("p");
 		var t = document.createTextNode("");
 		element.appendChild(t);
 		document.body.appendChild(element);
 		story = 6;
+		hit17 = new Audio('zasoby/descend.mp3');
+		hit17.play();
 	}
 
 }
@@ -193,11 +250,11 @@ function hpcheck()
 	}
 	if (exp >= nextlvl)
 	{
+		exp = exp - nextlvl;
 		nextlvl = nextlvl + 10;
 		maxzdrowie = maxzdrowie + 5;
 		zdrowie = zdrowie + 5;
 		poziom = poziom + 1;
-		exp = 0;
 		hit5 = new Audio('zasoby/lvlup.mp3');
 		hit5.play();
 		var element = document.createElement("p");
@@ -220,14 +277,32 @@ function hpcheck()
 function repair()
 {
 	if (zestaw != 0){
-		var element = document.createElement("p");
-		var t = document.createTextNode("Naprawiasz swoją zbroję.");
-		element.appendChild(t);
-		document.body.appendChild(element);
-		zestaw = zestaw - 1;
-		zbroja = zbroja + Math.floor(zbroja / 10 + 1)
-		hit9 = new Audio('zasoby/fixarmor.mp3');
-		hit9.play();
+		if (postac == 1)
+		{
+			var element = document.createElement("p");
+			var t = document.createTextNode("Poprawnie naprawiasz swoją zbroję.");
+			element.appendChild(t);
+			document.body.appendChild(element);
+			zestaw = zestaw - 1;
+			zbroja = zbroja + Math.floor((zbroja / 5) + 2);
+			zbroja = zbroja + brokenarmor;
+			brokenarmor = 0;
+			hit9 = new Audio('zasoby/fixarmor.mp3');
+			hit9.play();
+		}
+		else
+		{
+			var element = document.createElement("p");
+			var t = document.createTextNode("Naprawiasz swoją zbroję.");
+			element.appendChild(t);
+			document.body.appendChild(element);
+			zestaw = zestaw - 1;
+			zbroja = zbroja + Math.floor(zbroja / 10 + 1)
+			zbroja = zbroja + Math.floor((brokenarmor / 4)  * 3);
+			brokenarmor = 0;
+			hit9 = new Audio('zasoby/fixarmor.mp3');
+			hit9.play();
+		}
 	}
 	else {
 		var element = document.createElement("p");
@@ -243,15 +318,32 @@ function repair()
 }
 function quaff()
 {
+	if (zdrowie < 0 || zdrowie == 0){
+		hpcheck();
+	}
 	if (potkahp != 0){
-		var element = document.createElement("p");
-		var t = document.createTextNode("Napiłeś się mikstury zdrowia.");
-		element.appendChild(t);
-		document.body.appendChild(element);
-		potkahp = potkahp - 1
-		zdrowie = zdrowie + Math.floor(((maxzdrowie / 100) * 60));
-		hit8 = new Audio('zasoby/quaff.mp3');
-		hit8.play();
+		if (postac == 3)
+		{
+			var element = document.createElement("p");
+			var t = document.createTextNode("Poprawnie napiłeś się mikstury zdrowia.");
+			element.appendChild(t);
+			document.body.appendChild(element);
+			potkahp = potkahp - 1
+			zdrowie = zdrowie + Math.floor(((maxzdrowie / 100) * 80));
+			hit8 = new Audio('zasoby/quaff.mp3');
+			hit8.play();
+		}
+		else {
+			var element = document.createElement("p");
+			var t = document.createTextNode("Napiłeś się mikstury zdrowia.");
+			element.appendChild(t);
+			document.body.appendChild(element);
+			potkahp = potkahp - 1
+			zdrowie = zdrowie + Math.floor(((maxzdrowie / 100) * 60));
+			hit8 = new Audio('zasoby/quaff.mp3');
+			hit8.play();
+		}
+
 	}
 	else {
 		var element = document.createElement("p");
@@ -287,9 +379,26 @@ function damagedeal()
 }
 function damagetake(){
 	dmg = wrogowie - zbroja;
+	if (wrogowie > zbroja){
+			nextarmorbreak = nextarmorbreak - zbroja;
+	}
+	else {
+		nextarmorbreak = nextarmorbreak - wrogowie;
+	}
 	if (dmg < 0)
 	{
 		dmg = 0;
+		hit24 = new Audio('zasoby/miss.mp3');
+		hit24.play();
+	}
+	else {
+		hit25 = new Audio('zasoby/hit.mp3');
+		hit25.play();
+	}
+	if (nextarmorbreak < 0 && zbroja != 0)
+	{
+		zbroja = zbroja - 1;
+		brokenarmor = brokenarmor + 1;
 	}
 	zdrowie = zdrowie - dmg;
 	var element = document.createElement("p");
@@ -297,8 +406,7 @@ function damagetake(){
 	element.appendChild(t);
 	document.body.appendChild(element);
 	hpcheck();
-	hit = new Audio('zasoby/hit.mp3');
-	hit.play();
+
 }
 function walcz()
 {
@@ -320,6 +428,10 @@ function eat()
 {
 	if (prowiant != 0){
 	var randomgenerator = Math.floor(Math.random()*10+1);
+	if (postac == 2 && randomgenerator != 1)
+	{
+	 randomgenerator = randomgenerator - 1;
+	}
 	switch (randomgenerator)
 	{
 		case 1:
@@ -467,7 +579,7 @@ function rest(){
 		}
 		else {
 			glod = glod + 1;
-			zdrowie = zdrowie + 1;
+			zdrowie = zdrowie + 2;
 		}
 		document.getElementById("akcje").innerHTML =  akcje;
 		document.getElementById("wrogowie").innerHTML =  wrogowie;
@@ -477,16 +589,503 @@ function rest(){
 		hpcheck();
 	}
 }
+function zbrojanaitemy(){
+		zbroja = 1;
+		nazwaeq = "Płócienna zbroja"
+		zestaw = zestaw + 3;
+		potkahp = potkahp + 3;
+		document.getElementById("nazwadef").innerHTML = nazwaeq;
+		var element = document.createElement("p");
+		var t = document.createTextNode("Dzięki za deala!");
+		element.appendChild(t);
+		document.body.appendChild(element);
+		hit35 = new Audio('zasoby/talk.mp3');
+	hpcheck();
+}
+function hpnajedzenie(){
+	if (potkahp >= 2){
+		prowiant = prowiant + 3;
+		potkahp = potkahp - 2;
+		var element = document.createElement("p");
+		var t = document.createTextNode("Dzięki za deala!");
+		element.appendChild(t);
+		document.body.appendChild(element);
+		hit35 = new Audio('zasoby/talk.mp3');
+	}
+	else {
+		var element = document.createElement("p");
+		var t = document.createTextNode("Hej! Nie masz tych przedmiotów na wymianę!");
+		element.appendChild(t);
+		document.body.appendChild(element);
+		hit35 = new Audio('zasoby/talk.mp3');
+		hit35.play();
+	}
+	hpcheck();
+}
+function prowiantnahp(){
+	if (prowiant >= 2){
+		prowiant = prowiant - 2;
+		potkahp = potkahp + 1;
+		var element = document.createElement("p");
+		var t = document.createTextNode("Dzięki za deala!");
+		element.appendChild(t);
+		document.body.appendChild(element);
+		hit35 = new Audio('zasoby/talk.mp3');
+	}
+	else {
+		var element = document.createElement("p");
+		var t = document.createTextNode("Hej! Nie masz tych przedmiotów na wymianę!");
+		element.appendChild(t);
+		document.body.appendChild(element);
+		hit35 = new Audio('zasoby/talk.mp3');
+		hit35.play();
+	}
+	hpcheck();
+}
+function hpnazestaw(){
+	if (potkahp >= 5){
+		potkahp = potkahp - 5;
+		zestaw = zestaw + 2;
+		var element = document.createElement("p");
+		var t = document.createTextNode("Dzięki za deala!");
+		element.appendChild(t);
+		document.body.appendChild(element);
+		hit35 = new Audio('zasoby/talk.mp3');
+	}
+	else {
+		var element = document.createElement("p");
+		var t = document.createTextNode("Hej! Nie masz tych przedmiotów na wymianę!");
+		element.appendChild(t);
+		document.body.appendChild(element);
+		hit35 = new Audio('zasoby/talk.mp3');
+		hit35.play();
+	}
+	hpcheck();
+}
 function zaloz()
 {
-	zbroja = zamiennazbroja;
-	zamiennazbroja = 0;
+	brokenarmor = 0;
+	sila = sila + klatwa;
+	klatwa = 0;
+	switch (zone){
+		case 1:
+		var randomgenerator = Math.floor(Math.random()*10+1);
+		if (randomgenerator < 3)
+		{
+			zbroja = (zamiennazbroja / 2);
+			zamiennazbroja = 0;
+			klatwa = (zamiennazbroja / 2);
+			sila = sila - klatwa;
+			var element = document.createElement("p");
+			var t = document.createTextNode("Założyłeś przeklętą " + nazwaeq + "!");
+			element.appendChild(t);
+			document.body.appendChild(element);
+			hit30 = new Audio('zasoby/cursed.mp3');
+			hit30.play();
+		}
+		else if (randomgenerator > 8)
+		{
+			zbroja = zamiennazbroja + 3;
+			zamiennazbroja = 0;
+			var element = document.createElement("p");
+			var t = document.createTextNode("Założyłeś poświęconą " + nazwaeq + "!");
+			element.appendChild(t);
+			document.body.appendChild(element);
+		}
+		else
+		{
+			zbroja = zamiennazbroja;
+			zamiennazbroja = 0;
+			var element = document.createElement("p");
+			var t = document.createTextNode("Założyłeś " + nazwaeq + ".");
+			element.appendChild(t);
+			document.body.appendChild(element);
+		}
+		break;
+		case 2:
+
+		break;
+		case 3:
+
+		break;
+		case 4:
+
+		break;
+		case 5:
+
+		break;
+
+	}
 	document.getElementById("def").innerHTML = zbroja;
-	var element = document.createElement("p");
-	var t = document.createTextNode("Założyłeś " + nazwaeq + ".");
-	element.appendChild(t);
-	document.body.appendChild(element);
 	document.getElementById("nazwadef").innerHTML = nazwaeq;
+	document.getElementById("sila").innerHTML = sila;
+}
+
+//typy pierscieni:
+//1 - zywotnosci
+//2 - doswiadczenia
+//3 - mocy
+//4 - glodu
+function zalozpierscien(){
+	switch (zone){
+		case 1:
+		var randomgenerator = Math.floor(Math.random()*10+1);
+		if (randomgenerator < 3)
+		{
+			switch (typpierscienia)
+			{
+				case 1:
+				maxzdrowie = maxzdrowie - 6;
+				break;
+				case 2:
+				nextlvl = nextlvl + 3;
+				break;
+				case 3:
+				sila = sila - 3;
+				break;
+				case 4:
+				maxglod = maxglod - 1;
+				break;
+			}
+			var element = document.createElement("p");
+			var t = document.createTextNode("Założyłeś przeklęty " + nazwaeq + "!");
+			element.appendChild(t);
+			document.body.appendChild(element);
+			hit30 = new Audio('zasoby/cursed.mp3');
+			hit30.play();
+		}
+		else if (randomgenerator > 8)
+		{
+			switch (typpierscienia)
+			{
+				case 1:
+				maxzdrowie = maxzdrowie + 6;
+				break;
+				case 2:
+				nextlvl = nextlvl - 3;
+				break;
+				case 3:
+				sila = sila + 3;
+				break;
+				case 4:
+				maxglod = maxglod + 2;
+				break;
+			}
+			var element = document.createElement("p");
+			var t = document.createTextNode("Założyłeś poświęcony " + nazwaeq + "!");
+			element.appendChild(t);
+			document.body.appendChild(element);
+		}
+		else
+		{
+			switch (typpierscienia)
+			{
+				case 1:
+				maxzdrowie = maxzdrowie + 3;
+				break;
+				case 2:
+				nextlvl = nextlvl -2;
+				break;
+				case 3:
+				sila = sila + 2;
+				break;
+				case 4:
+				maxglod = maxglod + 1;
+				break;
+			}
+			var element = document.createElement("p");
+			var t = document.createTextNode("Założyłeś " + nazwaeq + ".");
+			element.appendChild(t);
+			document.body.appendChild(element);
+		}
+		break;
+		case 2:
+		var randomgenerator = Math.floor(Math.random()*10+1);
+		if (randomgenerator < 4)
+		{
+			switch (typpierscienia)
+			{
+				case 1:
+				maxzdrowie = maxzdrowie - 9;
+				break;
+				case 2:
+				nextlvl = nextlvl + 5;
+				break;
+				case 3:
+				sila = sila - 5;
+				break;
+				case 4:
+				maxglod = maxglod - 2;
+				break;
+			}
+			var element = document.createElement("p");
+			var t = document.createTextNode("Założony " + nazwaeq + " zaciska się boleśnie wokół twego palca!");
+			element.appendChild(t);
+			document.body.appendChild(element);
+			hit30 = new Audio('zasoby/cursed.mp3');
+			hit30.play();
+		}
+		else if (randomgenerator > 8)
+		{
+			switch (typpierscienia)
+			{
+				case 1:
+				maxzdrowie = maxzdrowie + 9;
+				break;
+				case 2:
+				nextlvl = nextlvl - 4;
+				break;
+				case 3:
+				sila = sila + 4;
+				break;
+				case 4:
+				maxglod = maxglod + 3;
+				break;
+			}
+			var element = document.createElement("p");
+			var t = document.createTextNode("Założyłeś poświęcony " + nazwaeq + "!");
+			element.appendChild(t);
+			document.body.appendChild(element);
+		}
+		else
+		{
+			switch (typpierscienia)
+			{
+				case 1:
+				maxzdrowie = maxzdrowie + 6;
+				break;
+				case 2:
+				nextlvl = nextlvl - 3;
+				break;
+				case 3:
+				sila = sila + 3;
+				break;
+				case 4:
+				maxglod = maxglod + 2;
+				break;
+			}
+			var element = document.createElement("p");
+			var t = document.createTextNode("Założyłeś " + nazwaeq + ".");
+			element.appendChild(t);
+			document.body.appendChild(element);
+		}
+		break;
+		case 3:
+		var randomgenerator = Math.floor(Math.random()*10+1);
+		if (randomgenerator < 4)
+		{
+			switch (typpierscienia)
+			{
+				case 1:
+				maxzdrowie = maxzdrowie - 12;
+				break;
+				case 2:
+				nextlvl = nextlvl + 6;
+				break;
+				case 3:
+				sila = sila - 6;
+				break;
+				case 4:
+				maxglod = maxglod - 3;
+				break;
+			}
+			var element = document.createElement("p");
+						var t = document.createTextNode("Założony " + nazwaeq + " zaciska się boleśnie wokół twego palca!");
+			element.appendChild(t);
+			document.body.appendChild(element);
+			hit30 = new Audio('zasoby/cursed.mp3');
+			hit30.play();
+		}
+		else if (randomgenerator > 9)
+		{
+			switch (typpierscienia)
+			{
+				case 1:
+				maxzdrowie = maxzdrowie + 12;
+				break;
+				case 2:
+				nextlvl = nextlvl - 5;
+				break;
+				case 3:
+				sila = sila + 5;
+				break;
+				case 4:
+				maxglod = maxglod + 4;
+				break;
+			}
+			var element = document.createElement("p");
+			var t = document.createTextNode("Założyłeś poświęcony " + nazwaeq + "!");
+			element.appendChild(t);
+			document.body.appendChild(element);
+		}
+		else
+		{
+			switch (typpierscienia)
+			{
+				case 1:
+				maxzdrowie = maxzdrowie + 9;
+				break;
+				case 2:
+				nextlvl = nextlvl - 4;
+				break;
+				case 3:
+				sila = sila + 4;
+				break;
+				case 4:
+				maxglod = maxglod + 3;
+				break;
+			}
+			var element = document.createElement("p");
+			var t = document.createTextNode("Założyłeś " + nazwaeq + ".");
+			element.appendChild(t);
+			document.body.appendChild(element);
+		}
+		break;
+		case 4:
+		var randomgenerator = Math.floor(Math.random()*10+1);
+		if (randomgenerator < 5)
+		{
+			switch (typpierscienia)
+			{
+				case 1:
+				maxzdrowie = maxzdrowie - 15;
+				break;
+				case 2:
+				nextlvl = nextlvl + 7;
+				break;
+				case 3:
+				sila = sila - 7;
+				break;
+				case 4:
+				maxglod = maxglod - 4;
+				break;
+			}
+			var element = document.createElement("p");
+			var t = document.createTextNode("Założony " + nazwaeq + " zaciska się boleśnie wokół twego palca!");
+			element.appendChild(t);
+			document.body.appendChild(element);
+			hit30 = new Audio('zasoby/cursed.mp3');
+			hit30.play();
+		}
+		else if (randomgenerator > 9)
+		{
+			switch (typpierscienia)
+			{
+				case 1:
+				maxzdrowie = maxzdrowie + 15;
+				break;
+				case 2:
+				nextlvl = nextlvl - 7;
+				break;
+				case 3:
+				sila = sila + 7;
+				break;
+				case 4:
+				maxglod = maxglod + 5;
+				break;
+			}
+			var element = document.createElement("p");
+			var t = document.createTextNode("Założyłeś poświęcony " + nazwaeq + "!");
+			element.appendChild(t);
+			document.body.appendChild(element);
+		}
+		else
+		{
+			switch (typpierscienia)
+			{
+				case 1:
+				maxzdrowie = maxzdrowie + 12;
+				break;
+				case 2:
+				nextlvl = nextlvl - 5;
+				break;
+				case 3:
+				sila = sila + 5;
+				break;
+				case 4:
+				maxglod = maxglod + 4;
+				break;
+			}
+			var element = document.createElement("p");
+			var t = document.createTextNode("Założyłeś " + nazwaeq + ".");
+			element.appendChild(t);
+			document.body.appendChild(element);
+		}
+		break;
+		case 5:
+		var randomgenerator = Math.floor(Math.random()*10+1);
+		if (randomgenerator < 6)
+		{
+			switch (typpierscienia)
+			{
+				case 1:
+				maxzdrowie = maxzdrowie - 18;
+				break;
+				case 2:
+				nextlvl = nextlvl + 8;
+				break;
+				case 3:
+				sila = sila - 8;
+				break;
+				case 4:
+				maxglod = maxglod - 5;
+				break;
+			}
+			var element = document.createElement("p");
+			var t = document.createTextNode("Założony " + nazwaeq + " zaciska się boleśnie wokół twego palca!");
+			element.appendChild(t);
+			document.body.appendChild(element);
+			hit30 = new Audio('zasoby/cursed.mp3');
+			hit30.play();
+		}
+		else if (randomgenerator > 9)
+		{
+			switch (typpierscienia)
+			{
+				case 1:
+				maxzdrowie = maxzdrowie + 25;
+				break;
+				case 2:
+				nextlvl = nextlvl - 10;
+				break;
+				case 3:
+				sila = sila + 10;
+				break;
+				case 4:
+				maxglod = maxglod + 7;
+				break;
+			}
+			var element = document.createElement("p");
+			var t = document.createTextNode("Założyłeś poświęcony " + nazwaeq + "!");
+			element.appendChild(t);
+			document.body.appendChild(element);
+		}
+		else
+		{
+			switch (typpierscienia)
+			{
+				case 1:
+				maxzdrowie = maxzdrowie + 18;
+				break;
+				case 2:
+				nextlvl = nextlvl - 7;
+				break;
+				case 3:
+				sila = sila + 7;
+				break;
+				case 4:
+				maxglod = maxglod + 6;
+				break;
+			}
+			var element = document.createElement("p");
+			var t = document.createTextNode("Założyłeś " + nazwaeq + ".");
+			element.appendChild(t);
+			document.body.appendChild(element);
+		}
+		break;
+
+	}
+	hpcheck();
 }
 function explore()
 {
@@ -518,7 +1117,7 @@ function explore()
 		element.appendChild(t);
 		document.body.appendChild(element);
 	}
-	if (akcje < 200 && akcje > 90 && bosszone1 == 1 )
+	if (akcje > 90 && bosszone1 == 1 )
 	{
 		var element = document.createElement("p");
 		var t = document.createTextNode("Pojawia się Boss, Wielki Szlam!");
@@ -528,8 +1127,53 @@ function explore()
 		img.src = "zasoby/goo.png";
 		element.appendChild(img);
 		document.body.appendChild(element);
-		wrogowie = wrogowie + 12;
+		wrogowie = wrogowie + 15;
 		bosszone1 = 0;
+	}
+	if (zone == 2 && bosszone1 == 0 )
+	{
+		var element = document.createElement("p");
+		var t = document.createTextNode("Cześć! Nazywam się Iwan i mam dla ciebie małe oferty...");
+		element.appendChild(t);
+		document.body.appendChild(element);
+		var img = document.createElement("img");
+		img.src = "zasoby/shopkeeper.png";
+		element.appendChild(img);
+		document.body.appendChild(element);
+		var element = document.createElement("button");
+		var t = document.createTextNode("Wymień zbroję na 3 zestawy naprawcze i 3 mikstury zdrowia");
+		element.appendChild(t);
+		element.setAttribute("onclick", 'zbrojanaitemy()');
+		document.body.appendChild(element);
+		var element = document.createElement("button");
+		var t = document.createTextNode("Wymień 2 mikstury zdrowia na 3 sztuki prowiantu");
+		element.appendChild(t);
+		element.setAttribute("onclick", 'hpnajedzenie()');
+		document.body.appendChild(element);
+		var element = document.createElement("button");
+		var t = document.createTextNode("Wymień 2 sztuki prowiantu na miksturę zdrowia");
+		element.appendChild(t);
+		element.setAttribute("onclick", 'prowiantnahp()');
+		document.body.appendChild(element);
+		var element = document.createElement("button");
+		var t = document.createTextNode("Wymień 5 mikstur zdrowia na 2 zestawy naprawcze");
+		element.appendChild(t);
+		element.setAttribute("onclick", 'hpnazestaw()');
+		document.body.appendChild(element);
+
+	}
+	if (akcje > 190 && bosszone2 == 1 )
+	{
+		var element = document.createElement("p");
+		var t = document.createTextNode("Pojawia się Boss, Mistrz Złodzei Tengu!");
+		element.appendChild(t);
+		document.body.appendChild(element);
+		var img = document.createElement("img");
+		img.src = "zasoby/tengu.png";
+		element.appendChild(img);
+		document.body.appendChild(element);
+		wrogowie = wrogowie + 30;
+		bosszone2 = 0;
 	}
 	var randomgenerator = Math.floor(Math.random()*10+1);
 	if (zone == 1)
@@ -558,6 +1202,8 @@ function explore()
 		document.body.appendChild(element);
 		zestaw = zestaw + 1;
 	}
+	hit22 = new Audio('zasoby/item.mp3');
+	hit22.play();
 
         break;
     case 2:
@@ -570,6 +1216,8 @@ function explore()
 		document.body.appendChild(element);
 		prowiant = prowiant + 1;
 		document.getElementById("prowiant").innerHTML = prowiant;
+		hit21 = new Audio('zasoby/item.mp3');
+		hit21.play();
         break;
     case 3:
 		var element = document.createElement("p");
@@ -601,6 +1249,9 @@ function explore()
 		document.body.appendChild(element);
 		prowiant = prowiant + 1;
 		document.getElementById("prowiant").innerHTML = prowiant;
+		hit20 = new Audio('zasoby/item.mp3');
+		hit20.play();
+
         break;
     case 6:
 		var element = document.createElement("p");
@@ -621,6 +1272,8 @@ function explore()
 		element.appendChild(img);
 		document.body.appendChild(element);
 		sila = sila + 1;
+		hit19 = new Audio('zasoby/quaff.mp3');
+		hit19.play();
 				break;
 		case 8:
 		var randomeq = Math.floor(Math.random()*3)
@@ -631,7 +1284,7 @@ function explore()
 			var img = document.createElement("img");
 			img.src = "zasoby/cloth.png";
 			element.appendChild(img);
-			document.body.appendChild(element);
+			document.body.appendChild(img);
 		}
 		else if (randomeq == 1)
 		{
@@ -646,12 +1299,11 @@ function explore()
 			zamiennazbroja = 4 - 2;
 			var img = document.createElement("img");
 			img.src = "zasoby/chainmail.png";
-			element.appendChild(img);
-			document.body.appendChild(element);
+			document.body.appendChild(img);
 
 		}
 		var element = document.createElement("p");
-		var t = document.createTextNode("Znalazłes ekwipunek, jest to " + nazwaeq + ". Czy chcesz go założyć?");
+		var t = document.createTextNode("Znalazłeś ekwipunek, jest to " + nazwaeq + ". Czy chcesz go założyć?");
 		element.appendChild(t);
 		document.body.appendChild(element);
 		var element = document.createElement("button");
@@ -683,14 +1335,212 @@ function explore()
 		}
 
 	}
+	if (zone == 2)
+	{
+		switch (randomgenerator)
+		{
+    case 1:
+		var randomgenerator = Math.floor(Math.random()*2+1);
+		if (randomgenerator == 1){
+			var element = document.createElement("p");
+			var t = document.createTextNode("Znalazłeś miksturę zdrowia, chowasz ją do ekwipunku.");
+			element.appendChild(t);
+			var img = document.createElement("img");
+			img.src = "zasoby/potkahp.png";
+			element.appendChild(img);
+			document.body.appendChild(element);
+			potkahp = potkahp + 1;
+		}
+		else {
+		var element = document.createElement("p");
+		var t = document.createTextNode("Znalazłeś zestaw naprawczy zbroi, chowasz go do ekwipunku.");
+		element.appendChild(t);
+		var img = document.createElement("img");
+		img.src = "zasoby/zestaw.png";
+		element.appendChild(img);
+		document.body.appendChild(element);
+		zestaw = zestaw + 1;
+	}
+	hit22 = new Audio('zasoby/item.mp3');
+	hit22.play();
+
+        break;
+    case 2:
+		var element = document.createElement("p");
+		var t = document.createTextNode("Znalazles trochę prowiantu, pakujesz go do swojej torby.");
+		element.appendChild(t);
+		var img = document.createElement("img");
+		img.src = "zasoby/prowiant.png";
+		element.appendChild(img);
+		document.body.appendChild(element);
+		prowiant = prowiant + 1;
+		document.getElementById("prowiant").innerHTML = prowiant;
+		hit21 = new Audio('zasoby/item.mp3');
+		hit21.play();
+        break;
+    case 3:
+		var element = document.createElement("p");
+		var t = document.createTextNode("Zaatakował cię Szalony Złodziej!");
+		element.appendChild(t);
+		var img = document.createElement("img");
+		img.src = "zasoby/thief.png";
+		element.appendChild(img);
+		document.body.appendChild(element);
+		wrogowie = wrogowie + 6;
+        break;
+    case 4:
+		var element = document.createElement("p");
+		var t = document.createTextNode("Zaatakował cię Ożywiony Szkielet!");
+		element.appendChild(t);
+		var img = document.createElement("img");
+		img.src = "zasoby/skeleton.png";
+		element.appendChild(img);
+		document.body.appendChild(element);
+		wrogowie = wrogowie + 10;
+        break;
+    case 5:
+		var element = document.createElement("p");
+		var t = document.createTextNode("Znalazles trochę prowiantu, pakujesz go do swojej torby.");
+		element.appendChild(t);
+		var img = document.createElement("img");
+		img.src = "zasoby/prowiant.png";
+		element.appendChild(img);
+		document.body.appendChild(element);
+		prowiant = prowiant + 1;
+		document.getElementById("prowiant").innerHTML = prowiant;
+		hit20 = new Audio('zasoby/item.mp3');
+		hit20.play();
+
+        break;
+    case 6:
+		var element = document.createElement("p");
+		var t = document.createTextNode("Zaatakował cię Szalony Strażnik!");
+		element.appendChild(t);
+		var img = document.createElement("img");
+		img.src = "zasoby/guard.png";
+		element.appendChild(img);
+		document.body.appendChild(element);
+		wrogowie = wrogowie + 14;
+        break;
+    case 7:
+		var element = document.createElement("p");
+		var t = document.createTextNode("Znalazles miksturę siły, wypijasz ją natychmiast");
+		element.appendChild(t);
+		var img = document.createElement("img");
+		img.src = "zasoby/sila.png";
+		element.appendChild(img);
+		document.body.appendChild(element);
+		sila = sila + 1;
+		hit19 = new Audio('zasoby/quaff.mp3');
+		hit19.play();
+				break;
+		case 8:
+		var randomeq = Math.floor(Math.random()*3)
+		if (randomeq == 0)
+		{
+			nazwaeq = "Kolczuga";
+			zamiennazbroja = 5;
+			var element = document.createElement("p");
+			var t = document.createTextNode("Znalazłeś ekwipunek, jest to " + nazwaeq + ". Czy chcesz go założyć?");
+			element.appendChild(t);
+			document.body.appendChild(element);
+			var img = document.createElement("img");
+			img.src = "zasoby/chainmail.png";
+			document.body.appendChild(img);
+			var element = document.createElement("button");
+			var t = document.createTextNode("Załóż");
+			element.appendChild(t);
+			element.setAttribute("onclick", 'zaloz()');
+			document.body.appendChild(element);
+		}
+		else if (randomeq == 1)
+		{
+			nazwaeq = "Zbroja z łusek";
+			zamiennazbroja = 8;
+			var element = document.createElement("p");
+			var t = document.createTextNode("Znalazłeś ekwipunek, jest to " + nazwaeq + ". Czy chcesz go założyć?");
+			element.appendChild(t);
+			document.body.appendChild(element);
+			var img = document.createElement("img");
+			img.src = "zasoby/scale.png";
+			document.body.appendChild(img);
+			var element = document.createElement("button");
+			var t = document.createTextNode("Załóż");
+			element.appendChild(t);
+			element.setAttribute("onclick", 'zaloz()');
+			document.body.appendChild(element);
+		}
+		else {
+			typpierscienia = 1;
+			nazwaeq = "Pierścień żywotności";
+			var element = document.createElement("p");
+			var t = document.createTextNode("Znalazłeś ekwipunek, jest to " + nazwaeq + ". Czy chcesz go założyć?");
+			element.appendChild(t);
+			document.body.appendChild(element);
+			var img = document.createElement("img");
+			img.src = "zasoby/healthring.png";
+			document.body.appendChild(img);
+			var element = document.createElement("button");
+			var t = document.createTextNode("Załóż");
+			element.appendChild(t);
+			element.setAttribute("onclick", 'zalozpierscien()');
+			document.body.appendChild(element);
+
+		}
+
+				break;
+		case 9:
+		var randomgenerator = Math.floor(Math.random()*2)
+		if (randomgenerator == 0)
+		{
+			var element = document.createElement("p");
+			var t = document.createTextNode("Wszedłeś w pułapkę strzałkową!");
+			element.appendChild(t);
+			document.body.appendChild(element);
+			var img = document.createElement("img");
+			img.src = "zasoby/dart.png";
+			element.appendChild(img);
+			document.body.appendChild(element);
+			zdrowie = zdrowie - 3;
+			hit3 = new Audio('zasoby/hit.mp3');
+			hit3.play();
+		}
+		else {
+			var element = document.createElement("p");
+			var t = document.createTextNode("Wszedłeś w pułapkę alarmującą! Przyszło 2 strażników!");
+			element.appendChild(t);
+			document.body.appendChild(element);
+			var img = document.createElement("img");
+			img.src = "zasoby/guard.png";
+			element.appendChild(img);
+			document.body.appendChild(element);
+			var img = document.createElement("img");
+			img.src = "zasoby/guard.png";
+			element.appendChild(img);
+			document.body.appendChild(element);
+			wrogowie = wrogowie + 20;
+			hit31 = new Audio('zasoby/alarm.mp3');
+			hit31.play();
+		}
+
+				break;
+		case 10:
+		var element = document.createElement("p");
+		var t = document.createTextNode("Idziesz przez pusty korytarz.");
+		element.appendChild(t);
+		document.body.appendChild(element);
+				break;
+
+		}}
+
 
 if (glod < (maxglod /3))
 {
-	zdrowie = zdrowie + 1;
+	zdrowie = zdrowie + 2;
 }
 else if (glod < (maxglod /2))
 {
-	zdrowie = zdrowie + (1 / 2);
+	zdrowie = zdrowie + 1;
 }
 endexplore();
 }
@@ -714,7 +1564,7 @@ function endexplore()
 }
 
 myAudio = new Audio('zasoby/game.ogg');
-myAudio.volume = 0.25;
+myAudio.volume = 0.5;
 myAudio.addEventListener('ended', function() {
     this.currentTime = 0;
 
