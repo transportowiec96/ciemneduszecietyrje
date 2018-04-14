@@ -41,6 +41,7 @@ var zalozonazbroja = false;
 var zamiennazbroja = 0;
 var story = 1;
 var errorlevel = 0;
+var lastpray = 0;
 
 scroll = setInterval(function(){ window.scrollBy(0, 1000);	if (zdrowie == 0 || zdrowie < 0){if (errorlevel == 0){errorlevel = errorlevel + 1;document.getElementById("zdrowaska").src = "zasoby/smierc.png";var audio = new Audio('zasoby/death.mp3');audio.play();alert("YOU DIED...");setTimeout(function(){ location.reload(); }, 2500);}}}, 50);
 function classrogue(){
@@ -268,6 +269,7 @@ function hpcheck()
 	document.getElementById("maxzdrowie").innerHTML = maxzdrowie;
 	document.getElementById("glod").innerHTML = glod;
 	document.getElementById("exp").innerHTML = exp;
+	document.getElementById("sila").innerHTML = sila;
 	document.getElementById("nextlvl").innerHTML = nextlvl;
   document.getElementById("poziom").innerHTML = poziom;
 	document.getElementById("zestaw").innerHTML = zestaw;
@@ -313,6 +315,93 @@ function repair()
 	if (wrogowie != 0)
 	{
 			damagetake();
+	}
+	hpcheck();
+}
+function pray()
+{
+	if (lastpray < (akcje - 500))
+	{
+		maxzdrowie = maxzdrowie + 50;
+		zdrowie = maxzdrowie;
+		sila = sila + 15;
+		zbroja = zbroja + 5;
+		maxglod = maxglod + 5;
+		glod = 0;
+		var element = document.createElement("p");
+		var t = document.createTextNode("Czujesz jak spora witalność przepływa przez twe ciało!");
+		element.appendChild(t);
+		document.body.appendChild(element);
+		lastpray = akcje;
+	}
+	else if (lastpray < (akcje - 375))
+	{
+		maxzdrowie = maxzdrowie + 35;
+		zdrowie = maxzdrowie;
+		sila = sila + 11;
+		zbroja = zbroja + 4;
+		maxglod = maxglod + 4;
+		glod = 0;
+		var element = document.createElement("p");
+		var t = document.createTextNode("Czujesz jak witalność przepływa przez twe ciało!");
+		element.appendChild(t);
+		document.body.appendChild(element);
+		lastpray = akcje;
+	}
+	else if (lastpray < (akcje - 250))
+	{
+		maxzdrowie = maxzdrowie + 25;
+		zdrowie = maxzdrowie;
+		sila = sila + 7;
+		zbroja = zbroja +2;
+		maxglod = maxglod + 2;
+		glod = 0;
+		var element = document.createElement("p");
+		var t = document.createTextNode("Czujesz jak witalność delikatnie przepływa przez twe ciało!");
+		element.appendChild(t);
+		document.body.appendChild(element);
+		lastpray = akcje;
+	}
+	else if (lastpray < (akcje - 125))
+	{
+		maxzdrowie = maxzdrowie + 15;
+		zdrowie = maxzdrowie;
+		sila = sila + 3;
+		zbroja = zbroja + 1;
+		maxglod = maxglod + 1;
+		glod = 0;
+		var element = document.createElement("p");
+		var t = document.createTextNode("Czujesz jak nową moc przepływającą przez twe ciało!");
+		element.appendChild(t);
+		document.body.appendChild(element);
+		lastpray = akcje;
+	}
+	else if (lastpray < (akcje - 50))
+	{
+		maxzdrowie = maxzdrowie + 5;
+		zdrowie = maxzdrowie;
+		sila = sila + 1;
+		glod = 0;
+		var element = document.createElement("p");
+		var t = document.createTextNode("Zauważasz delikatny wzrost twojej witalności!");
+		element.appendChild(t);
+		document.body.appendChild(element);
+		lastpray = akcje;
+	}
+	else
+	{
+		maxzdrowie = maxzdrowie - 4;
+		zdrowie = maxzdrowie;
+		if (sila != 1)
+		{
+		sila = sila - 1;
+		}
+		glod = maxglod - 1;
+		var element = document.createElement("p");
+		var t = document.createTextNode("Zauważasz spadek twojej witalności!");
+		element.appendChild(t);
+		document.body.appendChild(element);
+		lastpray = akcje;
 	}
 	hpcheck();
 }
@@ -678,8 +767,8 @@ function zaloz()
 		if (randomgenerator < 3)
 		{
 			zbroja = (zamiennazbroja / 2);
-			zamiennazbroja = 0;
 			klatwa = (zamiennazbroja / 2);
+			zamiennazbroja = 0;
 			sila = sila - klatwa;
 			var element = document.createElement("p");
 			var t = document.createTextNode("Założyłeś przeklętą " + nazwaeq + "!");
@@ -708,19 +797,144 @@ function zaloz()
 		}
 		break;
 		case 2:
-
+		var randomgenerator = Math.floor(Math.random()*10+1);
+		if (randomgenerator < 4)
+		{
+			zbroja = (zamiennazbroja / 2);
+			klatwa = (zamiennazbroja / 2);
+			zamiennazbroja = 0;
+			sila = sila - klatwa;
+			var element = document.createElement("p");
+			var t = document.createTextNode("Założyłeś przeklętą " + nazwaeq + "!");
+			element.appendChild(t);
+			document.body.appendChild(element);
+			hit30 = new Audio('zasoby/cursed.mp3');
+			hit30.play();
+		}
+		else if (randomgenerator > 8)
+		{
+			zbroja = zamiennazbroja + 5;
+			zamiennazbroja = 0;
+			var element = document.createElement("p");
+			var t = document.createTextNode("Założyłeś poświęconą " + nazwaeq + "!");
+			element.appendChild(t);
+			document.body.appendChild(element);
+		}
+		else
+		{
+			zbroja = zamiennazbroja;
+			zamiennazbroja = 0;
+			var element = document.createElement("p");
+			var t = document.createTextNode("Założyłeś " + nazwaeq + ".");
+			element.appendChild(t);
+			document.body.appendChild(element);
+		}
 		break;
 		case 3:
-
+		var randomgenerator = Math.floor(Math.random()*10+1);
+		if (randomgenerator < 4)
+		{
+			zbroja = (zamiennazbroja / 2);
+			klatwa = (zamiennazbroja / 2);
+			zamiennazbroja = 0;
+			sila = sila - klatwa;
+			var element = document.createElement("p");
+			var t = document.createTextNode("Założyłeś przeklętą " + nazwaeq + "!");
+			element.appendChild(t);
+			document.body.appendChild(element);
+			hit30 = new Audio('zasoby/cursed.mp3');
+			hit30.play();
+		}
+		else if (randomgenerator > 9)
+		{
+			zbroja = zamiennazbroja + 9;
+			zamiennazbroja = 0;
+			var element = document.createElement("p");
+			var t = document.createTextNode("Założyłeś poświęconą " + nazwaeq + "!");
+			element.appendChild(t);
+			document.body.appendChild(element);
+		}
+		else
+		{
+			zbroja = zamiennazbroja;
+			zamiennazbroja = 0;
+			var element = document.createElement("p");
+			var t = document.createTextNode("Założyłeś " + nazwaeq + ".");
+			element.appendChild(t);
+			document.body.appendChild(element);
+		}
 		break;
 		case 4:
-
+		var randomgenerator = Math.floor(Math.random()*10+1);
+		if (randomgenerator < 5)
+		{
+			zbroja = (zamiennazbroja / 2);
+			klatwa = (zamiennazbroja / 2);
+			zamiennazbroja = 0;
+			sila = sila - klatwa;
+			var element = document.createElement("p");
+			var t = document.createTextNode("Założyłeś przeklętą " + nazwaeq + "!");
+			element.appendChild(t);
+			document.body.appendChild(element);
+			hit30 = new Audio('zasoby/cursed.mp3');
+			hit30.play();
+		}
+		else if (randomgenerator > 9)
+		{
+			zbroja = zamiennazbroja + 15;
+			zamiennazbroja = 0;
+			var element = document.createElement("p");
+			var t = document.createTextNode("Założyłeś poświęconą " + nazwaeq + "!");
+			element.appendChild(t);
+			document.body.appendChild(element);
+		}
+		else
+		{
+			zbroja = zamiennazbroja;
+			zamiennazbroja = 0;
+			var element = document.createElement("p");
+			var t = document.createTextNode("Założyłeś " + nazwaeq + ".");
+			element.appendChild(t);
+			document.body.appendChild(element);
+		}
 		break;
 		case 5:
-
+		var randomgenerator = Math.floor(Math.random()*10+1);
+		if (randomgenerator < 6)
+		{
+			zbroja = (zamiennazbroja / 2);
+			klatwa = (zamiennazbroja / 2);
+			zamiennazbroja = 0;
+			sila = sila - klatwa;
+			var element = document.createElement("p");
+			var t = document.createTextNode("Założyłeś przeklętą " + nazwaeq + "!");
+			element.appendChild(t);
+			document.body.appendChild(element);
+			hit30 = new Audio('zasoby/cursed.mp3');
+			hit30.play();
+		}
+		else if (randomgenerator > 9)
+		{
+			zbroja = zamiennazbroja + 25;
+			zamiennazbroja = 0;
+			var element = document.createElement("p");
+			var t = document.createTextNode("Założyłeś poświęconą " + nazwaeq + "!");
+			element.appendChild(t);
+			document.body.appendChild(element);
+		}
+		else
+		{
+			zbroja = zamiennazbroja;
+			zamiennazbroja = 0;
+			var element = document.createElement("p");
+			var t = document.createTextNode("Założyłeś " + nazwaeq + ".");
+			element.appendChild(t);
+			document.body.appendChild(element);
+		}
 		break;
 
 	}
+	nextarmorbreak = zbroja * 20;
 	document.getElementById("def").innerHTML = zbroja;
 	document.getElementById("nazwadef").innerHTML = nazwaeq;
 	document.getElementById("sila").innerHTML = sila;
@@ -1292,7 +1506,7 @@ function explore()
 		if (randomeq == 0)
 		{
 			nazwaeq = "Płócienna zbroja";
-			zamiennazbroja = 2;
+			zamiennazbroja = Math.floor(Math.random()*2+1)
 			var img = document.createElement("img");
 			img.src = "zasoby/cloth.png";
 			document.body.appendChild(img);
@@ -1300,14 +1514,14 @@ function explore()
 		else if (randomeq == 1)
 		{
 			nazwaeq = "Skórzana zbroja";
-			zamiennazbroja = 2+1;
+			zamiennazbroja = Math.floor(Math.random()*3+1)
 			var img = document.createElement("img");
 			img.src = "zasoby/leather.png";
 			document.body.appendChild(img);
 		}
 		else {
 			nazwaeq = "Kolczuga";
-			zamiennazbroja = 4 - 2;
+			zamiennazbroja = Math.floor(Math.random()*4+1)
 			var img = document.createElement("img");
 			img.src = "zasoby/chainmail.png";
 			document.body.appendChild(img);
@@ -1450,7 +1664,7 @@ function explore()
 		if (randomeq == 0)
 		{
 			nazwaeq = "Kolczuga";
-			zamiennazbroja = 5;
+			zamiennazbroja = Math.floor(Math.random()*5+2)
 			var element = document.createElement("p");
 			var t = document.createTextNode("Znalazłeś ekwipunek, jest to " + nazwaeq + ". Czy chcesz go założyć?");
 			element.appendChild(t);
@@ -1467,7 +1681,7 @@ function explore()
 		else if (randomeq == 1)
 		{
 			nazwaeq = "Zbroja z łusek";
-			zamiennazbroja = 8;
+			zamiennazbroja = Math.floor(Math.random()*7+2)
 			var element = document.createElement("p");
 			var t = document.createTextNode("Znalazłeś ekwipunek, jest to " + nazwaeq + ". Czy chcesz go założyć?");
 			element.appendChild(t);
@@ -1512,7 +1726,7 @@ function explore()
 			img.src = "zasoby/dart.png";
 			element.appendChild(img);
 			document.body.appendChild(element);
-			zdrowie = zdrowie - 3;
+			zdrowie = zdrowie - 6;
 			hit3 = new Audio('zasoby/hit.mp3');
 			hit3.play();
 		}
