@@ -399,6 +399,7 @@ function damagetake(){
 	{
 		zbroja = zbroja - 1;
 		brokenarmor = brokenarmor + 1;
+		nextarmorbreak = 0;
 	}
 	zdrowie = zdrowie - dmg;
 	var element = document.createElement("p");
