@@ -19,6 +19,8 @@ var fighter = {maxzdrowie:10,zbroja:2,nextlvl:12,maxglod:10,sila:2}
 var rogue = {maxzdrowie:15,zbroja:0,nextlvl:8,maxglod: 7,sila:1}
 //3 - mag
 var mage = {maxzdrowie:5,zbroja:0,nextlvl:10,maxglod: 12,sila:4}
+//4 - nieznana
+var nieznana = {maxzdrowie:10,zbroja:1,nextlvl:10,maxglod:10,sila:1}
 //staty wrogow
 var wrogowie = 0;
 var bosszone1 = 1;
@@ -30,6 +32,8 @@ var potkahp = 1;
 var zestaw = 0;
 var brokenarmor = 0;
 var nextarmorbreak = 0;
+var bomb = 0;
+var scroll = 0;
 //lochy
 var akcje = 0;
 var zone = 1;
@@ -42,8 +46,9 @@ var zamiennazbroja = 0;
 var story = 1;
 var errorlevel = 0;
 var lastpray = 0;
+var armorimg = 1;
 
-scroll = setInterval(function(){ window.scrollBy(0, 1000);	if (zdrowie == 0 || zdrowie < 0){if (errorlevel == 0){errorlevel = errorlevel + 1;document.getElementById("zdrowaska").src = "zasoby/smierc.png";var audio = new Audio('zasoby/death.mp3');audio.play();alert("YOU DIED...");setTimeout(function(){ location.reload(); }, 2500);}}}, 50);
+scrolling = setInterval(function(){ window.scrollBy(0, 1000);	if (zdrowie == 0 || zdrowie < 0){if (errorlevel == 0){errorlevel = errorlevel + 1;document.getElementById("zdrowaska").src = "zasoby/smierc.png";var audio = new Audio('zasoby/death.mp3');audio.play();alert("YOU DIED...");setTimeout(function(){ location.reload(); }, 2500);}}}, 50);
 function classrogue(){
 maxzdrowie = rogue.maxzdrowie;
 zdrowie = rogue.maxzdrowie;
@@ -64,6 +69,14 @@ document.getElementById("sila").innerHTML = rogue.sila;
 document.getElementById("klasapostaci").src = "zasoby/rogue.png";
 hit29 = new Audio('zasoby/descend.mp3');
 hit29.play();
+theme.pause();
+game = new Audio('zasoby/game.ogg');
+game.volume = 0.5;
+game.addEventListener('ended', function() {
+    this.currentTime = 0;
+    this.play();
+}, false);
+game.play();
 hpcheck();
 }
 function classfighter(){
@@ -86,6 +99,14 @@ document.getElementById("sila").innerHTML = fighter.sila;
 document.getElementById("klasapostaci").src = "zasoby/fighter.png";
 hit27 = new Audio('zasoby/descend.mp3');
 hit27.play();
+theme.pause();
+game = new Audio('zasoby/game.ogg');
+game.volume = 0.5;
+game.addEventListener('ended', function() {
+    this.currentTime = 0;
+    this.play();
+}, false);
+game.play();
 hpcheck();
 }
 function classmage(){
@@ -108,6 +129,14 @@ document.getElementById("sila").innerHTML = mage.sila;
 document.getElementById("klasapostaci").src = "zasoby/mage.png";
 hit23 = new Audio('zasoby/descend.mp3');
 hit23.play();
+theme.pause();
+game = new Audio('zasoby/game.ogg');
+game.volume = 0.5;
+game.addEventListener('ended', function() {
+    this.currentTime = 0;
+    this.play();
+}, false);
+game.play();
 hpcheck();
 }
 function zonecheck()
@@ -213,6 +242,9 @@ function hpcheck()
 			document.getElementById("zdrowaska").src = "zasoby/smierc.png";
 			var audio = new Audio('zasoby/death.mp3');
 			audio.play();
+      var img = document.createElement("img");
+      img.src = "zasoby/gameover.png";
+      document.body.appendChild(img);
 			alert("YOU DIED...");
 			setTimeout(function(){ location.reload(); }, 2500);
 		}
@@ -252,7 +284,7 @@ function hpcheck()
 	if (exp >= nextlvl)
 	{
 		exp = exp - nextlvl;
-		nextlvl = nextlvl + 10;
+		nextlvl = nextlvl + 7;
 		maxzdrowie = maxzdrowie + 5;
 		zdrowie = zdrowie + 5;
 		poziom = poziom + 1;
@@ -267,14 +299,57 @@ function hpcheck()
 	document.getElementById("wrogowie").innerHTML = wrogowie;
 	document.getElementById("zdrowie").innerHTML = zdrowie;
 	document.getElementById("maxzdrowie").innerHTML = maxzdrowie;
-	document.getElementById("glod").innerHTML = glod;
+	document.getElementById("maxglod").innerHTML = maxglod;
+  document.getElementById("zwoje").innerHTML = scroll;
+  document.getElementById("bomby").innerHTML = bomb;
 	document.getElementById("exp").innerHTML = exp;
 	document.getElementById("sila").innerHTML = sila;
 	document.getElementById("nextlvl").innerHTML = nextlvl;
   document.getElementById("poziom").innerHTML = poziom;
 	document.getElementById("zestaw").innerHTML = zestaw;
+	document.getElementById("prowiant").innerHTML = prowiant;
 	document.getElementById("potkahp").innerHTML = potkahp;
+	document.getElementById("zestaw").innerHTML = zestaw;
 	document.getElementById("def").innerHTML = zbroja;
+}
+function bombthrow()
+{
+  if (bomb != 0)
+  {
+    bomb = bomb -1;
+    document.getElementById("bomby").innerHTML = bomby;
+    wrogowie = wrogowie - Math.floor((wrogowie / 100)*25)
+    var element = document.createElement("p");
+    var t = document.createTextNode("Rzuciłeś bombę we wrogów.");
+    element.appendChild(t);
+    document.body.appendChild(element);
+  }
+  else {
+    var element = document.createElement("p");
+    var t = document.createTextNode("Machnąłeś ręką.");
+    element.appendChild(t);
+    document.body.appendChild(element);
+  }
+}
+function readscroll(){
+  if (scroll != 0)
+  {
+    scroll = scroll -1;
+    document.getElementById("zwoje").innerHTML = scroll;
+    wrogowie = wrogowie - Math.floor((wrogowie / 100)*25)
+    var element = document.createElement("p");
+    var t = document.createTextNode("Przeczytałeś zwój.");
+    element.appendChild(t);
+    document.body.appendChild(element);
+    //TODO EFEKTY
+  }
+  else {
+    var element = document.createElement("p");
+    var t = document.createTextNode("Czytasz ze swojej ręki.");
+    element.appendChild(t);
+    document.body.appendChild(element);
+  }
+  hpcheck();
 }
 function repair()
 {
@@ -371,7 +446,7 @@ function pray()
 		maxglod = maxglod + 1;
 		glod = 0;
 		var element = document.createElement("p");
-		var t = document.createTextNode("Czujesz jak nową moc przepływającą przez twe ciało!");
+		var t = document.createTextNode("Czujesz jak nowa moc przepływającą przez twe ciało!");
 		element.appendChild(t);
 		document.body.appendChild(element);
 		lastpray = akcje;
@@ -764,18 +839,39 @@ function zaloz()
 	switch (zone){
 		case 1:
 		var randomgenerator = Math.floor(Math.random()*10+1);
-		if (randomgenerator < 3)
+		if (randomgenerator < 2)
 		{
 			zbroja = (zamiennazbroja / 2);
 			klatwa = (zamiennazbroja / 2);
 			zamiennazbroja = 0;
 			sila = sila - klatwa;
+			if (sila < 1){
+				sila = (1 / 2);
+			}
 			var element = document.createElement("p");
 			var t = document.createTextNode("Założyłeś przeklętą " + nazwaeq + "!");
 			element.appendChild(t);
 			document.body.appendChild(element);
 			hit30 = new Audio('zasoby/cursed.mp3');
 			hit30.play();
+			switch (armorimg){
+				case 1:
+				document.getElementById("armorimg").src = "zasoby/ccloth.png";
+				break;
+				case 2:
+				document.getElementById("armorimg").src = "zasoby/cleather.png";
+				break;
+				case 3:
+				document.getElementById("armorimg").src = "zasoby/cchainmail.png";
+				break;
+				case 4:
+				document.getElementById("armorimg").src = "zasoby/cscale.png";
+				break;
+				case 5:
+				document.getElementById("armorimg").src = "zasoby/cplate.png";
+				break;
+
+						}
 		}
 		else if (randomgenerator > 8)
 		{
@@ -785,6 +881,23 @@ function zaloz()
 			var t = document.createTextNode("Założyłeś poświęconą " + nazwaeq + "!");
 			element.appendChild(t);
 			document.body.appendChild(element);
+      switch (armorimg){
+			case 1:
+			document.getElementById("armorimg").src = "zasoby/bcloth.png";
+			break;
+			case 2:
+			document.getElementById("armorimg").src = "zasoby/bleather.png";
+			break;
+			case 3:
+			document.getElementById("armorimg").src = "zasoby/bchainmail.png";
+			break;
+			case 4:
+			document.getElementById("armorimg").src = "zasoby/bscale.png";
+			break;
+			case 5:
+			document.getElementById("armorimg").src = "zasoby/bplate.png";
+			break;
+    }
 		}
 		else
 		{
@@ -794,31 +907,86 @@ function zaloz()
 			var t = document.createTextNode("Założyłeś " + nazwaeq + ".");
 			element.appendChild(t);
 			document.body.appendChild(element);
+      switch (armorimg){
+			case 1:
+			document.getElementById("armorimg").src = "zasoby/cloth.png";
+			break;
+			case 2:
+			document.getElementById("armorimg").src = "zasoby/leather.png";
+			break;
+			case 3:
+			document.getElementById("armorimg").src = "zasoby/chainmail.png";
+			break;
+			case 4:
+			document.getElementById("armorimg").src = "zasoby/scale.png";
+			break;
+			case 5:
+			document.getElementById("armorimg").src = "zasoby/plate.png";
+			break;
+    }
 		}
 		break;
 		case 2:
 		var randomgenerator = Math.floor(Math.random()*10+1);
-		if (randomgenerator < 4)
+		if (randomgenerator < 3)
 		{
 			zbroja = (zamiennazbroja / 2);
 			klatwa = (zamiennazbroja / 2);
 			zamiennazbroja = 0;
 			sila = sila - klatwa;
+			if (sila < 1){
+				sila = (1 / 2);
+			}
 			var element = document.createElement("p");
 			var t = document.createTextNode("Założyłeś przeklętą " + nazwaeq + "!");
 			element.appendChild(t);
 			document.body.appendChild(element);
 			hit30 = new Audio('zasoby/cursed.mp3');
 			hit30.play();
+			switch (armorimg){
+				case 1:
+				document.getElementById("armorimg").src = "zasoby/ccloth.png";
+				break;
+				case 2:
+				document.getElementById("armorimg").src = "zasoby/cleather.png";
+				break;
+				case 3:
+				document.getElementById("armorimg").src = "zasoby/cchainmail.png";
+				break;
+				case 4:
+				document.getElementById("armorimg").src = "zasoby/cscale.png";
+				break;
+				case 5:
+				document.getElementById("armorimg").src = "zasoby/cplate.png";
+				break;
+
+						}
 		}
 		else if (randomgenerator > 8)
 		{
-			zbroja = zamiennazbroja + 5;
+			zbroja = zamiennazbroja + 7;
 			zamiennazbroja = 0;
 			var element = document.createElement("p");
 			var t = document.createTextNode("Założyłeś poświęconą " + nazwaeq + "!");
 			element.appendChild(t);
 			document.body.appendChild(element);
+      switch (armorimg){
+			case 1:
+			document.getElementById("armorimg").src = "zasoby/bcloth.png";
+			break;
+			case 2:
+			document.getElementById("armorimg").src = "zasoby/bleather.png";
+			break;
+			case 3:
+			document.getElementById("armorimg").src = "zasoby/bchainmail.png";
+			break;
+			case 4:
+			document.getElementById("armorimg").src = "zasoby/bscale.png";
+			break;
+			case 5:
+			document.getElementById("armorimg").src = "zasoby/bplate.png";
+			break;
+    }
 		}
 		else
 		{
@@ -828,9 +996,115 @@ function zaloz()
 			var t = document.createTextNode("Założyłeś " + nazwaeq + ".");
 			element.appendChild(t);
 			document.body.appendChild(element);
+      switch (armorimg){
+			case 1:
+			document.getElementById("armorimg").src = "zasoby/cloth.png";
+			break;
+			case 2:
+			document.getElementById("armorimg").src = "zasoby/leather.png";
+			break;
+			case 3:
+			document.getElementById("armorimg").src = "zasoby/chainmail.png";
+			break;
+			case 4:
+			document.getElementById("armorimg").src = "zasoby/scale.png";
+			break;
+			case 5:
+			document.getElementById("armorimg").src = "zasoby/plate.png";
+			break;
+    }
 		}
 		break;
 		case 3:
+		var randomgenerator = Math.floor(Math.random()*10+1);
+		if (randomgenerator < 3)
+		{
+			zbroja = (zamiennazbroja / 2);
+			klatwa = (zamiennazbroja / 2);
+			zamiennazbroja = 0;
+			sila = sila - klatwa;
+			if (sila < 1){
+				sila = (1 / 2);
+			}
+			var element = document.createElement("p");
+			var t = document.createTextNode("Założyłeś przeklętą " + nazwaeq + "!");
+			element.appendChild(t);
+			document.body.appendChild(element);
+			hit30 = new Audio('zasoby/cursed.mp3');
+			hit30.play();
+			switch (armorimg){
+				case 1:
+				document.getElementById("armorimg").src = "zasoby/ccloth.png";
+				break;
+				case 2:
+				document.getElementById("armorimg").src = "zasoby/cleather.png";
+				break;
+				case 3:
+				document.getElementById("armorimg").src = "zasoby/cchainmail.png";
+				break;
+				case 4:
+				document.getElementById("armorimg").src = "zasoby/cscale.png";
+				break;
+				case 5:
+				document.getElementById("armorimg").src = "zasoby/cplate.png";
+				break;
+
+						}
+		}
+		else if (randomgenerator > 9)
+		{
+			zbroja = zamiennazbroja + 12;
+			zamiennazbroja = 0;
+			var element = document.createElement("p");
+			var t = document.createTextNode("Założyłeś poświęconą " + nazwaeq + "!");
+			element.appendChild(t);
+			document.body.appendChild(element);
+      switch (armorimg){
+			case 1:
+			document.getElementById("armorimg").src = "zasoby/bcloth.png";
+			break;
+			case 2:
+			document.getElementById("armorimg").src = "zasoby/bleather.png";
+			break;
+			case 3:
+			document.getElementById("armorimg").src = "zasoby/bchainmail.png";
+			break;
+			case 4:
+			document.getElementById("armorimg").src = "zasoby/bscale.png";
+			break;
+			case 5:
+			document.getElementById("armorimg").src = "zasoby/bplate.png";
+			break;
+    }
+		}
+		else
+		{
+			zbroja = zamiennazbroja;
+			zamiennazbroja = 0;
+			var element = document.createElement("p");
+			var t = document.createTextNode("Założyłeś " + nazwaeq + ".");
+			element.appendChild(t);
+			document.body.appendChild(element);
+      switch (armorimg){
+			case 1:
+			document.getElementById("armorimg").src = "zasoby/cloth.png";
+			break;
+			case 2:
+			document.getElementById("armorimg").src = "zasoby/leather.png";
+			break;
+			case 3:
+			document.getElementById("armorimg").src = "zasoby/chainmail.png";
+			break;
+			case 4:
+			document.getElementById("armorimg").src = "zasoby/scale.png";
+			break;
+			case 5:
+			document.getElementById("armorimg").src = "zasoby/plate.png";
+			break;
+    }
+		}
+		break;
+		case 4:
 		var randomgenerator = Math.floor(Math.random()*10+1);
 		if (randomgenerator < 4)
 		{
@@ -838,21 +1112,59 @@ function zaloz()
 			klatwa = (zamiennazbroja / 2);
 			zamiennazbroja = 0;
 			sila = sila - klatwa;
+			if (sila < 1){
+				sila = (1 / 2);
+			}
 			var element = document.createElement("p");
 			var t = document.createTextNode("Założyłeś przeklętą " + nazwaeq + "!");
 			element.appendChild(t);
 			document.body.appendChild(element);
 			hit30 = new Audio('zasoby/cursed.mp3');
 			hit30.play();
+			switch (armorimg){
+				case 1:
+				document.getElementById("armorimg").src = "zasoby/ccloth.png";
+				break;
+				case 2:
+				document.getElementById("armorimg").src = "zasoby/cleather.png";
+				break;
+				case 3:
+				document.getElementById("armorimg").src = "zasoby/cchainmail.png";
+				break;
+				case 4:
+				document.getElementById("armorimg").src = "zasoby/cscale.png";
+				break;
+				case 5:
+				document.getElementById("armorimg").src = "zasoby/cplate.png";
+				break;
+
+						}
 		}
 		else if (randomgenerator > 9)
 		{
-			zbroja = zamiennazbroja + 9;
+			zbroja = zamiennazbroja + 18;
 			zamiennazbroja = 0;
 			var element = document.createElement("p");
 			var t = document.createTextNode("Założyłeś poświęconą " + nazwaeq + "!");
 			element.appendChild(t);
 			document.body.appendChild(element);
+      switch (armorimg){
+			case 1:
+			document.getElementById("armorimg").src = "zasoby/bcloth.png";
+			break;
+			case 2:
+			document.getElementById("armorimg").src = "zasoby/bleather.png";
+			break;
+			case 3:
+			document.getElementById("armorimg").src = "zasoby/bchainmail.png";
+			break;
+			case 4:
+			document.getElementById("armorimg").src = "zasoby/bscale.png";
+			break;
+			case 5:
+			document.getElementById("armorimg").src = "zasoby/bplate.png";
+			break;
+    }
 		}
 		else
 		{
@@ -862,9 +1174,26 @@ function zaloz()
 			var t = document.createTextNode("Założyłeś " + nazwaeq + ".");
 			element.appendChild(t);
 			document.body.appendChild(element);
+      switch (armorimg){
+			case 1:
+			document.getElementById("armorimg").src = "zasoby/cloth.png";
+			break;
+			case 2:
+			document.getElementById("armorimg").src = "zasoby/leather.png";
+			break;
+			case 3:
+			document.getElementById("armorimg").src = "zasoby/chainmail.png";
+			break;
+			case 4:
+			document.getElementById("armorimg").src = "zasoby/scale.png";
+			break;
+			case 5:
+			document.getElementById("armorimg").src = "zasoby/plate.png";
+			break;
+    }
 		}
 		break;
-		case 4:
+		case 5:
 		var randomgenerator = Math.floor(Math.random()*10+1);
 		if (randomgenerator < 5)
 		{
@@ -872,46 +1201,33 @@ function zaloz()
 			klatwa = (zamiennazbroja / 2);
 			zamiennazbroja = 0;
 			sila = sila - klatwa;
+			if (sila < 1){
+				sila = (1 / 2);
+			}
 			var element = document.createElement("p");
 			var t = document.createTextNode("Założyłeś przeklętą " + nazwaeq + "!");
 			element.appendChild(t);
 			document.body.appendChild(element);
 			hit30 = new Audio('zasoby/cursed.mp3');
 			hit30.play();
-		}
-		else if (randomgenerator > 9)
-		{
-			zbroja = zamiennazbroja + 15;
-			zamiennazbroja = 0;
-			var element = document.createElement("p");
-			var t = document.createTextNode("Założyłeś poświęconą " + nazwaeq + "!");
-			element.appendChild(t);
-			document.body.appendChild(element);
-		}
-		else
-		{
-			zbroja = zamiennazbroja;
-			zamiennazbroja = 0;
-			var element = document.createElement("p");
-			var t = document.createTextNode("Założyłeś " + nazwaeq + ".");
-			element.appendChild(t);
-			document.body.appendChild(element);
-		}
-		break;
-		case 5:
-		var randomgenerator = Math.floor(Math.random()*10+1);
-		if (randomgenerator < 6)
-		{
-			zbroja = (zamiennazbroja / 2);
-			klatwa = (zamiennazbroja / 2);
-			zamiennazbroja = 0;
-			sila = sila - klatwa;
-			var element = document.createElement("p");
-			var t = document.createTextNode("Założyłeś przeklętą " + nazwaeq + "!");
-			element.appendChild(t);
-			document.body.appendChild(element);
-			hit30 = new Audio('zasoby/cursed.mp3');
-			hit30.play();
+			switch (armorimg){
+				case 1:
+				document.getElementById("armorimg").src = "zasoby/ccloth.png";
+				break;
+				case 2:
+				document.getElementById("armorimg").src = "zasoby/cleather.png";
+				break;
+				case 3:
+				document.getElementById("armorimg").src = "zasoby/cchainmail.png";
+				break;
+				case 4:
+				document.getElementById("armorimg").src = "zasoby/cscale.png";
+				break;
+				case 5:
+				document.getElementById("armorimg").src = "zasoby/cplate.png";
+				break;
+
+						}
 		}
 		else if (randomgenerator > 9)
 		{
@@ -921,6 +1237,23 @@ function zaloz()
 			var t = document.createTextNode("Założyłeś poświęconą " + nazwaeq + "!");
 			element.appendChild(t);
 			document.body.appendChild(element);
+      switch (armorimg){
+			case 1:
+			document.getElementById("armorimg").src = "zasoby/bcloth.png";
+			break;
+			case 2:
+			document.getElementById("armorimg").src = "zasoby/bleather.png";
+			break;
+			case 3:
+			document.getElementById("armorimg").src = "zasoby/bchainmail.png";
+			break;
+			case 4:
+			document.getElementById("armorimg").src = "zasoby/bscale.png";
+			break;
+			case 5:
+			document.getElementById("armorimg").src = "zasoby/bplate.png";
+			break;
+    }
 		}
 		else
 		{
@@ -930,6 +1263,23 @@ function zaloz()
 			var t = document.createTextNode("Założyłeś " + nazwaeq + ".");
 			element.appendChild(t);
 			document.body.appendChild(element);
+      switch (armorimg){
+			case 1:
+			document.getElementById("armorimg").src = "zasoby/cloth.png";
+			break;
+			case 2:
+			document.getElementById("armorimg").src = "zasoby/leather.png";
+			break;
+			case 3:
+			document.getElementById("armorimg").src = "zasoby/chainmail.png";
+			break;
+			case 4:
+			document.getElementById("armorimg").src = "zasoby/scale.png";
+			break;
+			case 5:
+			document.getElementById("armorimg").src = "zasoby/plate.png";
+			break;
+    }
 		}
 		break;
 
@@ -1336,7 +1686,7 @@ function explore()
 		element.appendChild(t);
 		document.body.appendChild(element);
 	}
-	if (akcje > 90 && bosszone1 == 1 )
+	else if (akcje > 90 && bosszone1 == 1 )
 	{
 		var element = document.createElement("p");
 		var t = document.createTextNode("Pojawia się Boss, Wielki Szlam!");
@@ -1349,7 +1699,7 @@ function explore()
 		wrogowie = wrogowie + 15;
 		bosszone1 = 0;
 	}
-	if (zone == 2 && bosszone1 == 0 && iwan1 == 1)
+	else if (zone == 2 && bosszone1 == 0 && iwan1 == 1)
 	{
 		var element = document.createElement("p");
 		var t = document.createTextNode("Cześć! Nazywam się Iwan i mam dla ciebie małe oferty...");
@@ -1386,12 +1736,14 @@ function explore()
 		element.setAttribute("onclick", 'hpnazestaw()');
 		document.body.appendChild(element);
 		iwan1 = 0;
+		olaf7 = new Audio('zasoby/talk.mp3');
+		olaf7.play();
 
 	}
-	if (akcje > 190 && bosszone2 == 1 )
+	else if (akcje > 190 && bosszone2 == 1 )
 	{
 		var element = document.createElement("p");
-		var t = document.createTextNode("Pojawia się Boss, Mistrz Złodzei Tengu!");
+		var t = document.createTextNode("Pojawia się Boss, Mistrz Złodzie Tengu!");
 		element.appendChild(t);
 		document.body.appendChild(element);
 		var img = document.createElement("img");
@@ -1401,9 +1753,9 @@ function explore()
 		wrogowie = wrogowie + 30;
 		bosszone2 = 0;
 	}
-	var randomgenerator = Math.floor(Math.random()*10+1);
-	if (zone == 1)
+	else if (zone == 1)
 	{
+		var randomgenerator = Math.floor(Math.random()*10+1);
 		switch (randomgenerator)
 		{
     case 1:
@@ -1503,34 +1855,38 @@ function explore()
 				break;
 		case 8:
 		var randomeq = Math.floor(Math.random()*3)
-		if (randomeq == 0)
-		{
-			nazwaeq = "Płócienna zbroja";
-			zamiennazbroja = Math.floor(Math.random()*2+1)
-			var img = document.createElement("img");
-			img.src = "zasoby/cloth.png";
-			document.body.appendChild(img);
-		}
-		else if (randomeq == 1)
-		{
-			nazwaeq = "Skórzana zbroja";
-			zamiennazbroja = Math.floor(Math.random()*3+1)
-			var img = document.createElement("img");
-			img.src = "zasoby/leather.png";
-			document.body.appendChild(img);
-		}
-		else {
-			nazwaeq = "Kolczuga";
-			zamiennazbroja = Math.floor(Math.random()*4+1)
-			var img = document.createElement("img");
-			img.src = "zasoby/chainmail.png";
-			document.body.appendChild(img);
+    var element = document.createElement("p");
+    if (randomeq == 0)
+    {
+      nazwaeq = "Płócienna zbroja";
+      armorimg = 1;
+      zamiennazbroja = Math.floor(Math.random()*2+1)
+      var img = document.createElement("img");
+      img.src = "zasoby/cloth.png";
+      element.appendChild(img)
+    }
+    else if (randomeq == 1)
+    {
+      nazwaeq = "Skórzana zbroja";
+      armorimg = 2;
+      zamiennazbroja = Math.floor(Math.random()*3+1)
+      var img = document.createElement("img");
+      img.src = "zasoby/leather.png";
+      element.appendChild(img)
+    }
+    else {
+      nazwaeq = "Kolczuga";
+      armorimg = 3;
+      zamiennazbroja = Math.floor(Math.random()*4+1)
+      var img = document.createElement("img");
+      img.src = "zasoby/chainmail.png";
+      element.appendChild(img)
 
-		}
-		var element = document.createElement("p");
+    }
 		var t = document.createTextNode("Znalazłeś ekwipunek, jest to " + nazwaeq + ". Czy chcesz go założyć?");
 		element.appendChild(t);
 		document.body.appendChild(element);
+
 		var element = document.createElement("button");
 		var t = document.createTextNode("Załóż");
 		element.appendChild(t);
@@ -1560,8 +1916,9 @@ function explore()
 		}
 
 	}
-	if (zone == 2)
+	else if (zone == 2)
 	{
+    var randomgenerator = Math.floor(Math.random()*10+1);
 		switch (randomgenerator)
 		{
     case 1:
@@ -1664,14 +2021,15 @@ function explore()
 		if (randomeq == 0)
 		{
 			nazwaeq = "Kolczuga";
-			zamiennazbroja = Math.floor(Math.random()*5+2)
+			armorimg = 3;
+      var img = document.createElement("img");
+      img.src = "zasoby/chainmail.png";
+			zamiennazbroja = Math.floor((Math.random()*5)+2)
 			var element = document.createElement("p");
 			var t = document.createTextNode("Znalazłeś ekwipunek, jest to " + nazwaeq + ". Czy chcesz go założyć?");
 			element.appendChild(t);
+      element.appendChild(img);
 			document.body.appendChild(element);
-			var img = document.createElement("img");
-			img.src = "zasoby/chainmail.png";
-			document.body.appendChild(img);
 			var element = document.createElement("button");
 			var t = document.createTextNode("Załóż");
 			element.appendChild(t);
@@ -1680,15 +2038,16 @@ function explore()
 		}
 		else if (randomeq == 1)
 		{
-			nazwaeq = "Zbroja z łusek";
-			zamiennazbroja = Math.floor(Math.random()*7+2)
+      nazwaeq = "Zbroja z łusek";
+			armorimg = 4;
+      var img = document.createElement("img");
+      img.src = "zasoby/scale.png";
+			zamiennazbroja = Math.floor((Math.random()*6)+4)
 			var element = document.createElement("p");
 			var t = document.createTextNode("Znalazłeś ekwipunek, jest to " + nazwaeq + ". Czy chcesz go założyć?");
 			element.appendChild(t);
+      element.appendChild(img);
 			document.body.appendChild(element);
-			var img = document.createElement("img");
-			img.src = "zasoby/scale.png";
-			document.body.appendChild(img);
 			var element = document.createElement("button");
 			var t = document.createTextNode("Załóż");
 			element.appendChild(t);
@@ -1701,10 +2060,10 @@ function explore()
 			var element = document.createElement("p");
 			var t = document.createTextNode("Znalazłeś ekwipunek, jest to " + nazwaeq + ". Czy chcesz go założyć?");
 			element.appendChild(t);
+      var img = document.createElement("img");
+      img.src = "zasoby/healthring.png";
+      element.appendChild(img);
 			document.body.appendChild(element);
-			var img = document.createElement("img");
-			img.src = "zasoby/healthring.png";
-			document.body.appendChild(img);
 			var element = document.createElement("button");
 			var t = document.createTextNode("Załóż");
 			element.appendChild(t);
@@ -1758,7 +2117,6 @@ function explore()
 
 		}}
 
-
 if (glod < (maxglod /3))
 {
 	zdrowie = zdrowie + 2;
@@ -1788,11 +2146,16 @@ function endexplore()
 	hpcheck();
 }
 
-myAudio = new Audio('zasoby/game.ogg');
-myAudio.volume = 0.5;
-myAudio.addEventListener('ended', function() {
+theme = new Audio('zasoby/theme.ogg');
+theme.volume = 0.5;
+theme.addEventListener('ended', function() {
     this.currentTime = 0;
-
     this.play();
 }, false);
-myAudio.play();
+theme.play();
+function newgame(){
+	document.getElementById("mainmenu").style.display = "none";
+}
+function exit(){
+	close();
+}
