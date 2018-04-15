@@ -1,4 +1,4 @@
-
+//TODO SCROLLS
 //staty bohatera
 var glod = 0;
 var exp = 0;
