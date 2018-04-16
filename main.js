@@ -1,4 +1,4 @@
-//TODO SCROLLS
+﻿
 //staty bohatera
 var glod = 0;
 var exp = 0;
@@ -299,6 +299,7 @@ function hpcheck()
 	document.getElementById("wrogowie").innerHTML = wrogowie;
 	document.getElementById("zdrowie").innerHTML = zdrowie;
 	document.getElementById("maxzdrowie").innerHTML = maxzdrowie;
+	document.getElementById("glod").innerHTML = glod;
 	document.getElementById("maxglod").innerHTML = maxglod;
   document.getElementById("zwoje").innerHTML = scroll;
   document.getElementById("bomby").innerHTML = bomb;
@@ -842,7 +843,7 @@ function zaloz()
 		if (randomgenerator < 2)
 		{
 			zbroja = (zamiennazbroja / 2);
-			klatwa = (zamiennazbroja / 2);
+			klatwa = Math.ceil(zamiennazbroja / 8);
 			zamiennazbroja = 0;
 			sila = sila - klatwa;
 			if (sila < 1){
@@ -1860,7 +1861,7 @@ function explore()
     {
       nazwaeq = "Płócienna zbroja";
       armorimg = 1;
-      zamiennazbroja = Math.floor(Math.random()*2+1)
+      zamiennazbroja = Math.floor((Math.random()*2)+1)
       var img = document.createElement("img");
       img.src = "zasoby/cloth.png";
       element.appendChild(img)
@@ -1869,7 +1870,7 @@ function explore()
     {
       nazwaeq = "Skórzana zbroja";
       armorimg = 2;
-      zamiennazbroja = Math.floor(Math.random()*3+1)
+      zamiennazbroja = Math.floor((Math.random()*3)+2)
       var img = document.createElement("img");
       img.src = "zasoby/leather.png";
       element.appendChild(img)
@@ -1877,7 +1878,7 @@ function explore()
     else {
       nazwaeq = "Kolczuga";
       armorimg = 3;
-      zamiennazbroja = Math.floor(Math.random()*4+1)
+      zamiennazbroja = Math.floor(Math.random()*4+3)
       var img = document.createElement("img");
       img.src = "zasoby/chainmail.png";
       element.appendChild(img)
@@ -2024,7 +2025,7 @@ function explore()
 			armorimg = 3;
       var img = document.createElement("img");
       img.src = "zasoby/chainmail.png";
-			zamiennazbroja = Math.floor((Math.random()*5)+2)
+			zamiennazbroja = Math.floor((Math.random()*3)+5)
 			var element = document.createElement("p");
 			var t = document.createTextNode("Znalazłeś ekwipunek, jest to " + nazwaeq + ". Czy chcesz go założyć?");
 			element.appendChild(t);
@@ -2042,7 +2043,7 @@ function explore()
 			armorimg = 4;
       var img = document.createElement("img");
       img.src = "zasoby/scale.png";
-			zamiennazbroja = Math.floor((Math.random()*6)+4)
+			zamiennazbroja = Math.floor((Math.random()*4)+8)
 			var element = document.createElement("p");
 			var t = document.createTextNode("Znalazłeś ekwipunek, jest to " + nazwaeq + ". Czy chcesz go założyć?");
 			element.appendChild(t);
