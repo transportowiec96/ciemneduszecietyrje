@@ -508,7 +508,7 @@ function rest(){
 		}
 		else {
 			glod = glod + 1;
-			zdrowie = zdrowie + 2;
+			zdrowie = zdrowie + Math.ceil(maxzdrowie / 10);
 		}
 		document.getElementById("akcje").innerHTML =  akcje;
 		document.getElementById("wrogowie").innerHTML =  wrogowie;
