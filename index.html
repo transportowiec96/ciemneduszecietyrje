@@ -14,8 +14,7 @@ body{
   position: fixed;
   height: 66%;
   width: 20%;
-  display: flex;
-  flex-direction: column;
+
 }
 #menu2 {
   background-color: red;
@@ -24,8 +23,6 @@ body{
   position: fixed;
   height: 66%;
   width: 20%;
-  display: flex;
-  flex-direction: column;
 }
 p {
   color: white;
@@ -148,6 +145,52 @@ button{
 #v04:hover .v04text {
     visibility: visible;
 }
+#v05 {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted black;
+}
+
+#v05 .v05text {
+  visibility: hidden;
+  width: 200%;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 1;
+  top: -5px;
+  left: 105%;
+}
+
+#v05:hover .v05text {
+    visibility: visible;
+}
+#v06 {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted black;
+}
+
+#v06 .v06text {
+  visibility: hidden;
+  width: 200%;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 1;
+  top: -5px;
+  left: 105%;
+}
+
+#v06:hover .v06text {
+    visibility: visible;
+}
 #helptext {
     position: relative;
     display: inline-block;
@@ -182,7 +225,11 @@ bottom:0px;
 right:0px;
 }
 </style>
-	<script type="text/javascript" src="main.js"></script>
+	<script type="text/javascript" src="variables.js" > </script>
+	<script type="text/javascript" src="actions.js" ></script>
+	<script type="text/javascript" src="explore.js" ></script>
+	<script type="text/javascript" src="menu.js" ></script>
+	<script type="text/javascript" src="checks.js" ></script>
     <title>Ciemne Dusze Cietyrje</title>
 	<link rel="shortcut icon" href="https://i.imgur.com/uJeXmwi.jpg">
   </head>
@@ -194,7 +241,11 @@ right:0px;
       <p id="v02">V0.2 - Lista zmian z 13 kwietnia <span class="v02text">-Dodano potki zdrowia <br />-Dodano Zestawy Naprawcze zbroi<br />-Dodano tutorial<br />-Dodano przycisk modlenia się (nic nie robi)<br />-Dodano dwie klasy postaci - Maga i Łotrzyka <br />-Dodano menu główne <br />-Naprawiono kilka bugów</span></p><br />
       <p id="v03">V0.3 - Lista zmian z 14 kwietnia  <span class="v03text">-Naprawiono kilka bugów.<br />-Dodano możliwość modlitwy<br />-Dodano degradację zbroi<br />-Każda klasa ma specjalizację<br />-Dodano kilka nowych dźwięków<br />-Dodano klątwy<br />-Dodano strefę drugą<br />-Dodano pierścienie<br /></span></p><br />
       <p id="v04">V0.4 - Lista zmian z 15 kwietnia  <span class="v04text">-Dodano bomby<br />-Dodano zwoje<br />-Poprawiono zdarzenie z ekwipunkiem<br />-Można zobaczyć założoną zbroję<br />-Zmieniono menu główne<br />-Dodano nowy OST w tle<br />-Poprawiono kilka bugów<br /></span></p><br />
-       <p id="version">0.4</p>
+      <p id="v05">V0.5 - Lista zmian z 16 kwietnia  <span class="v05text">-Podzielono kod na mniejsze części<br /></span></p><br />
+      <p id="v05">V0.6 - Lista zmian z 21 kwietnia  <span class="v05text">-Dodano trzecią strefę<br /></span></p><br />
+      <p id="v05">V0.7 - Lista zmian z 22 kwietnia  <span class="v05text">-Dodano czwartą strefę<br /></span></p><br />
+      <p id="v05">V0.8 - Lista zmian z 23 kwietnia  <span class="v05text">-Dodano piątą strefę<br />-Dodano questy<br /></span></p><br />
+       <p id="version">0.8</p>
     </div>
   <div id="wybierzpostac">
     <p><img width="15%" height="15%"src="zasoby/heroselect.png" /></p>
