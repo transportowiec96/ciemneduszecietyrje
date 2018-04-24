@@ -106,8 +106,6 @@ function explore()
 		img.src = "zasoby/shopkeeper.png";
 		element.appendChild(img);
 		document.body.appendChild(element);
-		var element = document.createElement("br");
-		document.body.appendChild(element);
 		var element = document.createElement("button");
 		var t = document.createTextNode("Wymień miksturę zdrowia na dwie bomby");
 		element.appendChild(t);
@@ -120,9 +118,9 @@ function explore()
 		element.appendChild(t);
 		element.setAttribute("onclick", 'hpnazwoje()');
 		document.body.appendChild(element);
-		var element = document.createElement("button");
 		var element = document.createElement("br");
 		document.body.appendChild(element);
+		var element = document.createElement("button");
 		var t = document.createTextNode("Wymień 1 zestaw naprawczy na 2 mikstury zdrowia");
 		element.appendChild(t);
 		element.setAttribute("onclick", 'zestawnahp()');
@@ -163,7 +161,7 @@ function explore()
 		img.src = "zasoby/dm9001.png";
 		element.appendChild(img);
 		document.body.appendChild(element);
-		wrogowie = wrogowie + 30;
+		wrogowie = wrogowie + 45;
 		bosszone3 = 0;
 	}
 	else if (zone == 4 && bosszone3 == 0 && iwan3 == 1)
@@ -247,7 +245,7 @@ function explore()
 		img.src = "zasoby/king.png";
 		element.appendChild(img);
 		document.body.appendChild(element);
-		wrogowie = wrogowie + 200;
+		wrogowie = wrogowie + 90;
 		bosszone4 = 0;
 	}
 	else if (akcje > 510 && bosszone5 == 1)
@@ -260,8 +258,8 @@ function explore()
 		img.src = "zasoby/yog.png";
 		element.appendChild(img);
 		document.body.appendChild(element);
-		wrogowie = wrogowie + 500;
-		bosszone4 = 0;
+		wrogowie = wrogowie + 175;
+		bosszone5 = 0;
 	}
 	else if (zone == 1)
 	{
@@ -368,7 +366,7 @@ function explore()
     var element = document.createElement("p");
     if (randomeq == 0)
     {
-      nazwaeq = "Płócienna zbroja";
+      nazwaeq = "Płócienna zbroja (1-3)";
       armorimg = 1;
       zamiennazbroja = Math.floor((Math.random()*2)+1)
       var img = document.createElement("img");
@@ -377,7 +375,7 @@ function explore()
     }
     else if (randomeq == 1)
     {
-      nazwaeq = "Skórzana zbroja";
+      nazwaeq = "Skórzana zbroja (2-5)";
       armorimg = 2;
       zamiennazbroja = Math.floor((Math.random()*3)+2)
       var img = document.createElement("img");
@@ -385,7 +383,7 @@ function explore()
       element.appendChild(img)
     }
     else {
-      nazwaeq = "Kolczuga";
+      nazwaeq = "Kolczuga (3-7)";
       armorimg = 3;
       zamiennazbroja = Math.floor(Math.random()*4+3)
       var img = document.createElement("img");
@@ -530,7 +528,7 @@ function explore()
 		var randomeq = Math.floor(Math.random()*3)
 		if (randomeq == 0)
 		{
-			nazwaeq = "Kolczuga";
+			nazwaeq = "Kolczuga (5-8)";
 			armorimg = 3;
       var img = document.createElement("img");
       img.src = "zasoby/chainmail.png";
@@ -548,7 +546,7 @@ function explore()
 		}
 		else if (randomeq == 1)
 		{
-      nazwaeq = "Zbroja z łusek";
+      nazwaeq = "Zbroja z łusek (8-12)";
 			armorimg = 4;
       var img = document.createElement("img");
       img.src = "zasoby/scale.png";
@@ -669,7 +667,7 @@ function explore()
 	var t = document.createTextNode("Znalazłeś dwa zwoje, chowasz je do ekwipunku.");
 	element.appendChild(t);
 	var img = document.createElement("img");
-	img.src = "zasoby/zestaw.png";
+	img.src = "zasoby/scroll.png";
 	element.appendChild(img);
 	document.body.appendChild(element);
 	scroll = scroll + 2;
@@ -699,7 +697,7 @@ function explore()
 			img.src = "zasoby/brutal.png";
 			element.appendChild(img);
 			document.body.appendChild(element);
-			wrogowie = wrogowie + 25;
+			wrogowie = wrogowie + 20;
 	        break;
 	    case 4:
 			var element = document.createElement("p");
@@ -709,7 +707,7 @@ function explore()
 			img.src = "zasoby/bat.png";
 			element.appendChild(img);
 			document.body.appendChild(element);
-			wrogowie = wrogowie + 30;
+			wrogowie = wrogowie + 26;
 	        break;
 	    case 5:
 			var element = document.createElement("p");
@@ -733,7 +731,7 @@ function explore()
 			img.src = "zasoby/shaman.png";
 			element.appendChild(img);
 			document.body.appendChild(element);
-			wrogowie = wrogowie + 45;
+			wrogowie = wrogowie + 34;
 	        break;
 	    case 7:
 			var element = document.createElement("p");
@@ -751,11 +749,11 @@ function explore()
 			var randomeq = Math.floor(Math.random()*3)
 			if (randomeq == 0)
 			{
-				nazwaeq = "Kolczuga";
+				nazwaeq = "Kolczuga (10-13)";
 				armorimg = 3;
 	      var img = document.createElement("img");
 	      img.src = "zasoby/chainmail.png";
-				zamiennazbroja = Math.floor((Math.random()*3)+7)
+				zamiennazbroja = Math.floor((Math.random()*3)+1)
 				var element = document.createElement("p");
 				var t = document.createTextNode("Znalazłeś ekwipunek, jest to " + nazwaeq + ". Czy chcesz go założyć?");
 				element.appendChild(t);
@@ -769,11 +767,11 @@ function explore()
 			}
 			else if (randomeq == 1)
 			{
-	      nazwaeq = "Zbroja z łusek";
+	      nazwaeq = "Zbroja z łusek (12-19)";
 				armorimg = 4;
 	      var img = document.createElement("img");
 	      img.src = "zasoby/scale.png";
-				zamiennazbroja = Math.floor((Math.random()*4)+10)
+				zamiennazbroja = Math.floor((Math.random()*7)+12)
 				var element = document.createElement("p");
 				var t = document.createTextNode("Znalazłeś ekwipunek, jest to " + nazwaeq + ". Czy chcesz go założyć?");
 				element.appendChild(t);
@@ -900,7 +898,7 @@ function explore()
 		var t = document.createTextNode("Znalazłeś dwa zwoje, chowasz je do ekwipunku.");
 		element.appendChild(t);
 		var img = document.createElement("img");
-		img.src = "zasoby/zestaw.png";
+		img.src = "zasoby/scroll.png";
 		element.appendChild(img);
 		document.body.appendChild(element);
 		scroll = scroll + 2;
@@ -930,7 +928,7 @@ function explore()
 				img.src = "zasoby/monk.png";
 				element.appendChild(img);
 				document.body.appendChild(element);
-				wrogowie = wrogowie + 80;
+				wrogowie = wrogowie + 50;
 		        break;
 		    case 4:
 				var element = document.createElement("p");
@@ -940,7 +938,7 @@ function explore()
 				img.src = "zasoby/warlock.png";
 				element.appendChild(img);
 				document.body.appendChild(element);
-				wrogowie = wrogowie + 100;
+				wrogowie = wrogowie + 60;
 		        break;
 		    case 5:
 				var element = document.createElement("p");
@@ -950,7 +948,7 @@ function explore()
 				img.src = "zasoby/ember.png";
 				element.appendChild(img);
 				document.body.appendChild(element);
-				wrogowie = wrogowie + 60;
+				wrogowie = wrogowie + 40;
 
 		        break;
 		    case 6:
@@ -982,7 +980,7 @@ function explore()
 				var randomeq = Math.floor(Math.random()*4)
 				if (randomeq == 0)
 				{
-					nazwaeq = "Zbroja z łusek";
+					nazwaeq = "Zbroja z łusek (30-40)";
 					armorimg = 3;
 		      var img = document.createElement("img");
 		      img.src = "zasoby/chainmail.png";
@@ -1000,7 +998,7 @@ function explore()
 				}
 				else if (randomeq == 1)
 				{
-		      nazwaeq = "Zbroja płytowa";
+		      nazwaeq = "Zbroja płytowa (50-70)";
 					armorimg = 4;
 		      var img = document.createElement("img");
 		      img.src = "zasoby/scale.png";
@@ -1092,9 +1090,9 @@ function explore()
 					img.src = "zasoby/dart.png";
 					element.appendChild(img);
 					document.body.appendChild(element);
-					sila = sila - 2;
-					zbroja = zbroja - 2;
-					maxzdrowie = maxzdrowie - 5;
+					sila = sila - 1;
+					zbroja = zbroja - 1;
+					maxzdrowie = maxzdrowie - 3;
 
 				}
 

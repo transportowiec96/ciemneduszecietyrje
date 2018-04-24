@@ -157,13 +157,19 @@ function repair()
 }
 function pray()
 {
+  if (postac == 4)
+  {
+    schowek = akcje;
+    akcje = akcje * 2;
+  }
+
 	if (lastpray < (akcje - 500))
 	{
-		maxzdrowie = maxzdrowie + 50;
+		maxzdrowie = maxzdrowie + 25;
 		zdrowie = maxzdrowie;
-		sila = sila + 15;
-		zbroja = zbroja + 5;
-		maxglod = maxglod + 5;
+		sila = sila + 10;
+		zbroja = zbroja + 3;
+		maxglod = maxglod + 3;
 		glod = 0;
 		var element = document.createElement("p");
 		var t = document.createTextNode("Czujesz jak spora witalność przepływa przez twe ciało!");
@@ -173,11 +179,11 @@ function pray()
 	}
 	else if (lastpray < (akcje - 375))
 	{
-		maxzdrowie = maxzdrowie + 35;
+		maxzdrowie = maxzdrowie + 15;
 		zdrowie = maxzdrowie;
-		sila = sila + 11;
-		zbroja = zbroja + 4;
-		maxglod = maxglod + 4;
+		sila = sila + 5;
+		zbroja = zbroja + 2;
+		maxglod = maxglod + 2;
 		glod = 0;
 		var element = document.createElement("p");
 		var t = document.createTextNode("Czujesz jak witalność przepływa przez twe ciało!");
@@ -187,11 +193,11 @@ function pray()
 	}
 	else if (lastpray < (akcje - 250))
 	{
-		maxzdrowie = maxzdrowie + 25;
+		maxzdrowie = maxzdrowie + 15;
 		zdrowie = maxzdrowie;
-		sila = sila + 7;
-		zbroja = zbroja +2;
-		maxglod = maxglod + 2;
+		sila = sila + 3;
+		zbroja = zbroja + 1;
+		maxglod = maxglod + 1;
 		glod = 0;
 		var element = document.createElement("p");
 		var t = document.createTextNode("Czujesz jak witalność delikatnie przepływa przez twe ciało!");
@@ -201,9 +207,9 @@ function pray()
 	}
 	else if (lastpray < (akcje - 125))
 	{
-		maxzdrowie = maxzdrowie + 15;
+		maxzdrowie = maxzdrowie + 5;
 		zdrowie = maxzdrowie;
-		sila = sila + 3;
+		sila = sila + 1;
 		zbroja = zbroja + 1;
 		maxglod = maxglod + 1;
 		glod = 0;
@@ -215,7 +221,7 @@ function pray()
 	}
 	else if (lastpray < (akcje - 50))
 	{
-		maxzdrowie = maxzdrowie + 5;
+		maxzdrowie = maxzdrowie + 3;
 		zdrowie = maxzdrowie;
 		sila = sila + 1;
 		glod = 0;
@@ -229,7 +235,7 @@ function pray()
 	{
 		maxzdrowie = maxzdrowie - 4;
 		zdrowie = maxzdrowie;
-		if (sila != 1)
+		if (sila != 1 )
 		{
 		sila = sila - 1;
 		}
@@ -238,8 +244,15 @@ function pray()
 		var t = document.createTextNode("Zauważasz spadek twojej witalności!");
 		element.appendChild(t);
 		document.body.appendChild(element);
-		lastpray = akcje;
 	}
+  if (postac == 4)
+  {
+    akcje = schowek;
+    lastpray = akcje;
+  }
+  else {
+    lastpray = akcje;
+  }
 	hpcheck();
 }
 function quaff()
@@ -508,7 +521,7 @@ function rest(){
 		}
 		else {
 			glod = glod + 1;
-			zdrowie = zdrowie + Math.ceil(maxzdrowie / 10);
+			zdrowie = zdrowie + 2;
 		}
 		document.getElementById("akcje").innerHTML =  akcje;
 		document.getElementById("wrogowie").innerHTML =  wrogowie;
@@ -702,6 +715,7 @@ function hpnazestaw(){
 }
 function zaloz()
 {
+  if (zamiennazbroja != 0){
 	brokenarmor = 0;
 	sila = sila + klatwa;
 	klatwa = 0;
@@ -1157,6 +1171,13 @@ function zaloz()
 	document.getElementById("def").innerHTML = zbroja;
 	document.getElementById("nazwadef").innerHTML = nazwaeq;
 	document.getElementById("sila").innerHTML = sila;
+}
+else {
+  var element = document.createElement("p");
+  var t = document.createTextNode("Próbujesz założyć powietrze.");
+  element.appendChild(t);
+  document.body.appendChild(element);
+}
 }
 
 

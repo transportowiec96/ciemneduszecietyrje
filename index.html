@@ -8,25 +8,32 @@ body{
 
 }
 #menu {
-  background-color: red;
-  top: 0px;
-  right:20%;
-  position: fixed;
-  height: 66%;
-  width: 20%;
-
+position:fixed;
+top:0px;
+background-image: url("zasoby/eqback.png");
+background-repeat: no-repeat;
+background-size: cover;
 }
 #menu2 {
-  background-color: red;
+  background-image: url("zasoby/eqback.png");
+  background-repeat: no-repeat;
+  background-size: cover;
   top: 0px;
-  right:00%;
+  left:0px;
   position: fixed;
-  height: 66%;
+  height: 100%;
   width: 20%;
+  display: none;
+  z-index: 5;
+  vertical-align: middle;
 }
-p {
+* {
   color: white;
   text-shadow: 1px 1px 3px #000000;
+}
+button{
+  color:black;
+  text-shadow: 0px 0px 0px #000000;
 }
 #wybierzpostac{
   background-color: black;
@@ -37,7 +44,7 @@ p {
   position: fixed;
   height: 100%;
   width: 100%;
-  z-index: 2;
+  z-index: 3;
 }
 #mainmenu{
   background-color: black;
@@ -49,9 +56,6 @@ p {
   height: 100%;
   width: 100%;
   z-index: 5;
-}
-button{
-  z-index: 4;
 }
 #v01 {
     position: relative;
@@ -224,11 +228,28 @@ margin-left: -60px;
 bottom:0px;
 right:0px;
 }
+#equipmentbutton
+{
+  z-index:2;
+  background-color: transparent;
+  outline:none;
+  border: none;
+  cursor:pointer;
+  overflow: hidden;
+  margin: 0px;
+}
+#health
+{
+  z-index:1;
+  margin: 0px;
+  background-color: transparent;
+  color:red;
+}
 </style>
 	<script type="text/javascript" src="variables.js" > </script>
+  <script type="text/javascript" src="menu.js" ></script>
 	<script type="text/javascript" src="actions.js" ></script>
 	<script type="text/javascript" src="explore.js" ></script>
-	<script type="text/javascript" src="menu.js" ></script>
 	<script type="text/javascript" src="checks.js" ></script>
     <title>Ciemne Dusze Cietyrje</title>
 	<link rel="shortcut icon" href="https://i.imgur.com/uJeXmwi.jpg">
@@ -244,7 +265,7 @@ right:0px;
       <p id="v05">V0.5 - Lista zmian z 16 kwietnia  <span class="v05text">-Podzielono kod na mniejsze części<br /></span></p><br />
       <p id="v05">V0.6 - Lista zmian z 21 kwietnia  <span class="v05text">-Dodano trzecią strefę<br /></span></p><br />
       <p id="v05">V0.7 - Lista zmian z 22 kwietnia  <span class="v05text">-Dodano czwartą strefę<br /></span></p><br />
-      <p id="v05">V0.8 - Lista zmian z 23 kwietnia  <span class="v05text">-Dodano questy(nie pokazują się)<br /></span></p><br />
+      <p id="v05">V0.8 - Lista zmian z 24 kwietnia  <span class="v05text">-Dodano czwartą postać<br />-Zmieniono HUD<br /></span></p><br />
        <p id="version">0.8</p>
     </div>
   <div id="wybierzpostac">
@@ -255,23 +276,12 @@ right:0px;
   +Doświadczenie +Zdrowie =Siła -Zbroja -Głód<br />Zna się na jedzeniu odpadków</p>
   <p><button onClick="classmage()"><img type=""src="zasoby/mage.png" /><br />Mag</button><br />
   +++Siła +Głód =Doświadczenie -Zbroja -Zdrowie<br />Zna się na alchemii</p>
-</div>
-<div id="menu"><p>
-<img id="klasapostaci" src="zasoby/rogue.png" />Poziom: <span id="poziom">1</span></p>
-<p><img id="zdrowaska" width="10%" height="10%"src="zasoby/zdrowie0.png" /><span id="zdrowie">10</span>
-/<span id="maxzdrowie">10</span><img id="glodaska" width="10%" height="10%"src="zasoby/glod0.png" /><span id="glod">0</span>/<span id="maxglod">10</span>
-<img width="10%" height="10%"src="zasoby/akcje.png" /><span id="akcje">0</span></p>
-<p>
-<img id="glodaska" width="10%" height="10%"src="zasoby/obrona.png" /><span id="def">1</span>
-<img width="10%" height="10%"src="zasoby/dashboard.png" /><span id="sila">1</span>
-<img width="10%" height="10%"src="zasoby/exp.png" /><span id="exp">0</span>/<span id="nextlvl">10</span></p>
-<p><img id="armorimg" width="10%" height="10%"src="zasoby/cloth.png" />Nosisz <span id="nazwadef">Płócienna Zbroja</span>.</p>
-<p><button onClick="explore()">Wal w explor</button><button onClick="walcz()">Walcz</button></p>
-<p><button onClick="rest()">Odpocznij</button><button onclick="pray()">Módl się</button></p>
-<p>Zdrowie wrogów: <span id="wrogowie">0</span></p>
-<div id="helptext">Help!<span class="helptext"><img src="zasoby/tutorial.png" /></span>
+  <p><button onClick="classpriestess()"><img type=""src="zasoby/priestess.png" /><br />Kapłanka</button><br />
+  =Siła =Głód =Doświadczenie =Zbroja =Zdrowie<br />Zna się na modlitwie</p>
 </div>
 <div id="menu2">
+  <br />
+  <button onclick="eqexit()">X</button>
 <p>Twój ekwipunek:</p>
 <p><img width="10%" height="10%"src="zasoby/prowiant.png" /><span id="prowiant">1</span>
 <button onClick="eat()">Zjedz</button></p>
@@ -282,9 +292,46 @@ right:0px;
 <p><img width="10%" height="10%"src="zasoby/bomb.png" /><span id="bomby">0</span>
 <button onclick="bombthrow()">Zapal i rzuć</button></p>
 <p><img width="10%" height="10%"src="zasoby/scroll.png" /><span id="zwoje">0</span>
-<button onClick="readscroll()">Czytaj</button></p></div>
-</div>
+<button onClick="readscroll()">Czytaj</button></p>
+<p><img id="zdrowaska" width="10%" height="10%"src="zasoby/zdrowie0.png" /><span id="zdrowie">10</span>
+/<span id="maxzdrowie">10</span><img id="glodaska" width="10%" height="10%"src="zasoby/glod0.png" /><span id="glod">0</span>/<span id="maxglod">10</span>
+<img width="10%" height="10%"src="zasoby/akcje.png" /><span id="akcje">0</span></p>
+<p>
+<img id="glodaska" width="10%" height="10%"src="zasoby/obrona.png" /><span id="def">1</span>
+<img width="10%" height="10%"src="zasoby/dashboard.png" /><span id="sila">1</span>
+<img width="10%" height="10%"src="zasoby/exp.png" /><span id="exp">0</span>/<span id="nextlvl">10</span></p>
+<p><img id="armorimg" width="10%" height="10%"src="zasoby/cloth.png" />Nosisz <span id="nazwadef">Płócienna Zbroja</span>.</p>
+<p>Zdrowie wrogów: <span id="wrogowie">0</span></p>
+<div id="helptext">.<span class="helptext"><img src="zasoby/tutorial.png" /></span></div>
 
+
+
+
+</div>
+<div id="all">
+<div id="menu">
+  <progress id="health" value="100" max="100"></progress>
+  <br/>
+  <button id="equipmentbutton" onclick="eqopen()"><img width="125%" height="125%" src="zasoby/bag.png" /></button><img id="glodaskaa" width="10%" height="10%"src="zasoby/glod0.png" /><span id="glod1">0</span>/<span id="maxglod1">10</span>
+<p>Zdrowie wrogów: <span id="wrogowiee">0</span></p>
+  <p>
+<img id="klasapostaci" src="zasoby/rogue.png" />Poziom: <span id="poziom">1</span></p>
+<p><button onClick="explore()">Wal w explor</button><button onClick="walcz()">Walcz</button></p>
+<p><button onClick="rest()">Odpocznij</button><button onclick="pray()">Módl się</button></p>
+</div>
+</div>
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<p>Witaj w Ciemne Dusze Cietyrje!</p>
 
 
 

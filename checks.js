@@ -1,4 +1,4 @@
-﻿function zonecheck()
+function zonecheck()
 {
 	if (akcje > 100 && story == 1)
 	{
@@ -123,14 +123,17 @@ function hpcheck()
  	if (glod < (maxglod / 2))
 	{
 		document.getElementById("glodaska").src = "zasoby/glod0.png";
+		document.getElementById("glodaskaa").src = "zasoby/glod0.png";
 	}
 	else if (glod < (maxglod / (1 + (1/2))))
 	{
 		document.getElementById("glodaska").src = "zasoby/glod1.png";
+		document.getElementById("glodaskaa").src = "zasoby/glod1.png";
 	}
 	else
 	{
 		document.getElementById("glodaska").src = "zasoby/glod2.png";
+		document.getElementById("glodaskaa").src = "zasoby/glod2.png";
 	}
 	if (glod >= maxglod)
 	{
@@ -156,10 +159,13 @@ function hpcheck()
 	}
 	document.getElementById("akcje").innerHTML = akcje;
 	document.getElementById("wrogowie").innerHTML = wrogowie;
+	document.getElementById("wrogowiee").innerHTML = wrogowie;
 	document.getElementById("zdrowie").innerHTML = zdrowie;
 	document.getElementById("maxzdrowie").innerHTML = maxzdrowie;
 	document.getElementById("glod").innerHTML = glod;
 	document.getElementById("maxglod").innerHTML = maxglod;
+	document.getElementById("glod1").innerHTML = glod;
+	document.getElementById("maxglod1").innerHTML = maxglod;
   document.getElementById("zwoje").innerHTML = scroll;
   document.getElementById("bomby").innerHTML = bomb;
 	document.getElementById("exp").innerHTML = exp;
@@ -171,4 +177,6 @@ function hpcheck()
 	document.getElementById("potkahp").innerHTML = potkahp;
 	document.getElementById("zestaw").innerHTML = zestaw;
 	document.getElementById("def").innerHTML = zbroja;
+	document.getElementById("health").value = zdrowie;
+	document.getElementById("health").max = maxzdrowie;
 }

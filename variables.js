@@ -19,8 +19,8 @@ var fighter = {maxzdrowie:10,zbroja:2,nextlvl:12,maxglod:10,sila:2}
 var rogue = {maxzdrowie:15,zbroja:0,nextlvl:8,maxglod: 7,sila:1}
 //3 - mag
 var mage = {maxzdrowie:5,zbroja:0,nextlvl:10,maxglod: 12,sila:4}
-//4 - nieznana
-var nieznana = {maxzdrowie:10,zbroja:1,nextlvl:10,maxglod:10,sila:1}
+//4 - kaplanka
+var priestess = {maxzdrowie:10,zbroja:1,nextlvl:10,maxglod:10,sila:1}
 //staty wrogow
 var wrogowie = 0;
 var bosszone1 = 1;
@@ -53,4 +53,5 @@ var story = 1;
 var errorlevel = 0;
 var lastpray = 0;
 var armorimg = 1;
+var schowek = 0;
 scrolling = setInterval(function(){ window.scrollBy(0, 1000);	if (zdrowie == 0 || zdrowie < 0){if (errorlevel == 0){errorlevel = errorlevel + 1;document.getElementById("zdrowaska").src = "zasoby/smierc.png";var audio = new Audio('zasoby/death.mp3');audio.play();alert("YOU DIED...");setTimeout(function(){ location.reload(); }, 2500);}}}, 50);
