@@ -981,9 +981,9 @@ function explore()
 				if (randomeq == 0)
 				{
 					nazwaeq = "Zbroja z łusek (30-40)";
-					armorimg = 3;
+					armorimg = 4;
 		      var img = document.createElement("img");
-		      img.src = "zasoby/chainmail.png";
+		      img.src = "zasoby/scale.png";
 					zamiennazbroja = Math.floor((Math.random()*10)+30)
 					var element = document.createElement("p");
 					var t = document.createTextNode("Znalazłeś ekwipunek, jest to " + nazwaeq + ". Czy chcesz go założyć?");
@@ -999,9 +999,9 @@ function explore()
 				else if (randomeq == 1)
 				{
 		      nazwaeq = "Zbroja płytowa (50-70)";
-					armorimg = 4;
+					armorimg = 5;
 		      var img = document.createElement("img");
-		      img.src = "zasoby/scale.png";
+		      img.src = "zasoby/plate.png";
 					zamiennazbroja = Math.floor((Math.random()*20)+50)
 					var element = document.createElement("p");
 					var t = document.createTextNode("Znalazłeś ekwipunek, jest to " + nazwaeq + ". Czy chcesz go założyć?");
@@ -1106,7 +1106,269 @@ function explore()
 
 				}}
 		else if (zone == 5){
-			zdrowie = 0;
+			var randomgenerator = Math.floor(Math.random()*10+1);
+			switch (randomgenerator)
+			{
+			case 1:
+			var randomgenerator = Math.floor(Math.random()*4+1);
+			if (randomgenerator == 1){
+				var element = document.createElement("p");
+				var t = document.createTextNode("Znalazłeś miksturę zdrowia, chowasz ją do ekwipunku.");
+				element.appendChild(t);
+				var img = document.createElement("img");
+				img.src = "zasoby/potkahp.png";
+				element.appendChild(img);
+				document.body.appendChild(element);
+				potkahp = potkahp + 1;
+			}
+			else if (randomgenerator ==2) {
+			var element = document.createElement("p");
+			var t = document.createTextNode("Znalazłeś zestaw naprawczy zbroi, chowasz go do ekwipunku.");
+			element.appendChild(t);
+			var img = document.createElement("img");
+			img.src = "zasoby/zestaw.png";
+			element.appendChild(img);
+			document.body.appendChild(element);
+			zestaw = zestaw + 1;
+		}
+		else if (randomgenerator == 3) {
+		var element = document.createElement("p");
+		var t = document.createTextNode("Znalazłeś bombę, chowasz ją do ekwipunku.");
+		element.appendChild(t);
+		var img = document.createElement("img");
+		img.src = "zasoby/zestaw.png";
+		element.appendChild(img);
+		document.body.appendChild(element);
+		bomb = bomb + 1;
+	}
+	else {
+	var element = document.createElement("p");
+	var t = document.createTextNode("Znalazłeś dwa zwoje, chowasz je do ekwipunku.");
+	element.appendChild(t);
+	var img = document.createElement("img");
+	img.src = "zasoby/scroll.png";
+	element.appendChild(img);
+	document.body.appendChild(element);
+	scroll = scroll + 2;
+}
+		hit22 = new Audio('zasoby/item.mp3');
+		hit22.play();
+
+					break;
+			case 2:
+			var element = document.createElement("p");
+			var t = document.createTextNode("Znalazles trochę prowiantu, pakujesz go do swojej torby.");
+			element.appendChild(t);
+			var img = document.createElement("img");
+			img.src = "zasoby/prowiant.png";
+			element.appendChild(img);
+			document.body.appendChild(element);
+			prowiant = prowiant + 1;
+			document.getElementById("prowiant").innerHTML = prowiant;
+			hit21 = new Audio('zasoby/item.mp3');
+			hit21.play();
+					break;
+			case 3:
+			var element = document.createElement("p");
+			var t = document.createTextNode("Zaatakował cię Sukubus!");
+			element.appendChild(t);
+			var img = document.createElement("img");
+			img.src = "zasoby/sukubus.png";
+			element.appendChild(img);
+			document.body.appendChild(element);
+			wrogowie = wrogowie + 75;
+					break;
+			case 4:
+			var element = document.createElement("p");
+			var t = document.createTextNode("Zaatakował cię Skorpion!");
+			element.appendChild(t);
+			var img = document.createElement("img");
+			img.src = "zasoby/warlock.png";
+			element.appendChild(img);
+			document.body.appendChild(element);
+			wrogowie = wrogowie + 100;
+					break;
+			case 5:
+			var element = document.createElement("p");
+			var t = document.createTextNode("Zaatakowało cię Wielkie Oko!");
+			element.appendChild(t);
+			var img = document.createElement("img");
+			img.src = "zasoby/ember.png";
+			element.appendChild(img);
+			document.body.appendChild(element);
+			wrogowie = wrogowie + 125;
+
+					break;
+			case 6:
+			var element = document.createElement("p");
+			var t = document.createTextNode("Znalazles trochę prowiantu, pakujesz go do swojej torby.");
+			element.appendChild(t);
+			var img = document.createElement("img");
+			img.src = "zasoby/prowiant.png";
+			element.appendChild(img);
+			document.body.appendChild(element);
+			prowiant = prowiant + 1;
+			document.getElementById("prowiant").innerHTML = prowiant;
+			hit21 = new Audio('zasoby/item.mp3');
+			hit21.play();
+					break;
+			case 7:
+			var element = document.createElement("p");
+			var t = document.createTextNode("Znalazles miksturę siły, wypijasz ją natychmiast");
+			element.appendChild(t);
+			var img = document.createElement("img");
+			img.src = "zasoby/sila.png";
+			element.appendChild(img);
+			document.body.appendChild(element);
+			sila = sila + 3;
+			hit19 = new Audio('zasoby/quaff.mp3');
+			hit19.play();
+					break;
+			case 8:
+			var randomeq = Math.floor(Math.random()*5)
+			if (randomeq == 0)
+			{
+				nazwaeq = "Zbroja płytowa (50-80)";
+				armorimg = 5;
+				var img = document.createElement("img");
+				img.src = "zasoby/plate.png";
+				zamiennazbroja = Math.floor((Math.random()*30)+50)
+				var element = document.createElement("p");
+				var t = document.createTextNode("Znalazłeś ekwipunek, jest to " + nazwaeq + ". Czy chcesz go założyć?");
+				element.appendChild(t);
+				element.appendChild(img);
+				document.body.appendChild(element);
+				var element = document.createElement("button");
+				var t = document.createTextNode("Załóż");
+				element.appendChild(t);
+				element.setAttribute("onclick", 'zaloz()');
+				document.body.appendChild(element);
+			}
+			else if (randomeq == 1)
+			{
+				nazwaeq = "Zbroja płytowa (80-100)";
+				armorimg = 5;
+				var img = document.createElement("img");
+				img.src = "zasoby/plate.png";
+				zamiennazbroja = Math.floor((Math.random()*20)+80)
+				var element = document.createElement("p");
+				var t = document.createTextNode("Znalazłeś ekwipunek, jest to " + nazwaeq + ". Czy chcesz go założyć?");
+				element.appendChild(t);
+				element.appendChild(img);
+				document.body.appendChild(element);
+				var element = document.createElement("button");
+				var t = document.createTextNode("Załóż");
+				element.appendChild(t);
+				element.setAttribute("onclick", 'zaloz()');
+				document.body.appendChild(element);
+			}
+			else if (randomeq == 2){
+				typpierscienia = 1;
+				nazwaeq = "Pierścień żywotności";
+				var element = document.createElement("p");
+				var t = document.createTextNode("Znalazłeś ekwipunek, jest to " + nazwaeq + ". Czy chcesz go założyć?");
+				element.appendChild(t);
+				var img = document.createElement("img");
+				img.src = "zasoby/healthring.png";
+				element.appendChild(img);
+				document.body.appendChild(element);
+				var element = document.createElement("button");
+				var t = document.createTextNode("Załóż");
+				element.appendChild(t);
+				element.setAttribute("onclick", 'zalozpierscien()');
+				document.body.appendChild(element);
+
+			}
+			else if (randomeq == 3) {
+				typpierscienia = 3;
+				nazwaeq = "Pierścień mocy";
+				var element = document.createElement("p");
+				var t = document.createTextNode("Znalazłeś ekwipunek, jest to " + nazwaeq + ". Czy chcesz go założyć?");
+				element.appendChild(t);
+				var img = document.createElement("img");
+				img.src = "zasoby/powerring.png";
+				element.appendChild(img);
+				document.body.appendChild(element);
+				var element = document.createElement("button");
+				var t = document.createTextNode("Załóż");
+				element.appendChild(t);
+				element.setAttribute("onclick", 'zalozpierscien()');
+				document.body.appendChild(element);
+			}
+			else if (randomeq == 3) {
+				typpierscienia = 2;
+				nazwaeq = "Pierścień doświadczenia";
+				var element = document.createElement("p");
+				var t = document.createTextNode("Znalazłeś ekwipunek, jest to " + nazwaeq + ". Czy chcesz go założyć?");
+				element.appendChild(t);
+				var img = document.createElement("img");
+				img.src = "zasoby/expring.png";
+				element.appendChild(img);
+				document.body.appendChild(element);
+				var element = document.createElement("button");
+				var t = document.createTextNode("Załóż");
+				element.appendChild(t);
+				element.setAttribute("onclick", 'zalozpierscien()');
+				document.body.appendChild(element);
+			}
+			else{
+				typpierscienia = 4;
+				nazwaeq = "Pierścień Nasycenia Głodu";
+				var element = document.createElement("p");
+				var t = document.createTextNode("Znalazłeś ekwipunek, jest to " + nazwaeq + ". Czy chcesz go założyć?");
+				element.appendChild(t);
+				var img = document.createElement("img");
+				img.src = "zasoby/satietyring.png";
+				element.appendChild(img);
+				document.body.appendChild(element);
+				var element = document.createElement("button");
+				var t = document.createTextNode("Załóż");
+				element.appendChild(t);
+				element.setAttribute("onclick", 'zalozpierscien()');
+				document.body.appendChild(element);
+			}
+
+					break;
+			case 9:
+			var randomgenerator = Math.floor(Math.random()*2)
+			if (randomgenerator == 0)
+			{
+				var element = document.createElement("p");
+				var t = document.createTextNode("Wszedłeś w pułapkę zniszczenia!");
+				element.appendChild(t);
+				document.body.appendChild(element);
+				var img = document.createElement("img");
+				img.src = "zasoby/dart.png";
+				element.appendChild(img);
+				document.body.appendChild(element);
+				zdrowie = zdrowie - 75;
+				hit3 = new Audio('zasoby/hit.mp3');
+				hit3.play();
+			}
+			else {
+				var element = document.createElement("p");
+				var t = document.createTextNode("Wszedłeś w pułapkę zaklęcia!");
+				element.appendChild(t);
+				document.body.appendChild(element);
+				var img = document.createElement("img");
+				img.src = "zasoby/dart.png";
+				element.appendChild(img);
+				document.body.appendChild(element);
+				sila = sila - 2;
+				zbroja = zbroja - 2;
+				maxzdrowie = maxzdrowie - 5;
+
+			}
+
+					break;
+			case 10:
+			var element = document.createElement("p");
+			var t = document.createTextNode("Idziesz przez pusty korytarz.");
+			element.appendChild(t);
+			document.body.appendChild(element);
+					break;
+
+			}
 		}
 
 				/*
@@ -1123,11 +1385,11 @@ function explore()
 
 
 
-if (glod < (maxglod /3))
+if (glod < Math.ceil(maxglod / 3))
 {
 	zdrowie = zdrowie + Math.ceil(maxzdrowie / 10);
 }
-else if (glod < (maxglod /2))
+else if (glod < Math.floor(maxglod / 2))
 {
 	zdrowie = zdrowie + Math.ceil(maxzdrowie / 20);
 }

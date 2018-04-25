@@ -108,11 +108,11 @@ function hpcheck()
 			setTimeout(function(){ location.reload(); }, 2500);
 		}
 	}
-	else if (zdrowie < (maxzdrowie / 3))
+	else if (zdrowie < Math.ceil(maxzdrowie / 3))
 	{
 		document.getElementById("zdrowaska").src = "zasoby/zdrowie2.png";
 	}
-	else if (zdrowie < (maxzdrowie / 2))
+	else if (zdrowie < Math.ceil(maxzdrowie / 2))
 	{
 		document.getElementById("zdrowaska").src = "zasoby/zdrowie1.png";
 	}
@@ -120,12 +120,12 @@ function hpcheck()
 	{
 		document.getElementById("zdrowaska").src = "zasoby/zdrowie0.png";
 	}
- 	if (glod < (maxglod / 2))
+ 	if (glod < Math.ceil(maxglod / 2))
 	{
 		document.getElementById("glodaska").src = "zasoby/glod0.png";
 		document.getElementById("glodaskaa").src = "zasoby/glod0.png";
 	}
-	else if (glod < (maxglod / (1 + (1/2))))
+	else if (glod < Math.ceil(maxglod / (1 + (1/2))))
 	{
 		document.getElementById("glodaska").src = "zasoby/glod1.png";
 		document.getElementById("glodaskaa").src = "zasoby/glod1.png";
