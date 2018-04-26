@@ -300,7 +300,7 @@ if (wrogowie != 0)
 
 function damagedeal()
 {
-  var randomgenerator = Math.floor(Math.random()*10+1);
+  var randomgenerator = Math.floor(Math.random()*15+1);
   sila2 = sila;
   if (randomgenerator == 1)
   {
@@ -319,14 +319,14 @@ function damagedeal()
   if (randomgenerator == 1)
   {
     var element = document.createElement("p");
-    var t = document.createTextNode("Krytyczny cios! Zadałeś " + sila + " obrażeń!");
+    var t = document.createTextNode("Krytyczny cios! Zadałeś " + sila2 + " obrażeń!");
     element.appendChild(t);
     element.style.color = "#00ff00";
     document.body.appendChild(element);
   }
   else {
     var element = document.createElement("p");
-    var t = document.createTextNode("Zadałeś " + sila + " obrażeń!");
+    var t = document.createTextNode("Zadałeś " + sila2 + " obrażeń!");
     element.appendChild(t);
     element.style.color = "#00ff00";
     document.body.appendChild(element);
@@ -336,7 +336,7 @@ function damagedeal()
 	hit2.play();
 }
 function damagetake(){
-  var randomgenerator = Math.floor(Math.random()*10+1);
+  var randomgenerator = Math.floor(Math.random()*20+1);
   wrogowie2 = wrogowie;
   if (randomgenerator == 1)
   {
