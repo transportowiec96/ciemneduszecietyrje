@@ -34,6 +34,7 @@ function explore()
 		var element = document.createElement("p");
 		var t = document.createTextNode("Pojawia się Boss, Wielki Szlam!");
 		element.appendChild(t);
+		element.style.color = "#ff0000"
 		document.body.appendChild(element);
 		var img = document.createElement("img");
 		img.src = "zasoby/goo.png";
@@ -89,6 +90,7 @@ function explore()
 		var t = document.createTextNode("Pojawia się Boss, Mistrz Złodziei Tengu!");
 		element.appendChild(t);
 		document.body.appendChild(element);
+		element.style.color = "#ff0000"
 		var img = document.createElement("img");
 		img.src = "zasoby/tengu.png";
 		element.appendChild(img);
@@ -157,6 +159,7 @@ function explore()
 		var t = document.createTextNode("Pojawia się Boss, DeathMatch-9001!");
 		element.appendChild(t);
 		document.body.appendChild(element);
+		element.style.color = "#ff0000"
 		var img = document.createElement("img");
 		img.src = "zasoby/dm9001.png";
 		element.appendChild(img);
@@ -241,6 +244,7 @@ function explore()
 		var t = document.createTextNode("Pojawia się Boss, Władca Krasnoludów!");
 		element.appendChild(t);
 		document.body.appendChild(element);
+		element.style.color = "#ff0000"
 		var img = document.createElement("img");
 		img.src = "zasoby/king.png";
 		element.appendChild(img);
@@ -255,6 +259,7 @@ function explore()
 		element.appendChild(t);
 		document.body.appendChild(element);
 		var img = document.createElement("img");
+		element.style.color = "#ff0000"
 		img.src = "zasoby/yog.png";
 		element.appendChild(img);
 		document.body.appendChild(element);
@@ -309,6 +314,7 @@ function explore()
 		var element = document.createElement("p");
 		var t = document.createTextNode("Zaatakował cię szczur!");
 		element.appendChild(t);
+		element.style.color = "#ff0000"
 		var img = document.createElement("img");
 		img.src = "zasoby/rat.png";
 		element.appendChild(img);
@@ -319,6 +325,7 @@ function explore()
 		var element = document.createElement("p");
 		var t = document.createTextNode("Zaatakował cię wielki szczur!");
 		element.appendChild(t);
+		element.style.color = "#ff0000"
 		var img = document.createElement("img");
 		img.src = "zasoby/rat.png";
 		element.appendChild(img);
@@ -343,6 +350,7 @@ function explore()
 		var element = document.createElement("p");
 		var t = document.createTextNode("Zaatakował cię krab!");
 		element.appendChild(t);
+		element.style.color = "#ff0000"
 		var img = document.createElement("img");
 		img.src = "zasoby/crab.png";
 		element.appendChild(img);
@@ -472,6 +480,7 @@ function explore()
 		var element = document.createElement("p");
 		var t = document.createTextNode("Zaatakował cię Szalony Złodziej!");
 		element.appendChild(t);
+		element.style.color = "#ff0000"
 		var img = document.createElement("img");
 		img.src = "zasoby/thief.png";
 		element.appendChild(img);
@@ -482,6 +491,7 @@ function explore()
 		var element = document.createElement("p");
 		var t = document.createTextNode("Zaatakował cię Ożywiony Szkielet!");
 		element.appendChild(t);
+		element.style.color = "#ff0000"
 		var img = document.createElement("img");
 		img.src = "zasoby/skeleton.png";
 		element.appendChild(img);
@@ -506,6 +516,7 @@ function explore()
 		var element = document.createElement("p");
 		var t = document.createTextNode("Zaatakował cię Szalony Strażnik!");
 		element.appendChild(t);
+		element.style.color = "#ff0000"
 		var img = document.createElement("img");
 		img.src = "zasoby/guard.png";
 		element.appendChild(img);
@@ -693,6 +704,7 @@ function explore()
 			var element = document.createElement("p");
 			var t = document.createTextNode("Zaatakował cię Gnol Brutal!");
 			element.appendChild(t);
+			element.style.color = "#ff0000"
 			var img = document.createElement("img");
 			img.src = "zasoby/brutal.png";
 			element.appendChild(img);
@@ -703,6 +715,7 @@ function explore()
 			var element = document.createElement("p");
 			var t = document.createTextNode("Zaatakował cię niedźwiedź, Nie, to perz!");
 			element.appendChild(t);
+			element.style.color = "#ff0000"
 			var img = document.createElement("img");
 			img.src = "zasoby/bat.png";
 			element.appendChild(img);
@@ -727,6 +740,7 @@ function explore()
 			var element = document.createElement("p");
 			var t = document.createTextNode("Zaatakował cię Gnol Szaman!");
 			element.appendChild(t);
+			element.style.color = "#ff0000"
 			var img = document.createElement("img");
 			img.src = "zasoby/shaman.png";
 			element.appendChild(img);
@@ -924,6 +938,7 @@ function explore()
 				var element = document.createElement("p");
 				var t = document.createTextNode("Zaatakował cię Krasnoludzki Mnich!");
 				element.appendChild(t);
+				element.style.color = "#ff0000"
 				var img = document.createElement("img");
 				img.src = "zasoby/monk.png";
 				element.appendChild(img);
@@ -934,6 +949,7 @@ function explore()
 				var element = document.createElement("p");
 				var t = document.createTextNode("Zaatakował cię Krasnoludzki Czarnoksiężnik!");
 				element.appendChild(t);
+				element.style.color = "#ff0000"
 				var img = document.createElement("img");
 				img.src = "zasoby/warlock.png";
 				element.appendChild(img);
@@ -944,6 +960,7 @@ function explore()
 				var element = document.createElement("p");
 				var t = document.createTextNode("Zaatakował cię Żywiołak Ognia!");
 				element.appendChild(t);
+				element.style.color = "#ff0000"
 				var img = document.createElement("img");
 				img.src = "zasoby/ember.png";
 				element.appendChild(img);
@@ -1172,6 +1189,7 @@ function explore()
 			var element = document.createElement("p");
 			var t = document.createTextNode("Zaatakował cię Sukubus!");
 			element.appendChild(t);
+			element.style.color = "#ff0000"
 			var img = document.createElement("img");
 			img.src = "zasoby/sukubus.png";
 			element.appendChild(img);
@@ -1182,8 +1200,9 @@ function explore()
 			var element = document.createElement("p");
 			var t = document.createTextNode("Zaatakował cię Skorpion!");
 			element.appendChild(t);
+			element.style.color = "#ff0000"
 			var img = document.createElement("img");
-			img.src = "zasoby/warlock.png";
+			img.src = "zasoby/scorpio.png";
 			element.appendChild(img);
 			document.body.appendChild(element);
 			wrogowie = wrogowie + 100;
@@ -1192,8 +1211,9 @@ function explore()
 			var element = document.createElement("p");
 			var t = document.createTextNode("Zaatakowało cię Wielkie Oko!");
 			element.appendChild(t);
+			element.style.color = "#ff0000"
 			var img = document.createElement("img");
-			img.src = "zasoby/ember.png";
+			img.src = "zasoby/eye.png";
 			element.appendChild(img);
 			document.body.appendChild(element);
 			wrogowie = wrogowie + 125;

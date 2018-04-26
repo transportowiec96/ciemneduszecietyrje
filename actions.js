@@ -321,12 +321,14 @@ function damagedeal()
     var element = document.createElement("p");
     var t = document.createTextNode("Krytyczny cios! Zadałeś " + sila + " obrażeń!");
     element.appendChild(t);
+    element.style.color = "#00ff00";
     document.body.appendChild(element);
   }
   else {
     var element = document.createElement("p");
     var t = document.createTextNode("Zadałeś " + sila + " obrażeń!");
     element.appendChild(t);
+    element.style.color = "#00ff00";
     document.body.appendChild(element);
   }
 
@@ -368,12 +370,14 @@ function damagetake(){
   {
     var element = document.createElement("p");
     var t = document.createTextNode("Krytyczny cios! Otrzymałeś " + dmg + " obrażeń!");
+    element.style.color = "#ff0000";
     element.appendChild(t);
     document.body.appendChild(element);
   }
   else {
     var element = document.createElement("p");
     var t = document.createTextNode("Otrzymałeś " + dmg + " obrażeń!");
+    element.style.color = "#ff0000";
     element.appendChild(t);
     document.body.appendChild(element);
   }
