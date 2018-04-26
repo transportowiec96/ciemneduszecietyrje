@@ -300,30 +300,52 @@ if (wrogowie != 0)
 
 function damagedeal()
 {
-	if (wrogowie < sila)
+  var randomgenerator = Math.floor(Math.random()*10+1);
+  sila2 = sila;
+  if (randomgenerator == 1)
+  {
+    sila2 = sila2* 2;
+  }
+	if (wrogowie < sila2)
 	{
 			exp = exp + wrogowie;
 			wrogowie = 0;
 	}
-	if (wrogowie >= sila)
+	if (wrogowie >= sila2)
 	{
-			exp = exp + sila;
-			wrogowie = wrogowie - sila;
+			exp = exp + sila2;
+			wrogowie = wrogowie - sila2;
 	}
-	var element = document.createElement("p");
-	var t = document.createTextNode("Zadales " + sila + " obrażeń!");
-	element.appendChild(t);
-	document.body.appendChild(element);
+  if (randomgenerator == 1)
+  {
+    var element = document.createElement("p");
+    var t = document.createTextNode("Krytyczny cios! Zadałeś " + sila + " obrażeń!");
+    element.appendChild(t);
+    document.body.appendChild(element);
+  }
+  else {
+    var element = document.createElement("p");
+    var t = document.createTextNode("Zadałeś " + sila + " obrażeń!");
+    element.appendChild(t);
+    document.body.appendChild(element);
+  }
+
 	hit2 = new Audio('zasoby/hit.mp3');
 	hit2.play();
 }
 function damagetake(){
-	dmg = wrogowie - zbroja;
-	if (wrogowie > zbroja){
+  var randomgenerator = Math.floor(Math.random()*10+1);
+  wrogowie2 = wrogowie;
+  if (randomgenerator == 1)
+  {
+    wrogowie2 = wrogowie2 * 2;
+  }
+	dmg = wrogowie2 - zbroja;
+	if (wrogowie2 > zbroja){
 			nextarmorbreak = nextarmorbreak - zbroja;
 	}
 	else {
-		nextarmorbreak = nextarmorbreak - wrogowie;
+		nextarmorbreak = nextarmorbreak - wrogowie2;
 	}
 	if (dmg < 0)
 	{
@@ -342,10 +364,19 @@ function damagetake(){
 		nextarmorbreak = zbroja * 10;
 	}
 	zdrowie = zdrowie - dmg;
-	var element = document.createElement("p");
-	var t = document.createTextNode("Otrzymałeś " + dmg + " obrażeń!");
-	element.appendChild(t);
-	document.body.appendChild(element);
+  if (randomgenerator == 1)
+  {
+    var element = document.createElement("p");
+    var t = document.createTextNode("Krytyczny cios! Otrzymałeś " + dmg + " obrażeń!");
+    element.appendChild(t);
+    document.body.appendChild(element);
+  }
+  else {
+    var element = document.createElement("p");
+    var t = document.createTextNode("Otrzymałeś " + dmg + " obrażeń!");
+    element.appendChild(t);
+    document.body.appendChild(element);
+  }
 	hpcheck();
 
 }

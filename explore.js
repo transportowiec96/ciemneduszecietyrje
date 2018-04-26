@@ -248,7 +248,7 @@ function explore()
 		wrogowie = wrogowie + 90;
 		bosszone4 = 0;
 	}
-	else if (akcje > 510 && bosszone5 == 1)
+	else if (akcje > 500 && bosszone5 == 1)
 	{
 		var element = document.createElement("p");
 		var t = document.createTextNode("Pojawia się Boss, Yog-Dzewa!");
@@ -1370,20 +1370,6 @@ function explore()
 
 			}
 		}
-
-				/*
-
-
-
-
-
-
-
-
-				*/
-
-
-
 
 if (glod < Math.ceil(maxglod / 3))
 {
