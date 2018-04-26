@@ -171,11 +171,11 @@ function hpcheck()
 	}
 	if (sila > 100)
 	{
-		maxglod = 100;
+		sila = 100;
 	}
 	if (zbroja > 200)
 	{
-		maxglod = 200;
+		zbroja = 200;
 	}
 	if (exp > (nextlvl * 4))
 	{

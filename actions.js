@@ -304,7 +304,7 @@ function damagedeal()
   sila2 = sila;
   if (randomgenerator == 1)
   {
-    sila2 = sila2* 2;
+    sila2 = sila2 + ((sila2/100)*50);
   }
 	if (wrogowie < sila2)
 	{
@@ -340,7 +340,7 @@ function damagetake(){
   wrogowie2 = wrogowie;
   if (randomgenerator == 1)
   {
-    wrogowie2 = wrogowie2 * 2;
+    wrogowie2 = wrogowie2 + ((wrogowie2/100)*50);
   }
 	dmg = wrogowie2 - zbroja;
 	if (wrogowie2 > zbroja){
@@ -552,11 +552,11 @@ function rest(){
 		akcje = akcje + 1;
 		if (glod == maxglod)
 		{
-			zdrowie = zdrowie - 1;
+			zdrowie = zdrowie - Math.floor(zdrowie/20)+1;
 		}
 		else {
 			glod = glod + 1;
-			zdrowie = zdrowie + 2;
+			zdrowie = zdrowie + Math.floor(zdrowie/10)+1;
 		}
 		document.getElementById("akcje").innerHTML =  akcje;
 		document.getElementById("wrogowie").innerHTML =  wrogowie;

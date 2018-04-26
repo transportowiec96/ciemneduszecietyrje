@@ -42,6 +42,8 @@ function explore()
 		document.body.appendChild(element);
 		wrogowie = wrogowie + 15;
 		bosszone1 = 0;
+		olaf8 = new Audio('zasoby/challenge.mp3');
+		olaf8.play();
 	}
 	else if (zone == 2 && bosszone1 == 0 && iwan1 == 1)
 	{
@@ -97,6 +99,8 @@ function explore()
 		document.body.appendChild(element);
 		wrogowie = wrogowie + 30;
 		bosszone2 = 0;
+		olaf9 = new Audio('zasoby/challenge.mp3');
+		olaf9.play();
 	}
 	else if (zone == 3 && bosszone2 == 0 && iwan2 == 1)
 	{
@@ -166,6 +170,8 @@ function explore()
 		document.body.appendChild(element);
 		wrogowie = wrogowie + 45;
 		bosszone3 = 0;
+		olaf10 = new Audio('zasoby/challenge.mp3');
+		olaf10.play();
 	}
 	else if (zone == 4 && bosszone3 == 0 && iwan3 == 1)
 	{
@@ -251,6 +257,8 @@ function explore()
 		document.body.appendChild(element);
 		wrogowie = wrogowie + 90;
 		bosszone4 = 0;
+		olaf11 = new Audio('zasoby/challenge.mp3');
+		olaf11.play();
 	}
 	else if (akcje > 500 && bosszone5 == 1)
 	{
@@ -265,6 +273,8 @@ function explore()
 		document.body.appendChild(element);
 		wrogowie = wrogowie + 175;
 		bosszone5 = 0;
+		olaf12 = new Audio('zasoby/challenge.mp3');
+		olaf12.play();
 	}
 	else if (zone == 1)
 	{
@@ -408,6 +418,8 @@ function explore()
 		element.appendChild(t);
 		element.setAttribute("onclick", 'zaloz()');
 		document.body.appendChild(element);
+		muz1 = new Audio('zasoby/armor.mp3');
+		muz1.play();
 				break;
 		case 9:
 		var element = document.createElement("p");
@@ -423,10 +435,78 @@ function explore()
 		hit3.play();
 				break;
 		case 10:
-		var element = document.createElement("p");
-		var t = document.createTextNode("Idziesz przez pusty korytarz.");
-		element.appendChild(t);
-		document.body.appendChild(element);
+		var randomgenerator = Math.floor((Math.random()*10)+1)
+		if (randomgenerator == 1)
+		{
+			var randomgenerator = Math.floor((Math.random()*5)+1)
+			switch (randomgenerator)
+			{
+				case 1:
+				var element = document.createElement("p");
+				var t = document.createTextNode("Znalazłeś tajną fontannę młodości, która zwiększyła twoje statystyki!");
+				element.appendChild(t);
+				element.style.color = "#00ff00"
+				document.body.appendChild(element);
+				sila = sila + 1;
+				maxzdrowie = maxzdrowie + 3;
+				zdrowie = zdrowie + 5;
+				nextlvl = nextlvl - 2;
+				maxglod = maxglod + 1;
+				muz7 = new Audio('zasoby/secret.mp3');
+				muz7.play();
+				break;
+				case 2:
+				var element = document.createElement("p");
+				var t = document.createTextNode("Znalazłeś tajną fontannę zdrowia, która zwiększyła twoje zdrowie!");
+				element.appendChild(t);
+				element.style.color = "#00ff00"
+				document.body.appendChild(element);
+				maxzdrowie = maxzdrowie + 5;
+				zdrowie = zdrowie + 10;
+				muz6 = new Audio('zasoby/secret.mp3');
+				muz6.play();
+				break;
+				case 3:
+				var element = document.createElement("p");
+				var t = document.createTextNode("Znalazłeś tajną fontannę siły, która zwiększyła twoją siłę!");
+				element.appendChild(t);
+				element.style.color = "#00ff00"
+				document.body.appendChild(element);
+				sila = sila + 2;
+				zbroja = zbroja + 2;
+				muz5 = new Audio('zasoby/secret.mp3');
+				muz5.play();
+				break;
+				case 4:
+				var element = document.createElement("p");
+				var t = document.createTextNode("Znalazłeś tajną fontannę mądrości, która zwiększyła twoją mądrość!");
+				element.appendChild(t);
+				element.style.color = "#00ff00"
+				document.body.appendChild(element);
+				nextlvl = nextlvl - 2;
+				muz4 = new Audio('zasoby/secret.mp3');
+				muz4.play();
+				break;
+				case 5:
+				var element = document.createElement("p");
+				var t = document.createTextNode("Znalazłeś tajną fontannę nasycenia, która zwiększyła twoje nasycenie!");
+				element.appendChild(t);
+				element.style.color = "#00ff00"
+				document.body.appendChild(element);
+				maxglod = maxglod + 2;
+				muz3 = new Audio('zasoby/secret.mp3');
+				muz3.play();
+				break;
+			}
+		}
+		else {
+			var element = document.createElement("p");
+			var t = document.createTextNode("Idziesz przez pusty korytarz.");
+			element.appendChild(t);
+			document.body.appendChild(element);
+			muz2 = new Audio('zasoby/step.mp3');
+			muz2.play();
+		}
 				break;
 
 		}
@@ -590,6 +670,8 @@ function explore()
 			document.body.appendChild(element);
 
 		}
+		muz9 = new Audio('zasoby/armor.mp3');
+		muz9.play();
 
 				break;
 		case 9:
@@ -605,7 +687,7 @@ function explore()
 			element.appendChild(img);
 			document.body.appendChild(element);
 			zdrowie = zdrowie - 6;
-			hit3 = new Audio('zasoby/hit.mp3');
+			hit3 = new Audio('zasoby/trapray.mp3');
 			hit3.play();
 		}
 		else {
@@ -628,10 +710,78 @@ function explore()
 
 				break;
 		case 10:
-		var element = document.createElement("p");
-		var t = document.createTextNode("Idziesz przez pusty korytarz.");
-		element.appendChild(t);
-		document.body.appendChild(element);
+		var randomgenerator = Math.floor((Math.random()*10)+1)
+		if (randomgenerator == 1)
+		{
+			var randomgenerator = Math.floor((Math.random()*5)+1)
+			switch (randomgenerator)
+			{
+				case 1:
+				var element = document.createElement("p");
+				var t = document.createTextNode("Znalazłeś tajną fontannę młodości, która zwiększyła twoje statystyki!");
+				element.appendChild(t);
+				element.style.color = "#00ff00"
+				document.body.appendChild(element);
+				sila = sila + 2;
+				maxzdrowie = maxzdrowie + 6;
+				zdrowie = zdrowie + 10;
+				nextlvl = nextlvl - 4;
+				maxglod = maxglod + 2;
+				muz10 = new Audio('zasoby/secret.mp3');
+				muz10.play();
+				break;
+				case 2:
+				var element = document.createElement("p");
+				var t = document.createTextNode("Znalazłeś tajną fontannę zdrowia, która zwiększyła twoje zdrowie!");
+				element.appendChild(t);
+				element.style.color = "#00ff00"
+				document.body.appendChild(element);
+				maxzdrowie = maxzdrowie + 10;
+				zdrowie = zdrowie + 20;
+				muz11 = new Audio('zasoby/secret.mp3');
+				muz11.play();
+				break;
+				case 3:
+				var element = document.createElement("p");
+				var t = document.createTextNode("Znalazłeś tajną fontannę siły, która zwiększyła twoją siłę!");
+				element.appendChild(t);
+				element.style.color = "#00ff00"
+				document.body.appendChild(element);
+				sila = sila + 4;
+				zbroja = zbroja + 4;
+				muz12 = new Audio('zasoby/secret.mp3');
+				muz12.play();
+				break;
+				case 4:
+				var element = document.createElement("p");
+				var t = document.createTextNode("Znalazłeś tajną fontannę mądrości, która zwiększyła twoją mądrość!");
+				element.appendChild(t);
+				element.style.color = "#00ff00"
+				document.body.appendChild(element);
+				nextlvl = nextlvl - 4;
+				muz13 = new Audio('zasoby/secret.mp3');
+				muz13.play();
+				break;
+				case 5:
+				var element = document.createElement("p");
+				var t = document.createTextNode("Znalazłeś tajną fontannę nasycenia, która zwiększyła twoje nasycenie!");
+				element.appendChild(t);
+				element.style.color = "#00ff00"
+				document.body.appendChild(element);
+				maxglod = maxglod + 4;
+				muz14 = new Audio('zasoby/secret.mp3');
+				muz14.play();
+				break;
+			}
+		}
+		else {
+			var element = document.createElement("p");
+			var t = document.createTextNode("Idziesz przez pusty korytarz.");
+			element.appendChild(t);
+			document.body.appendChild(element);
+			muz14 = new Audio('zasoby/step.mp3');
+			muz14.play();
+		}
 				break;
 
 		}}
@@ -830,6 +980,8 @@ function explore()
 				element.setAttribute("onclick", 'zalozpierscien()');
 				document.body.appendChild(element);
 			}
+			muz15 = new Audio('zasoby/armor.mp3');
+			muz15.play();
 
 					break;
 			case 9:
@@ -845,7 +997,7 @@ function explore()
 				element.appendChild(img);
 				document.body.appendChild(element);
 				zdrowie = zdrowie - 15;
-				hit3 = new Audio('zasoby/hit.mp3');
+				hit3 = new Audio('zasoby/trapray.mp3');
 				hit3.play();
 			}
 			else {
@@ -858,15 +1010,84 @@ function explore()
 				element.appendChild(img);
 				document.body.appendChild(element);
 				sila = sila - 1;
-
+				muz16 = new Audio('zasoby/trapray.mp3');
+				muz16.play();
 			}
 
 					break;
 			case 10:
-			var element = document.createElement("p");
-			var t = document.createTextNode("Idziesz przez pusty korytarz.");
-			element.appendChild(t);
-			document.body.appendChild(element);
+			var randomgenerator = Math.floor((Math.random()*10)+1)
+			if (randomgenerator == 1)
+			{
+				var randomgenerator = Math.floor((Math.random()*5)+1)
+				switch (randomgenerator)
+				{
+					case 1:
+					var element = document.createElement("p");
+					var t = document.createTextNode("Znalazłeś tajną fontannę młodości, która zwiększyła twoje statystyki!");
+					element.appendChild(t);
+					element.style.color = "#00ff00"
+					document.body.appendChild(element);
+					sila = sila + 3;
+					maxzdrowie = maxzdrowie + 9;
+					zdrowie = zdrowie + 15;
+					nextlvl = nextlvl - 6;
+					maxglod = maxglod + 3;
+					muz17 = new Audio('zasoby/secret.mp3');
+					muz17.play();
+					break;
+					case 2:
+					var element = document.createElement("p");
+					var t = document.createTextNode("Znalazłeś tajną fontannę zdrowia, która zwiększyła twoje zdrowie!");
+					element.appendChild(t);
+					element.style.color = "#00ff00"
+					document.body.appendChild(element);
+					maxzdrowie = maxzdrowie + 15;
+					zdrowie = zdrowie + 30;
+					muz18 = new Audio('zasoby/secret.mp3');
+					muz18.play();
+					break;
+					case 3:
+					var element = document.createElement("p");
+					var t = document.createTextNode("Znalazłeś tajną fontannę siły, która zwiększyła twoją siłę!");
+					element.appendChild(t);
+					element.style.color = "#00ff00"
+					document.body.appendChild(element);
+					sila = sila + 6;
+					zbroja = zbroja + 6;
+					muz19 = new Audio('zasoby/secret.mp3');
+					muz19.play();
+					break;
+					case 4:
+					var element = document.createElement("p");
+					var t = document.createTextNode("Znalazłeś tajną fontannę mądrości, która zwiększyła twoją mądrość!");
+					element.appendChild(t);
+					element.style.color = "#00ff00"
+					document.body.appendChild(element);
+					nextlvl = nextlvl - 6;
+					muz20 = new Audio('zasoby/secret.mp3');
+					muz20.play();
+					break;
+					case 5:
+					var element = document.createElement("p");
+					var t = document.createTextNode("Znalazłeś tajną fontannę nasycenia, która zwiększyła twoje nasycenie!");
+					element.appendChild(t);
+					element.style.color = "#00ff00"
+					document.body.appendChild(element);
+					maxglod = maxglod + 6;
+					muz21 = new Audio('zasoby/secret.mp3');
+					muz21.play();
+					break;
+				}
+			}
+			else {
+				var element = document.createElement("p");
+				var t = document.createTextNode("Idziesz przez pusty korytarz.");
+				element.appendChild(t);
+				document.body.appendChild(element);
+				muz22 = new Audio('zasoby/step.mp3');
+				muz22.play();
+			}
 					break;
 
 			}}
@@ -1080,7 +1301,8 @@ function explore()
 					element.setAttribute("onclick", 'zalozpierscien()');
 					document.body.appendChild(element);
 				}
-
+				muz23 = new Audio('zasoby/armor.mp3');
+				muz23.play();
 						break;
 				case 9:
 				var randomgenerator = Math.floor(Math.random()*2)
@@ -1095,7 +1317,7 @@ function explore()
 					element.appendChild(img);
 					document.body.appendChild(element);
 					zdrowie = zdrowie - 45;
-					hit3 = new Audio('zasoby/hit.mp3');
+					hit3 = new Audio('zasoby/trapray.mp3');
 					hit3.play();
 				}
 				else {
@@ -1110,15 +1332,84 @@ function explore()
 					sila = sila - 1;
 					zbroja = zbroja - 1;
 					maxzdrowie = maxzdrowie - 3;
-
+					muz24 = new Audio('zasoby/trapray.mp3');
+					muz24.play();
 				}
 
 						break;
 				case 10:
-				var element = document.createElement("p");
-				var t = document.createTextNode("Idziesz przez pusty korytarz.");
-				element.appendChild(t);
-				document.body.appendChild(element);
+				var randomgenerator = Math.floor((Math.random()*10)+1)
+				if (randomgenerator == 1)
+				{
+					var randomgenerator = Math.floor((Math.random()*5)+1)
+					switch (randomgenerator)
+					{
+						case 1:
+						var element = document.createElement("p");
+						var t = document.createTextNode("Znalazłeś tajną fontannę młodości, która zwiększyła twoje statystyki!");
+						element.appendChild(t);
+						element.style.color = "#00ff00"
+						document.body.appendChild(element);
+						sila = sila + 4;
+						maxzdrowie = maxzdrowie + 12;
+						zdrowie = zdrowie + 20;
+						nextlvl = nextlvl - 8;
+						maxglod = maxglod + 4;
+						muz25 = new Audio('zasoby/secret.mp3');
+						muz25.play();
+						break;
+						case 2:
+						var element = document.createElement("p");
+						var t = document.createTextNode("Znalazłeś tajną fontannę zdrowia, która zwiększyła twoje zdrowie!");
+						element.appendChild(t);
+						element.style.color = "#00ff00"
+						document.body.appendChild(element);
+						maxzdrowie = maxzdrowie + 20;
+						zdrowie = zdrowie + 40;
+						muz26 = new Audio('zasoby/secret.mp3');
+						muz26.play();
+						break;
+						case 3:
+						var element = document.createElement("p");
+						var t = document.createTextNode("Znalazłeś tajną fontannę siły, która zwiększyła twoją siłę!");
+						element.appendChild(t);
+						element.style.color = "#00ff00"
+						document.body.appendChild(element);
+						sila = sila + 8;
+						zbroja = zbroja + 8;
+						muz27 = new Audio('zasoby/secret.mp3');
+						muz27.play();
+						break;
+						case 4:
+						var element = document.createElement("p");
+						var t = document.createTextNode("Znalazłeś tajną fontannę mądrości, która zwiększyła twoją mądrość!");
+						element.appendChild(t);
+						element.style.color = "#00ff00"
+						document.body.appendChild(element);
+						nextlvl = nextlvl - 8;
+						muz28 = new Audio('zasoby/secret.mp3');
+						muz28.play();
+						break;
+						case 5:
+						var element = document.createElement("p");
+						var t = document.createTextNode("Znalazłeś tajną fontannę nasycenia, która zwiększyła twoje nasycenie!");
+						element.appendChild(t);
+						element.style.color = "#00ff00"
+						document.body.appendChild(element);
+						maxglod = maxglod + 8;
+						muz29 = new Audio('zasoby/secret.mp3');
+						muz29.play();
+						break;
+					}
+				}
+				else {
+					var element = document.createElement("p");
+					var t = document.createTextNode("Idziesz przez pusty korytarz.");
+					element.appendChild(t);
+					document.body.appendChild(element);
+					muz30 = new Audio('zasoby/step.mp3');
+					muz30.play();
+				}
 						break;
 
 				}}
@@ -1347,6 +1638,8 @@ function explore()
 				element.setAttribute("onclick", 'zalozpierscien()');
 				document.body.appendChild(element);
 			}
+			muz31 = new Audio('zasoby/armor.mp3');
+			muz31.play();
 
 					break;
 			case 9:
@@ -1362,7 +1655,7 @@ function explore()
 				element.appendChild(img);
 				document.body.appendChild(element);
 				zdrowie = zdrowie - 75;
-				hit3 = new Audio('zasoby/hit.mp3');
+				hit3 = new Audio('zasoby/trapray.mp3');
 				hit3.play();
 			}
 			else {
@@ -1377,15 +1670,85 @@ function explore()
 				sila = sila - 2;
 				zbroja = zbroja - 2;
 				maxzdrowie = maxzdrowie - 5;
+				muz32 = new Audio('zasoby/trapray.mp3');
+				muz32.play();
 
 			}
 
 					break;
 			case 10:
-			var element = document.createElement("p");
-			var t = document.createTextNode("Idziesz przez pusty korytarz.");
-			element.appendChild(t);
-			document.body.appendChild(element);
+			var randomgenerator = Math.floor((Math.random()*10)+1)
+			if (randomgenerator == 1)
+			{
+				var randomgenerator = Math.floor((Math.random()*5)+1)
+				switch (randomgenerator)
+				{
+					case 1:
+					var element = document.createElement("p");
+					var t = document.createTextNode("Znalazłeś tajną fontannę młodości, która zwiększyła twoje statystyki!");
+					element.appendChild(t);
+					element.style.color = "#00ff00"
+					document.body.appendChild(element);
+					sila = sila + 5;
+					maxzdrowie = maxzdrowie + 15;
+					zdrowie = zdrowie + 25;
+					nextlvl = nextlvl - 10;
+					maxglod = maxglod + 5;
+					muz33 = new Audio('zasoby/secret.mp3');
+					muz33.play();
+					break;
+					case 2:
+					var element = document.createElement("p");
+					var t = document.createTextNode("Znalazłeś tajną fontannę zdrowia, która zwiększyła twoje zdrowie!");
+					element.appendChild(t);
+					element.style.color = "#00ff00"
+					document.body.appendChild(element);
+					maxzdrowie = maxzdrowie + 25;
+					zdrowie = zdrowie + 50;
+					muz34 = new Audio('zasoby/secret.mp3');
+					muz34.play();
+					break;
+					case 3:
+					var element = document.createElement("p");
+					var t = document.createTextNode("Znalazłeś tajną fontannę siły, która zwiększyła twoją siłę!");
+					element.appendChild(t);
+					element.style.color = "#00ff00"
+					document.body.appendChild(element);
+					sila = sila + 10;
+					zbroja = zbroja + 10;
+					muz35 = new Audio('zasoby/secret.mp3');
+					muz35.play();
+					break;
+					case 4:
+					var element = document.createElement("p");
+					var t = document.createTextNode("Znalazłeś tajną fontannę mądrości, która zwiększyła twoją mądrość!");
+					element.appendChild(t);
+					element.style.color = "#00ff00"
+					document.body.appendChild(element);
+					nextlvl = nextlvl - 10;
+					muz36 = new Audio('zasoby/secret.mp3');
+					muz36.play();
+					break;
+					case 5:
+					var element = document.createElement("p");
+					var t = document.createTextNode("Znalazłeś tajną fontannę nasycenia, która zwiększyła twoje nasycenie!");
+					element.appendChild(t);
+					element.style.color = "#00ff00"
+					document.body.appendChild(element);
+					maxglod = maxglod + 10;
+					muz37 = new Audio('zasoby/secret.mp3');
+					muz37.play();
+					break;
+				}
+			}
+			else {
+				var element = document.createElement("p");
+				var t = document.createTextNode("Idziesz przez pusty korytarz.");
+				element.appendChild(t);
+				document.body.appendChild(element);
+				muz38 = new Audio('zasoby/step.mp3');
+				muz38.play();
+			}
 					break;
 
 			}
@@ -1393,11 +1756,11 @@ function explore()
 
 if (glod < Math.ceil(maxglod / 3))
 {
-	zdrowie = zdrowie + Math.ceil(maxzdrowie / 10);
+	zdrowie = zdrowie + Math.floor(maxzdrowie / 10)+1;
 }
-else if (glod < Math.floor(maxglod / 2))
+else if (glod < Math.floor(maxglod / (1 + (1/2)))+1)
 {
-	zdrowie = zdrowie + Math.ceil(maxzdrowie / 20);
+	zdrowie = zdrowie + Math.floor(maxzdrowie / 20)+1;
 }
 endexplore();
 }
