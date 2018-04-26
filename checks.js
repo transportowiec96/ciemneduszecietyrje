@@ -157,6 +157,30 @@ function hpcheck()
 		element.appendChild(t);
 		document.body.appendChild(element);
 	}
+	if (maxzdrowie > 250)
+	{
+		maxzdrowie = 250;
+	}
+	if (zdrowie > 250)
+	{
+		zdrowie = 250;
+	}
+	if (maxglod > 25)
+	{
+		maxglod = 25;
+	}
+	if (sila > 100)
+	{
+		maxglod = 100;
+	}
+	if (zbroja > 200)
+	{
+		maxglod = 200;
+	}
+	if (exp > (nextlvl * 4))
+	{
+		exp = 0;
+	}
 	document.getElementById("akcje").innerHTML = akcje;
 	document.getElementById("wrogowie").innerHTML = wrogowie;
 	document.getElementById("wrogowiee").innerHTML = wrogowie;
