@@ -140,7 +140,6 @@ theme.addEventListener('ended', function() {
     this.currentTime = 0;
     this.play();
 }, false);
-theme.play();
 function newgame(){
 	document.getElementById("mainmenu").style.display = "none";
 }
