@@ -160,8 +160,9 @@ function pray()
   if (postac == 4)
   {
     schowek = akcje;
+    akcje = akcje - lastpray;
     akcje = akcje * 2;
-  }
+    }
 
 	if (lastpray < (akcje - 500))
 	{
@@ -302,7 +303,7 @@ function damagedeal()
 {
   var randomgenerator = Math.floor(Math.random()*15+1);
   sila2 = sila;
-  if (randomgenerator == 1)
+  if (randomgenerator == 1 || postac == 2 && randomgenerator < 4)
   {
     sila2 = sila2 + ((sila2/100)*50);
   }
@@ -337,12 +338,20 @@ function damagedeal()
 }
 function damagetake(){
   var randomgenerator = Math.floor(Math.random()*20+1);
+  if (postac == 3)
+  {
+    wrogowie = wrogowie - Math.floor(level/2);
+  }
   wrogowie2 = wrogowie;
   if (randomgenerator == 1)
   {
     wrogowie2 = wrogowie2 + ((wrogowie2/100)*50);
   }
 	dmg = wrogowie2 - zbroja;
+  if (postac == 1)
+  {
+    dmg = dmg - level;
+  }
 	if (wrogowie2 > zbroja){
 			nextarmorbreak = nextarmorbreak - zbroja;
 	}
@@ -757,7 +766,7 @@ function zaloz()
 	switch (zone){
 		case 1:
 		var randomgenerator = Math.floor(Math.random()*10+1);
-		if (randomgenerator < 2)
+		if (randomgenerator < 2 || postac == 4 && randomgenerator < 2)
 		{
 			zbroja = (zamiennazbroja / 2);
 			klatwa = Math.ceil(zamiennazbroja / 8);
@@ -791,7 +800,7 @@ function zaloz()
 
 						}
 		}
-		else if (randomgenerator > 8)
+		else if (randomgenerator > 8 || postac == 4 && randomgenerator > 6)
 		{
 			zbroja = zamiennazbroja + 3;
 			zamiennazbroja = 0;
@@ -846,7 +855,7 @@ function zaloz()
 		break;
 		case 2:
 		var randomgenerator = Math.floor(Math.random()*10+1);
-		if (randomgenerator < 3)
+		if (randomgenerator < 3 || postac == 4 && randomgenerator < 2)
 		{
 			zbroja = (zamiennazbroja / 2);
 			klatwa = (zamiennazbroja / 2);
@@ -880,7 +889,7 @@ function zaloz()
 
 						}
 		}
-		else if (randomgenerator > 8)
+		else if (randomgenerator > 8 || postac == 4 && randomgenerator < 6)
 		{
 			zbroja = zamiennazbroja + 7;
 			zamiennazbroja = 0;
@@ -935,7 +944,7 @@ function zaloz()
 		break;
 		case 3:
 		var randomgenerator = Math.floor(Math.random()*10+1);
-		if (randomgenerator < 3)
+		if (randomgenerator < 3 || postac == 4 && randomgenerator < 2)
 		{
 			zbroja = (zamiennazbroja / 2);
 			klatwa = (zamiennazbroja / 2);
@@ -969,7 +978,7 @@ function zaloz()
 
 						}
 		}
-		else if (randomgenerator > 9)
+		else if (randomgenerator > 9 || postac == 4 && randomgenerator < 7)
 		{
 			zbroja = zamiennazbroja + 12;
 			zamiennazbroja = 0;
@@ -1024,7 +1033,7 @@ function zaloz()
 		break;
 		case 4:
 		var randomgenerator = Math.floor(Math.random()*10+1);
-		if (randomgenerator < 4)
+		if (randomgenerator < 4 || postac == 4 && randomgenerator < 3)
 		{
 			zbroja = (zamiennazbroja / 2);
 			klatwa = (zamiennazbroja / 2);
@@ -1058,7 +1067,7 @@ function zaloz()
 
 						}
 		}
-		else if (randomgenerator > 9)
+		else if (randomgenerator > 9 || postac == 4 && randomgenerator < 7)
 		{
 			zbroja = zamiennazbroja + 18;
 			zamiennazbroja = 0;
@@ -1113,7 +1122,7 @@ function zaloz()
 		break;
 		case 5:
 		var randomgenerator = Math.floor(Math.random()*10+1);
-		if (randomgenerator < 5)
+		if (randomgenerator < 5 || postac == 4 && randomgenerator < 4)
 		{
 			zbroja = (zamiennazbroja / 2);
 			klatwa = (zamiennazbroja / 2);
@@ -1147,7 +1156,7 @@ function zaloz()
 
 						}
 		}
-		else if (randomgenerator > 9)
+		else if (randomgenerator > 9 || postac == 4 && randomgenerator < 7)
 		{
 			zbroja = zamiennazbroja + 25;
 			zamiennazbroja = 0;
@@ -1225,7 +1234,7 @@ function zalozpierscien(){
 	switch (zone){
 		case 1:
 		var randomgenerator = Math.floor(Math.random()*10+1);
-		if (randomgenerator < 3)
+		if (randomgenerator < 3 || postac == 4 && randomgenerator < 2)
 		{
 			switch (typpierscienia)
 			{
@@ -1249,7 +1258,7 @@ function zalozpierscien(){
 			hit30 = new Audio('zasoby/cursed.mp3');
 			hit30.play();
 		}
-		else if (randomgenerator > 8)
+		else if (randomgenerator > 8 || postac == 4 && randomgenerator > 5)
 		{
 			switch (typpierscienia)
 			{
@@ -1296,7 +1305,7 @@ function zalozpierscien(){
 		break;
 		case 2:
 		var randomgenerator = Math.floor(Math.random()*10+1);
-		if (randomgenerator < 4)
+		if (randomgenerator < 4 || postac == 4 && randomgenerator < 3)
 		{
 			switch (typpierscienia)
 			{
@@ -1320,7 +1329,7 @@ function zalozpierscien(){
 			hit30 = new Audio('zasoby/cursed.mp3');
 			hit30.play();
 		}
-		else if (randomgenerator > 8)
+		else if (randomgenerator > 8 || postac == 4 && randomgenerator > 5)
 		{
 			switch (typpierscienia)
 			{
@@ -1367,7 +1376,7 @@ function zalozpierscien(){
 		break;
 		case 3:
 		var randomgenerator = Math.floor(Math.random()*10+1);
-		if (randomgenerator < 4)
+		if (randomgenerator < 4 || postac == 4 && randomgenerator < 3)
 		{
 			switch (typpierscienia)
 			{
@@ -1391,7 +1400,7 @@ function zalozpierscien(){
 			hit30 = new Audio('zasoby/cursed.mp3');
 			hit30.play();
 		}
-		else if (randomgenerator > 9)
+		else if (randomgenerator > 9 || postac == 4 && randomgenerator > 6)
 		{
 			switch (typpierscienia)
 			{
@@ -1438,7 +1447,7 @@ function zalozpierscien(){
 		break;
 		case 4:
 		var randomgenerator = Math.floor(Math.random()*10+1);
-		if (randomgenerator < 5)
+		if (randomgenerator < 5 || postac == 4 && randomgenerator < 4)
 		{
 			switch (typpierscienia)
 			{
@@ -1462,7 +1471,7 @@ function zalozpierscien(){
 			hit30 = new Audio('zasoby/cursed.mp3');
 			hit30.play();
 		}
-		else if (randomgenerator > 9)
+		else if (randomgenerator > 9 || postac == 4 && randomgenerator > 6)
 		{
 			switch (typpierscienia)
 			{
@@ -1509,7 +1518,7 @@ function zalozpierscien(){
 		break;
 		case 5:
 		var randomgenerator = Math.floor(Math.random()*10+1);
-		if (randomgenerator < 6)
+		if (randomgenerator < 6 || postac == 4 && randomgenerator < 5)
 		{
 			switch (typpierscienia)
 			{
@@ -1533,7 +1542,7 @@ function zalozpierscien(){
 			hit30 = new Audio('zasoby/cursed.mp3');
 			hit30.play();
 		}
-		else if (randomgenerator > 9)
+		else if (randomgenerator > 9 || postac == 4 && randomgenerator > 6)
 		{
 			switch (typpierscienia)
 			{

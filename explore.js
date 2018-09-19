@@ -40,7 +40,7 @@ function explore()
 		img.src = "zasoby/goo.png";
 		element.appendChild(img);
 		document.body.appendChild(element);
-		wrogowie = wrogowie + 15;
+		wrogowie = wrogowie + 20;
 		bosszone1 = 0;
 		olaf8 = new Audio('zasoby/challenge.mp3');
 		olaf8.play();
@@ -97,7 +97,7 @@ function explore()
 		img.src = "zasoby/tengu.png";
 		element.appendChild(img);
 		document.body.appendChild(element);
-		wrogowie = wrogowie + 30;
+		wrogowie = wrogowie + 40;
 		bosszone2 = 0;
 		olaf9 = new Audio('zasoby/challenge.mp3');
 		olaf9.play();
@@ -168,7 +168,7 @@ function explore()
 		img.src = "zasoby/dm9001.png";
 		element.appendChild(img);
 		document.body.appendChild(element);
-		wrogowie = wrogowie + 45;
+		wrogowie = wrogowie + 55;
 		bosszone3 = 0;
 		olaf10 = new Audio('zasoby/challenge.mp3');
 		olaf10.play();
@@ -255,7 +255,7 @@ function explore()
 		img.src = "zasoby/king.png";
 		element.appendChild(img);
 		document.body.appendChild(element);
-		wrogowie = wrogowie + 90;
+		wrogowie = wrogowie + 120;
 		bosszone4 = 0;
 		olaf11 = new Audio('zasoby/challenge.mp3');
 		olaf11.play();
@@ -271,7 +271,7 @@ function explore()
 		img.src = "zasoby/yog.png";
 		element.appendChild(img);
 		document.body.appendChild(element);
-		wrogowie = wrogowie + 175;
+		wrogowie = wrogowie + 225;
 		bosszone5 = 0;
 		olaf12 = new Audio('zasoby/challenge.mp3');
 		olaf12.play();
@@ -329,7 +329,7 @@ function explore()
 		img.src = "zasoby/rat.png";
 		element.appendChild(img);
 		document.body.appendChild(element);
-		wrogowie = wrogowie + 2;
+		wrogowie = wrogowie + 3;
         break;
     case 4:
 		var element = document.createElement("p");
@@ -340,7 +340,7 @@ function explore()
 		img.src = "zasoby/rat.png";
 		element.appendChild(img);
 		document.body.appendChild(element);
-		wrogowie = wrogowie + 3;
+		wrogowie = wrogowie + 4;
         break;
     case 5:
 		var element = document.createElement("p");
@@ -365,7 +365,7 @@ function explore()
 		img.src = "zasoby/crab.png";
 		element.appendChild(img);
 		document.body.appendChild(element);
-		wrogowie = wrogowie + 5;
+		wrogowie = wrogowie + 6;
         break;
     case 7:
 		var element = document.createElement("p");
@@ -565,7 +565,7 @@ function explore()
 		img.src = "zasoby/thief.png";
 		element.appendChild(img);
 		document.body.appendChild(element);
-		wrogowie = wrogowie + 6;
+		wrogowie = wrogowie + 7;
         break;
     case 4:
 		var element = document.createElement("p");
@@ -576,7 +576,7 @@ function explore()
 		img.src = "zasoby/skeleton.png";
 		element.appendChild(img);
 		document.body.appendChild(element);
-		wrogowie = wrogowie + 10;
+		wrogowie = wrogowie + 12;
         break;
     case 5:
 		var element = document.createElement("p");
@@ -601,7 +601,7 @@ function explore()
 		img.src = "zasoby/guard.png";
 		element.appendChild(img);
 		document.body.appendChild(element);
-		wrogowie = wrogowie + 14;
+		wrogowie = wrogowie + 17;
         break;
     case 7:
 		var element = document.createElement("p");
@@ -703,7 +703,7 @@ function explore()
 			img.src = "zasoby/guard.png";
 			element.appendChild(img);
 			document.body.appendChild(element);
-			wrogowie = wrogowie + 20;
+			wrogowie = wrogowie + 25;
 			hit31 = new Audio('zasoby/alarm.mp3');
 			hit31.play();
 		}
@@ -859,7 +859,7 @@ function explore()
 			img.src = "zasoby/brutal.png";
 			element.appendChild(img);
 			document.body.appendChild(element);
-			wrogowie = wrogowie + 20;
+			wrogowie = wrogowie + 25;
 	        break;
 	    case 4:
 			var element = document.createElement("p");
@@ -870,7 +870,7 @@ function explore()
 			img.src = "zasoby/bat.png";
 			element.appendChild(img);
 			document.body.appendChild(element);
-			wrogowie = wrogowie + 26;
+			wrogowie = wrogowie + 32;
 	        break;
 	    case 5:
 			var element = document.createElement("p");
@@ -895,7 +895,7 @@ function explore()
 			img.src = "zasoby/shaman.png";
 			element.appendChild(img);
 			document.body.appendChild(element);
-			wrogowie = wrogowie + 34;
+			wrogowie = wrogowie + 42;
 	        break;
 	    case 7:
 			var element = document.createElement("p");
@@ -1164,7 +1164,7 @@ function explore()
 				img.src = "zasoby/monk.png";
 				element.appendChild(img);
 				document.body.appendChild(element);
-				wrogowie = wrogowie + 50;
+				wrogowie = wrogowie + 62;
 		        break;
 		    case 4:
 				var element = document.createElement("p");
@@ -1175,7 +1175,7 @@ function explore()
 				img.src = "zasoby/warlock.png";
 				element.appendChild(img);
 				document.body.appendChild(element);
-				wrogowie = wrogowie + 60;
+				wrogowie = wrogowie + 75;
 		        break;
 		    case 5:
 				var element = document.createElement("p");
@@ -1186,7 +1186,7 @@ function explore()
 				img.src = "zasoby/ember.png";
 				element.appendChild(img);
 				document.body.appendChild(element);
-				wrogowie = wrogowie + 40;
+				wrogowie = wrogowie + 50;
 
 		        break;
 		    case 6:
@@ -1485,7 +1485,7 @@ function explore()
 			img.src = "zasoby/sukubus.png";
 			element.appendChild(img);
 			document.body.appendChild(element);
-			wrogowie = wrogowie + 75;
+			wrogowie = wrogowie + 90;
 					break;
 			case 4:
 			var element = document.createElement("p");
@@ -1496,7 +1496,7 @@ function explore()
 			img.src = "zasoby/scorpio.png";
 			element.appendChild(img);
 			document.body.appendChild(element);
-			wrogowie = wrogowie + 100;
+			wrogowie = wrogowie + 125;
 					break;
 			case 5:
 			var element = document.createElement("p");
@@ -1507,7 +1507,7 @@ function explore()
 			img.src = "zasoby/eye.png";
 			element.appendChild(img);
 			document.body.appendChild(element);
-			wrogowie = wrogowie + 125;
+			wrogowie = wrogowie + 150;
 
 					break;
 			case 6:
