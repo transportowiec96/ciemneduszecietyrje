@@ -2,8 +2,8 @@
 <html lang="pl">
   <head>
     <meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	  <meta name="theme-color" content="#000000">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	  <meta name="theme-color" content="#000000" />
 	  <meta name="Description" content="Prosta (albo nie) gierka w HTML (+5) oraz JS'ie. Hobbyistyczny projekt.">
 <style>
 body{
@@ -170,7 +170,7 @@ button{
   position: absolute;
   z-index: 1;
   top: -5px;
-  left: 105%;
+  left: 55%;
 }
 
 #v05:hover .v05text {
@@ -255,8 +255,8 @@ right:0px;
   </head>
   <body>
     <div id="mainmenu">
-      <button onclick="newgame()"><img width="100%" height="100%" src="zasoby/begin.png" />Nowa Gra</button><br />
-      <button onclick="exit()">Wyjście</button><br \>
+      <button onclick="newgame()" aria-label="Nowa gra"><img width="100%" height="100%" src="zasoby/begin.png" alt="Nowa gra" />Nowa Gra</button><br />
+      <button onclick="exit()" aria-label="Wyjście">Wyjście</button><br \>
       <p id="v01">V0.1 - Lista zmian z 12 kwietnia  <span class="v01text">-Zrobiono pierwszą strefę<br />-Dodano wiele statystyk<br /></span><br />
       <p id="v02">| V0.2 - Lista zmian z 13 kwietnia <span class="v02text">-Dodano potki zdrowia <br />-Dodano Zestawy Naprawcze zbroi<br />-Dodano tutorial<br />-Dodano przycisk modlenia się (nic nie robi)<br />-Dodano dwie klasy postaci - Maga i Łotrzyka <br />-Dodano menu główne <br />-Naprawiono kilka bugów</span></p><br />
       <p id="v03">V0.3 - Lista zmian z 14 kwietnia  <span class="v03text">-Naprawiono kilka bugów.<br />-Dodano możliwość modlitwy<br />-Dodano degradację zbroi<br />-Każda klasa ma specjalizację<br />-Dodano kilka nowych dźwięków<br />-Dodano klątwy<br />-Dodano strefę drugą<br />-Dodano pierścienie<br /></span><br />
@@ -271,37 +271,37 @@ right:0px;
     </div>
   <div id="wybierzpostac">
     <p><img width="15%" height="15%"src="zasoby/heroselect.png" /></p>
-<p><button onClick="classfighter()"><img src="zasoby/fighter.png" /><br />Wojownik</button><br />
+<p><button onClick="classfighter()" aria-label="Wojownik"><img src="zasoby/fighter.png" alt="Wojownik" /><br />Wojownik</button><br />
 +Sila +Zbroja =Zdrowie =Głód -Doświadczenie<br />Zna się na naprawianiu zbroi</p>
-  <p><button onClick="classrogue()"><img src="zasoby/rogue.png" /><br />Łotrzyk</button><br />
+  <p><button onClick="classrogue()" aria-label="Łotrzyk"><img src="zasoby/rogue.png" alt="Łotrzyk" /><br />Łotrzyk</button><br />
   +Doświadczenie +Zdrowie =Siła -Zbroja -Głód<br />Zna się na jedzeniu odpadków</p>
-  <p><button onClick="classmage()"><img type=""src="zasoby/mage.png" /><br />Mag</button><br />
+  <p><button onClick="classmage()" aria-label="Mag"><img type=""src="zasoby/mage.png" alt="Mag"/><br />Mag</button><br />
   +++Siła +Głód =Doświadczenie -Zbroja -Zdrowie<br />Zna się na alchemii</p>
-  <p><button onClick="classpriestess()"><img type=""src="zasoby/priestess.png" /><br />Kapłanka</button><br />
+  <p><button onClick="classpriestess()" aria-label="Kapłanka"><img type=""src="zasoby/priestess.png" alt="Kapłanka" /><br />Kapłanka</button><br />
   =Siła =Głód =Doświadczenie =Zbroja =Zdrowie<br />Zna się na modlitwie</p>
 </div>
 <div id="menu2">
   <br />
-  <button onclick="eqexit()">X</button>
+  <button onclick="eqexit()" aria-label="Zamknij ekwipunek">X</button>
 <p>Twój ekwipunek:</p>
-<p><img width="10%" height="10%"src="zasoby/prowiant.png" /><span id="prowiant">1</span>
-<button onClick="eat()">Zjedz</button></p>
-<p><img width="10%" height="10%"src="zasoby/potkahp.png" /><span id="potkahp">1</span>
-<button onClick="quaff()">Wypij</button></p>
-<p><img width="10%" height="10%"src="zasoby/zestaw.png" /><span id="zestaw">0</span>
-<button onClick="repair()">Napraw</button></p>
-<p><img width="10%" height="10%"src="zasoby/bomb.png" /><span id="bomby">0</span>
-<button onclick="bombthrow()">Zapal i rzuć</button></p>
-<p><img width="10%" height="10%"src="zasoby/scroll.png" /><span id="zwoje">0</span>
-<button onClick="readscroll()">Czytaj</button></p>
-<p><img id="zdrowaska" width="10%" height="10%"src="zasoby/zdrowie0.png" /><span id="zdrowie">10</span>
-/<span id="maxzdrowie">10</span><img id="glodaska" width="10%" height="10%"src="zasoby/glod0.png" /><span id="glod">0</span>/<span id="maxglod">10</span>
-<img width="10%" height="10%"src="zasoby/akcje.png" /><span id="akcje">0</span></p>
+<p><img width="10%" height="10%"src="zasoby/prowiant.png" alt="Paczka jedzenia" /><span id="prowiant">1</span>
+<button onClick="eat()" aria-label="Zjedz prowiant" >Zjedz</button></p>
+<p><img width="10%" height="10%"src="zasoby/potkahp.png" alt="Fiolka z uzdrawiającym napojem" /><span id="potkahp">1</span>
+<button onClick="quaff()" aria-label="Wypij miksturę zdrowia">Wypij</button></p>
+<p><img width="10%" height="10%"src="zasoby/zestaw.png" alt="Narzędzia do naprawy zbroi"/><span id="zestaw">0</span>
+<button onClick="repair()" aria-label="Napraw zbroję">Napraw</button></p>
+<p><img width="10%" height="10%"src="zasoby/bomb.png" alt="Bomba"/><span id="bomby">0</span>
+<button onclick="bombthrow()" aria-label="Rzuć bombę">Zapal i rzuć</button></p>
+<p><img width="10%" height="10%"src="zasoby/scroll.png" alt="Tajemniczy zwój"/><span id="zwoje">0</span>
+<button onClick="readscroll()" aria-label="Czytaj zwój">Czytaj</button></p>
+<p><img id="zdrowaska" width="10%" height="10%"src="zasoby/zdrowie0.png" alt="Ikona zdrowia"/><span id="zdrowie">10</span>
+/<span id="maxzdrowie">10</span><img id="glodaska" width="10%" height="10%"src="zasoby/glod0.png" alt="Ikona głodu" /><span id="glod">0</span>/<span id="maxglod">10</span>
+<img width="10%" height="10%"src="zasoby/akcje.png" alt="Ikona ilości tur"/><span id="akcje">0</span></p>
 <p>
-<img id="glodaska" width="10%" height="10%"src="zasoby/obrona.png" /><span id="def">1</span>
-<img width="10%" height="10%"src="zasoby/dashboard.png" /><span id="sila">1</span>
-<img width="10%" height="10%"src="zasoby/exp.png" /><span id="exp">0</span>/<span id="nextlvl">10</span></p>
-<p><img id="armorimg" width="10%" height="10%"src="zasoby/cloth.png" />Nosisz <span id="nazwadef">Płócienna Zbroja</span>.</p>
+<img id="glodaska" width="10%" height="10%"src="zasoby/obrona.png" alt="Jakość zbroi"/><span id="def">1</span>
+<img width="10%" height="10%"src="zasoby/dashboard.png" alt="Poziom siły ataku"/><span id="sila">1</span>
+<img width="10%" height="10%"src="zasoby/exp.png" alt="Ikona doświadczenia"/><span id="exp">0</span>/<span id="nextlvl">10</span></p>
+<p><img id="armorimg" width="10%" height="10%"src="zasoby/cloth.png" alt="Obrazek zbroi"/>Nosisz <span id="nazwadef">Płócienna Zbroja</span>.</p>
 <p>Zdrowie wrogów: <span id="wrogowie">0</span></p>
 
 
@@ -310,14 +310,14 @@ right:0px;
 </div>
 <div id="all">
 <div id="menu">
-  <progress id="health" value="100" max="100"></progress>
+  <progress id="health" value="100" max="100" alt="Pasek zdrowia"></progress>
   <br/>
-  <button id="equipmentbutton" onclick="eqopen()"><img width="125%" height="125%" src="zasoby/bag.png" /></button><img id="glodaskaa" width="10%" height="10%"src="zasoby/glod0.png" /><span id="glod1">0</span>/<span id="maxglod1">10</span>
+  <button id="equipmentbutton" onclick="eqopen()" aria-label="Otwórz ekwipunek"><img width="125%" height="125%" src="zasoby/bag.png" alt="Otwórz plecak"/></button><img id="glodaskaa" width="10%" height="10%"src="zasoby/glod0.png" alt="Ikona głodu"/><span id="glod1">0</span>/<span id="maxglod1">10</span>
 <p>Zdrowie wrogów: <span id="wrogowiee">0</span></p>
   <p>
-<img id="klasapostaci" src="zasoby/rogue.png" />Poziom: <span id="poziom">1</span></p>
-<p><button onClick="explore()">Wal w explor</button><button onClick="walcz()">Walcz</button></p>
-<p><button onClick="rest()">Odpocznij</button><button onclick="pray()">Módl się</button></p>
+<img id="klasapostaci" src="zasoby/rogue.png" alt="Ikona postaci"/>Poziom: <span id="poziom">1</span></p>
+<p><button onClick="explore()" aria-label="Wal w explor">Wal w explor</button><button onClick="walcz()" aria-label="Walcz">Walcz</button></p>
+<p><button onClick="rest()" aria-label="Odpocznij sobie">Odpocznij</button><button onclick="pray()" aria-label="Módl sie">Módl się</button></p>
 </div>
 </div>
 <br />
