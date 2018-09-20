@@ -340,7 +340,7 @@ function damagetake(){
   var randomgenerator = Math.floor(Math.random()*20+1);
   if (postac == 3)
   {
-    wrogowie = wrogowie - Math.floor(level/2);
+    wrogowie = wrogowie - Math.floor(poziom/2);
   }
   wrogowie2 = wrogowie;
   if (randomgenerator == 1)
