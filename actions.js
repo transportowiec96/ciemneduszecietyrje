@@ -350,7 +350,7 @@ function damagetake(){
 	dmg = wrogowie2 - zbroja;
   if (postac == 1)
   {
-    dmg = dmg - level;
+    dmg = dmg - poziom;
   }
 	if (wrogowie2 > zbroja){
 			nextarmorbreak = nextarmorbreak - zbroja;
