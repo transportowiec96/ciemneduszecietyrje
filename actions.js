@@ -338,9 +338,13 @@ function damagedeal()
 }
 function damagetake(){
   var randomgenerator = Math.floor(Math.random()*20+1);
-  if (postac == 3)
+  if (postac == 3 || wrogowie > 0)
   {
-    wrogowie = wrogowie - Math.floor(poziom/2);
+	wrogowie = wrogowie - Math.floor(poziom/2);
+	if (wrogowie < 0)
+	{
+		wrogowie = 0;
+	}
   }
   wrogowie2 = wrogowie;
   if (randomgenerator == 1)
