@@ -39,7 +39,7 @@ var bomb = 0;
 var scroll = 0;
 //lochy
 var akcje = 0;
-var zone = 1;
+var zone = 0;
 var typpierscienia = 0;
 var iwan1 = 1;
 var iwan2 = 1;
@@ -54,4 +54,5 @@ var errorlevel = 0;
 var lastpray = 0;
 var armorimg = 1;
 var schowek = 0;
+var eqopened = 0;
 scrolling = setInterval(function(){ window.scrollBy(0, 1000);	if (zdrowie == 0 || zdrowie < 0){if (errorlevel == 0){errorlevel = errorlevel + 1;document.getElementById("zdrowaska").src = "zasoby/smierc.png";var audio = new Audio('zasoby/death.mp3');audio.play();alert("YOU DIED...");setTimeout(function(){ location.reload(); }, 2500);}}}, 50);

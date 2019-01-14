@@ -1,4 +1,4 @@
-function zonecheck()
+﻿function zonecheck()
 {
 	if (akcje > 100 && story == 1)
 	{
@@ -93,22 +93,7 @@ function zonecheck()
 }
 function hpcheck()
 {
-	if (zdrowie == 0 || zdrowie < 0)
-	{
-		if (errorlevel == 0)
-		{
-			errorlevel = errorlevel + 1;
-			document.getElementById("zdrowaska").src = "zasoby/smierc.png";
-			var audio = new Audio('zasoby/death.mp3');
-			audio.play();
-      var img = document.createElement("img");
-      img.src = "zasoby/gameover.png";
-      document.body.appendChild(img);
-			alert("YOU DIED...");
-			setTimeout(function(){ location.reload(); }, 2500);
-		}
-	}
-	else if (zdrowie < Math.ceil(maxzdrowie / 3))
+	if (zdrowie < Math.ceil(maxzdrowie / 3))
 	{
 		document.getElementById("zdrowaska").src = "zasoby/zdrowie2.png";
 	}
@@ -180,6 +165,21 @@ function hpcheck()
 	if (exp > (nextlvl * 4))
 	{
 		exp = 0;
+	}
+	if (zdrowie == 0 || zdrowie < 0)
+	{
+		if (errorlevel == 0)
+		{
+			errorlevel = errorlevel + 1;
+			document.getElementById("zdrowaska").src = "zasoby/smierc.png";
+			var audio = new Audio('zasoby/death.mp3');
+			audio.play();
+      var img = document.createElement("img");
+      img.src = "zasoby/gameover.png";
+      document.body.appendChild(img);
+			alert("YOU DIED...");
+			setTimeout(function(){ location.reload(); }, 2500);
+		}
 	}
 	document.getElementById("akcje").innerHTML = akcje;
 	document.getElementById("wrogowie").innerHTML = wrogowie;
